@@ -1,0 +1,69 @@
+﻿//字符转化  char 是任何编码间的通用字符
+char* CmdGeneratePartList::TransFunc(CATUnicodeString iStrText)
+{
+	cout<<"转化"<<endl;
+	CATUnicodeString strText = NULL;
+	const char* strChar = iStrText.ConvertToChar();
+	wchar_t* pwchar = NULL;
+	iStrText.ConvertToWChar(pwchar);
+	char* result;
+	int textlen;
+
+	//UnicodeToUTF8
+	/*textlen = WideCharToMultiByte( CP_UTF8, 0, pwchar, -1, NULL, 0, NULL, NULL );
+	result =(char *)malloc((textlen+1)*sizeof(char));
+	memset(result, 0, sizeof(char) * ( textlen + 1 ) );
+	WideCharToMultiByte( CP_UTF8, 0, pwchar, -1, result, textlen, NULL, NULL );
+	strText.BuildFromWChar(pwchar);*/
+
+	//UnicodeToANSI
+	textlen = WideCharToMultiByte( CP_ACP, 0, iStrText, -1, NULL, 0, NULL, NULL );
+	result =(char *)malloc((textlen+1)*sizeof(char));
+	memset( result, 0, sizeof(char) * ( textlen + 1 ) );
+	WideCharToMultiByte( CP_ACP, 0, iStrText, -1, result, textlen, NULL, NULL );
+
+	//UTF8ToUnicode
+	/*wchar_t * result;
+	textlen = MultiByteToWideChar( CP_UTF8, 0, strChar,-1, NULL,0 );
+	result = (wchar_t *)malloc((textlen+1)*sizeof(wchar_t));
+	memset(result,0,(textlen+1)*sizeof(wchar_t));
+	MultiByteToWideChar(CP_UTF8, 0,strChar,-1,(LPWSTR)result,textlen );
+	strText.BuildFromWChar(result);*/
+
+	//ANSIToUnicode MY_CONV_CODE_PAGE = 936  cp936 = GBK
+	//wchar_t * result = NULL;
+	//textlen = MultiByteToWideChar( CP_ACP, 0, strChar,-1, NULL,0 );
+	//result = (wchar_t *)malloc((textlen+1)*sizeof(wchar_t));
+	//memset(result,0,(textlen+1)*sizeof(wchar_t));
+	//MultiByteToWideChar(CP_ACP, 0,strChar,-1,/*(LPWSTR)*/result,textlen);
+	//strText.BuildFromWChar(result);
+
+//判断中英文(黄)
+	/*int len = WideCharToMultiByte(CP_ACP, 0, iStrText, -1, NULL, 0, NULL, NULL); 
+	char* szGBK = new char[len + 1]; 
+	memset(szGBK, 0, len + 1); 
+	WideCharToMultiByte(CP_ACP, 0, iStrText, -1, szGBK, len, NULL, NULL); 
+
+	string str(szGBK); 
+	if (szGBK) delete[] szGBK; */
+
+
+	return result;
+}
+
+
+wchar_t* trans(const char * ch, int type = CP_ACP) {
+	int len = MultiByteToWideChar(type, 0, ch, -1, NULL, 0);
+	wchar_t *str = new wchar_t[len + 1];
+	wmemset(str, 0, len + 1);
+	MultiByteToWideChar(type, 0, ch, -1, str, len);
+	return str;
+}
+// 当type为CP_ACP时，UNICODE转化为GBK；当type为CP_UTF8时，UNICODE转化为UTF8
+char* trans(const wchar_t * wch, int type = CP_ACP) {
+	int len = WideCharToMultiByte(type, 0, wch, -1, NULL, 0, NULL, NULL);
+	char *str = new char[len + 1];
+	memset(str, 0, len + 1);
+	WideCharToMultiByte(type, 0, wch, -1, str, len, NULL, NULL);
+	return str;
+}

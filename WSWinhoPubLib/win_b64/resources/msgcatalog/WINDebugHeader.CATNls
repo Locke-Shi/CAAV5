@@ -1,0 +1,7 @@
+// DO NOT EDIT :: THE CAA2 WIZARD WILL REPLACE ALL THE CODE HERE
+
+// END WIZARD REPLACEMENT ZONE
+
+WINDebugHeader.DebugDBServices.Title  = "数据库服务测试";
+WINDebugHeader.DebugDBServices.ShortHelp = "数据库服务测试";
+WINDebugHeader.DebugDBServices.Help = "数据库服务测试。";

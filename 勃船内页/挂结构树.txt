@@ -1,0 +1,23 @@
+//挂结构树
+void LineActionCmd::ShowOnTreeOfBody(CATBody* iBody,CATIContainer *ipiSpecContainer)
+{
+	cout<<"---> ShowOnTreeOfBody <---"<<endl;
+	if(!iBody || !ipiSpecContainer) return ;
+
+	HRESULT hr = S_OK;
+
+	CATIDatumFactory_var spiDatumFactory = ipiSpecContainer;
+	if(!spiDatumFactory) {cout<<"QI error: CATIDatumFactory"<<endl;return ;}
+
+	CATISpecObject* piSpecOnBody = NULL;
+	hr = spiDatumFactory->InstanciateDatum(iBody,piSpecOnBody);
+	if (piSpecOnBody)
+	{
+		CATIGSMProceduralView_var spiGSMProceduralView = piSpecOnBody;
+		CATISpecObject_var spiSpecOnObj = piSpecOnBody;
+		spiGSMProceduralView->InsertInProceduralView(piSpecOnBody);
+		spiSpecOnObj->Update();
+	}
+
+	return ;
+}

@@ -1,0 +1,40 @@
+//1
+CATLibStatus LibStatus = ::CATFileAccess(strFolderPath,F_OK);
+	if(CATLibSuccess != LibStatus)
+	{
+#ifdef WIN32
+
+		CATUnicodeString strMkdirFile("md ");
+		strMkdirFile.Append(strFolderPath);
+		strMkdirFile.Append("\"");
+		system(strMkdirFile);
+
+#else
+
+		CATUnicodeString strMkdirFile("mkdir -p \"");
+		strMkdirFile.Append(strFolderPath);
+		strMkdirFile.Append("\"");
+		system(strMkdirFile);
+
+		CATUnicodeString strCmd("chmod -R 777 \"");
+		strCmd.Append(strFolderPath);
+		strCmd.Append("\"");
+		system(strCmd);
+
+#endif;
+	}
+
+//2
+for (int i=0;i<iSize;i++)
+	{
+		if (!(PDMLoginServices::IsLoginInfoEqual(CurtLoginInfo,_WindowInfoVector[i].PDMLoginInfo))) continue;//遍历到相同用户继续第二步
+
+		//遍历到相同产品ID再进行第三步,当前窗口没有双击的文档
+		if (iProductInfo.ID != _WindowInfoVector[i].RootProInfo.ID && RetrieveOpenDocInCurrentWindowFunc(iProductInfo.ProductNum)) continue;
+
+		CATUnicodeString strWindowName("");
+		strWindowName = CATUnicodeString("沈阳航空制造工装协同设计系统:") + iProductInfo.ProductNum + CATUnicodeString("--") + _WindowInfoVector[i].PDMLoginInfo.UserName;
+		CATUniversalServices::SetCurrentWindowByName(strWindowName);
+
+		return TRUE;
+	}

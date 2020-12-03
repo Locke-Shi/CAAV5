@@ -1,0 +1,25 @@
+//描述：获取某路径的名称
+//输入：CATPathElement对象
+//输出：CATUnicodeString
+//返回：void
+void YF3DGeneralClass::PathElementString(CATPathElement *ipPath,CATUnicodeString &strPathName)
+{
+	//cout<<"==> Output String of PathElement"<<endl;
+	strPathName = "";
+	int NumOfPath = ipPath->GetSize();
+	for(int i=0;i<NumOfPath;i++)  {
+		CATBaseUnknown *pElt=(*ipPath)[i];
+		if(pElt != NULL) {
+			CATIAlias *piAlias = NULL;
+			HRESULT rc = pElt->QueryInterface (IID_CATIAlias, (void**) &piAlias);
+			if(SUCCEEDED(rc) && piAlias!=NULL) {
+				CATUnicodeString Name = piAlias->GetAlias();
+				strPathName.Append(Name) ;
+				if(i<=(NumOfPath-2)) {
+					strPathName.Append("/");
+				}
+				piAlias->Release(); piAlias = NULL;
+			}
+		}
+	}
+}

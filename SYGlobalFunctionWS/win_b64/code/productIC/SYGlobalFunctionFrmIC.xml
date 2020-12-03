@@ -1,0 +1,6 @@
+<?xml version='1.0' ?>
+<codeFramework xmlns = "http://www.3ds.ic" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.3ds.ic ICModel.xsd">
+  <prerequisite name = "System" access = "Protected"/>
+  <prerequisite name = "SYGlobalFunctionFrm" access = "Protected"/>
+  <prerequisite name = "XMLParser" access = "Protected"/>
+</codeFramework>

@@ -1,0 +1,17 @@
+<I.C SCRIPT>  WINNT 1
+M8 1 "" ""
+M1 2 System,2
+M1 2 ApplicationFrame,2
+M1 2 ObjectModelerBase,2
+M1 2 ObjectSpecsModeler,2
+M1 2 WinhoCAAPubLib,1
+M1 2 WinhoDBPubLib,1
+M1 2 ProductStructure,1
+M1 2 Mathematics,1
+M1 2 MecModInterfaces,2
+M1 2 KnowledgeInterfaces,2
+M1 2 GeometricObjects,2
+M1 2 NewTopologicalObjects,2
+M1 2 MeasureGeometryInterfaces,2
+M1 2 DialogEngine,2
+EOF

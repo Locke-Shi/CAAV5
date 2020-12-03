@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\intel_a\code\lib\SJDPartExampleM.exp|.\SJDPartExampleFrm\SJDPartExampleM.m
+INT/000/CUS .\intel_a\code\bin\SJDPartExampleM.pdb|.\SJDPartExampleFrm\SJDPartExampleM.m
+RTV/001/CUS .\intel_a\code\bin\SJDPartExampleM.dll|.\SJDPartExampleFrm\SJDPartExampleM.m
+INT/000/CUS .\intel_a\code\lib\SJDPartExampleM.syl|.\SJDPartExampleFrm\SJDPartExampleM.m
+BTV/000/CUS .\intel_a\code\lib\SJDPartExampleM.lib|.\SJDPartExampleFrm\SJDPartExampleM.m

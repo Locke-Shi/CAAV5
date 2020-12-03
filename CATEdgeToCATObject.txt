@@ -1,0 +1,23 @@
+CATISpecObject_var LGSRDClearanceHoleDlg::TopToObjectLine(CATEdge *pEdge)
+{
+	//获取pEdge的Body
+	CATIContainer *pGeoFactoryContainer=NULL;
+	spContainerOfDocument->GetResultContainer(pGeoFactoryContainer);
+	//cout<<"pGeoFactoryContainer:"<<pGeoFactoryContainer<<endl;
+	CATGeoFactory *pGeoFactory=NULL;
+	HRESULT hr=pGeoFactoryContainer->QueryInterface(IID_CATGeoFactory,(void**)&pGeoFactory);
+	//cout<<"pGeoFactory:"<<pGeoFactory<<endl;
+
+	CATBody *pEdgeBody=pGeoFactory->CreateBody();
+	CATDomain *pEdgeDomain=pEdgeBody->CreateDomain(1);/////注意此处是获取线还是点,给定不同数字
+	pEdgeDomain->AddCell(pEdge);
+	pEdgeBody->AddDomain(pEdgeDomain);
+
+	CATIDatumFactory_var spDatumFactory=pPrtContainer;
+	//cout<<"spDatumFactory:"<<spDatumFactory<<endl;
+	CATISpecObject *pSpecpEdgeBody=NULL;
+	spDatumFactory->InstanciateDatum(pEdgeBody,pSpecpEdgeBody);
+	CATISpecObject_var spSpecType=pSpecpEdgeBody;
+	//cout<<"spSpecType:"<<spSpecType<<endl;
+	return spSpecType;
+}

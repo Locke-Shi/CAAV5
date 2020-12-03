@@ -1,0 +1,11 @@
+E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoMD5PubLib\PublicInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\BSFBuildtimeData\ProtectedInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\BSFBuildtimeData\PublicInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\System\ProtectedInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\System\ProtectedGenerated\win_b64
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\System\PublicInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\System\PublicGenerated\win_b64
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\LCCommon\PrivateInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\LCCommon\ProtectedInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\SpecialAPI\ProtectedInterfaces
+C:\WinhoMBE\DassaultSystemes\V5R21\B21\.\SpecialAPI\PublicInterfaces

@@ -1,0 +1,59 @@
+CATBoolean LineActionCmd::DealWithSelectObj(CATBaseUnknown* iBUOfObj,int iType,CATUnicodeString& oStrObjDisPlayName,CATISpecObject_var& ospiSpecOnObj,CATBaseUnknown_var& ospBUObject)
+{
+	if(!iBUOfObj) return FALSE;
+	oStrObjDisPlayName = NULL;
+	ospiSpecOnObj = NULL_var;
+	ospBUObject= NULL_var;
+
+	ospiSpecOnObj = iBUOfObj;
+	if (!ospiSpecOnObj)
+	{
+		cout<<"特征化"<<endl;
+		//处理对象
+		CATIFeaturize_var spiFeaturize = iBUOfObj;
+		if (!!spiFeaturize)
+		{ 
+			//CATISpecObject_var spiSpecOnObj = spiFeaturize->FeaturizeR();//需显示高亮，不传任何参数 MfPermanentBody-加了不高亮，但是能操作 MfPermanentBody|MfLastFeatureSupport|MfNoDuplicateFeature
+			ospiSpecOnObj = spiFeaturize->FeaturizeR(MfPermanentBody|MfLastFeatureSupport|MfRelimitedFeaturization);// MfPermanentBody|MfLastFeatureSupport|MfRelimitedFeaturization)
+			if (!ospiSpecOnObj)
+			{
+				return FALSE;
+			}
+		}
+
+		//处理名字
+		CATIBRepAccess_var spiBrepAccess = iBUOfObj;
+		if (!spiBrepAccess)
+		{
+			cout<<"Internal error :GetSelectFeatureNameAndPathFunc()->CATIBRepAccess_var QI Fail !"<<endl;
+			return FALSE;
+		}
+
+		CATLISTV(CATBaseUnknown_var) listOfBU = spiBrepAccess->GetBReps(iType);//边界
+		CATLISTV(CATISpecObject_var) listOfSepcObj = spiBrepAccess->GetNecessaryFeatures(MfDefaultBRepType);
+
+		if (listOfBU.Size())//边界元素
+		{
+			ospBUObject = listOfBU[1];
+			CATIAlias_var spiAlias = listOfBU[1];
+			oStrObjDisPlayName.Append(listOfSepcObj[1]->GetDisplayName());
+			oStrObjDisPlayName.Append("/");
+			oStrObjDisPlayName.Append(spiAlias->GetAlias());
+
+
+		}else{
+
+			oStrObjDisPlayName = listOfSepcObj[1]->GetDisplayName();
+		}	
+
+	}else{
+
+		cout<<"非特征化"<<endl;
+		_spiAlias = ospiSpecOnObj;
+		oStrObjDisPlayName = _spiAlias->GetAlias();
+		//oStrObjDisPlayName = ospiSpecOnObj->GetDisplayName();
+	}
+
+
+	return TRUE;
+}

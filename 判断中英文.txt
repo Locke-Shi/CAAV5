@@ -1,0 +1,11 @@
+string str = iStrText;
+	if(str[0]<255 && str[0]>0)//扩充的ASCII字符范围为0-255,如是,处理一个字节,英文数字(ansi)
+	{
+		//cout<<str.substr(0,1)<<" 英文 =  "<<iStrText.SearchSubString(str.substr(0,1).c_str())<<"位置 = "<<iStartPos<<endl;
+		
+	}
+	else//<0,>255的是汉字,处理两个字节,汉字
+	{	
+		//cout<<str.substr(0,2)<<" 中文 =  "<<iStrText.SearchSubString(str.substr(0,2).c_str())<<"位置 = "<<iStartPos<<endl;
+		
+	}

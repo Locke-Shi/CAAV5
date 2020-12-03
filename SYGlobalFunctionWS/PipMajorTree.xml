@@ -1,0 +1,144 @@
+<?xml version='1.0' ?>
+<Node name = "D1">
+<!--node节点 组织各专业的逻辑结构-->
+	<Node name = "船体">
+		<Node name = "结构">
+			<Node name = "耐压">
+				<Node name = "耐压组件1">
+				<!--CheckContent节点 为校验内容 ，根据需要添加属性-->
+					<CheckContent name = "规格材质">
+						<!--CheckPoint节点 为校验点-->
+						<!--类型1： type= "calculate" 通过catia计算得出理论值（TheoreticalValue）-->
+						<CheckPoint type= "calculate" name = "规格" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000081"></CheckPoint>
+						<CheckPoint type= "calculate" name = "材质" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000082"></CheckPoint>
+						<CheckPoint type= "calculate" name = "炉批号" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000083"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "弯曲角">
+						<CheckPoint type= "dynamic" name = "" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000084"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "圆度">
+						<CheckPoint type= "dynamic" name = "" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000085"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "减薄率">
+						<CheckPoint type= "dynamic" name = "" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000086"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "免焊接成型检验">
+						<CheckPoint type= "choice" name = "C1凸肩尺寸" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000087">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ25.6，φ27.8"/>
+						</CheckPoint>
+						<CheckPoint type= "fix" name = "C1封面外观检验" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000088"></CheckPoint>
+						<CheckPoint type= "choice" name = "C2凸肩尺寸" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000089">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ35.6，φ37.8"/>
+						</CheckPoint>
+						<CheckPoint type= "fix" name = "C2封面外观检验" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008A"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "免焊接扩口检验">
+						<CheckPoint type= "fix" name = "C1内锥面表面粗糙度" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008B"></CheckPoint>
+						<CheckPoint type= "fix" name = "C1扩口外形尺寸" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008C"></CheckPoint>
+						<CheckPoint type= "fix" name = "C1扩口处壁厚减薄率" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008D"></CheckPoint>
+						<CheckPoint type= "fix" name = "C2内锥面表面粗糙度" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008E"></CheckPoint>
+						<CheckPoint type= "fix" name = "C2扩口外形尺寸" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000008F"></CheckPoint>
+						<CheckPoint type= "fix" name = "C2扩口处壁厚减薄率" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000090"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "对焊坡口角度及钝边">
+						<CheckPoint type= "choice" name = "对焊坡口角度" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000091">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ25.6，φ27.8"/>
+						</CheckPoint>
+						<CheckPoint type= "choice" name = "对焊钝边" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000092">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ25.6，φ27.8"/>
+						</CheckPoint>
+					</CheckContent>
+					<CheckContent name = "对焊坡口间隙及错边量">
+						<CheckPoint type= "choice" name = "对焊坡口间隙" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000093">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ25.6，φ27.8"/>
+						</CheckPoint>
+						<CheckPoint type= "choice" name = "对焊错边量" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000094">
+							<DesignSpec Spec="φ10" value="φ12.5，φ14.3"/>
+							<DesignSpec Spec="φ14" value="φ17.5，φ19.3"/>
+							<DesignSpec Spec="φ22" value="φ25.6，φ27.8"/>
+						</CheckPoint>
+					</CheckContent>
+					<CheckContent name = "法兰眼转角">
+						<CheckPoint type= "dynamic" name = "" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000095"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "法兰面垂直度">
+						<CheckPoint type= "dynamic" name = "" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000096"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "支管转角">
+						<CheckPoint type= "calculate" name = "P" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000097"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "成品尺寸">
+						<CheckPoint type= "calculate" name = "成品尺寸" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000098"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "探伤">
+						<CheckPoint type= "calculate" name = "探伤" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B00000099"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "对接焊缝正面宽度、余高">
+						<CheckPoint type= "choice" name = "对接焊缝正面宽度" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009A">
+							<DesignSpec Spec="300" value="10分"/>
+							<DesignSpec Spec="200300" value="20分"/>
+							<DesignSpec Spec="200" value="30分"/>
+						</CheckPoint>
+						<CheckPoint type= "choice" name = "对接焊缝余高" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009B">
+							<DesignSpec Spec="300" value="10分"/>
+							<DesignSpec Spec="200300" value="20分"/>
+							<DesignSpec Spec="200" value="30分"/>
+						</CheckPoint>
+					</CheckContent>
+					<CheckContent name = "管材附件外表面目视检查">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009C"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "强度检验">
+						<CheckPoint type= "calculate" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009D"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "管路表面酸碱性">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009E"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "管路内外表面">
+						<CheckPoint type= "choice" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B0000009F">
+							<DesignSpec Spec="TP316L" value="（铜管）清洗后的管件目视其表面应清洁且显示铜及其合金的正常颜色"/>
+							<DesignSpec Spec="TP316L2" value="（不锈钢管）清洁干燥，不允许有油污、氧化皮、锈蚀物及垃圾存在"/>
+							<DesignSpec Spec="TP316L3" value="（碳钢管）管件外观呈灰色，磷化膜应结晶致密、连续和均匀"/>
+						</CheckPoint>
+					</CheckContent>
+					<CheckContent name = "拉洗">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B000000A0"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "漆膜外观">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B000000A1"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "漆膜厚度">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B000000A2"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "阻尼敷设前管路外表面">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B000000A3"></CheckPoint>
+					</CheckContent>
+					<CheckContent name = "阻尼敷设完整性">
+						<CheckPoint type= "fix" name = "管段" TheoreticalValue="" CatAppID="56C0000100003BC85E689D4B000000A4"></CheckPoint>
+					</CheckContent>
+				</Node>
+				<Node name = "耐压组件2">
+
+				</Node>
+			</Node>
+			<Node name = "非耐压">
+				<Node name = "非耐压组件1">
+
+				</Node>
+				<Node name = "非耐压组件1">
+
+				</Node>
+			</Node>			
+		</Node>
+	</Node>
+</Node>

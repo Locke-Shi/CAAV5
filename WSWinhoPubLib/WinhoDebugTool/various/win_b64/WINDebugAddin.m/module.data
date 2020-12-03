@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\win_b64\code\lib\WINDebugAddin.exp|.\WinhoDebugTool\WINDebugAddin.m
+CSC/000/DSI .\WinhoDebugTool\WINDebugAddin.m\Objects\win_b64\mkcsc\WINDebugAddin.cscdb|.\WinhoDebugTool\WINDebugAddin.m
+INT/000/CUS .\win_b64\code\bin\WINDebugAddin.pdb|.\WinhoDebugTool\WINDebugAddin.m
+BTV/000/CUS .\win_b64\code\lib\WINDebugAddin.lib|.\WinhoDebugTool\WINDebugAddin.m
+RTV/001/CUS .\win_b64\code\bin\WINDebugAddin.dll|.\WinhoDebugTool\WINDebugAddin.m

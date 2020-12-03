@@ -1,0 +1,5 @@
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoCAAPubLib\WinhoUniversalServices.m\src"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoCAAPubLib\WinhoUniversalServices.m\LocalInterfaces"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoCAAPubLib\WinhoUniversalServices.m\LocalGenerated\win_b64"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoCAAPubLib\PublicInterfaces"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoCAAPubLib\ImportedInterfaces\win_b64"

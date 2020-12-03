@@ -1,0 +1,17 @@
+!<mkRTViewData> v1.0.0
+RTV/000/DSI .\win_b64\resources\msgcatalog\DbcsTest\DebugDBServicesCmd.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\DebugDBServicesCmd.CATNls
+DAT/002/CUS .\win_b64\resources\msgcatalog\DebugDBServicesCmd.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\DebugDBServicesCmd.CATNls
+DAT/002/CUS .\win_b64\code\dictionary\WinhoDebugTool.dico|.\WinhoDebugTool\CNext\code\dictionary\WinhoDebugTool.dico
+BTV/002/CUS .\win_b64\code\productIC\WinhoDebugToolIC.script|.\WinhoDebugTool
+DAT/002/CUS .\win_b64\resources\msgcatalog\WINDebugHeader.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugHeader.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\NlsTest\DebugDBServicesCmd.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\DebugDBServicesCmd.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\NlsTest\WINDebugHeader.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugHeader.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\DbcsTest\WINDebugHeader.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugHeader.CATNls
+RTV/002/DSI .\win_b64\code\productIC\WinhoDebugToolIC.required|.\WinhoDebugTool
+DAT/002/CUS .\win_b64\resources\msgcatalog\WINDebugHeader.CATRsc|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugHeader.CATRsc
+RTV/000/DSI .\win_b64\resources\msgcatalog\DbcsTest\WINDebugAddin.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugAddin.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\NlsTest\WINDebugAddin.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugAddin.CATNls
+BTV/002/CUS .\win_b64\code\productIC\WinhoDebugToolIC.xml|.\WinhoDebugTool
+DAT/002/CUS .\win_b64\resources\graphic\I_DebugDBServices.bmp|.\WinhoDebugTool\CNext\resources\graphic\I_DebugDBServices.bmp
+DAT/002/CUS .\win_b64\resources\msgcatalog\WINDebugAddin.CATNls|.\WinhoDebugTool\CNext\resources\msgcatalog\WINDebugAddin.CATNls
+CSC/002/DSI .\WinhoDebugTool\IdentityCard\Objects\win_b64\mkcsc\WinhoDebugTool.cscdb|.\WinhoDebugTool

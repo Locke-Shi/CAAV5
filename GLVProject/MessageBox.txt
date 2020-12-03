@@ -1,0 +1,10 @@
+void CAAMessageBox(CATUnicodeString message,CATUnicodeString title)
+{
+	CATDlgNotify* pNotifyDlg = new CATDlgNotify((CATApplicationFrame::GetApplicationFrame())->GetMainWindow(), title.ConvertToChar(),CATDlgNfyWarning);
+	if (NULL != pNotifyDlg)
+	{
+		pNotifyDlg->DisplayBlocked(message ,title);
+		pNotifyDlg->RequestDelayedDestruction(); 
+		pNotifyDlg = NULL;
+	}
+}

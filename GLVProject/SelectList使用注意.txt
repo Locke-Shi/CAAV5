@@ -1,0 +1,6 @@
+初始化Selectlist的时候，必须先设置行数，否则无法选择。
+
+_SelectorList004->SetLine("No Select",0,CATDlgDataModify);
+_SelectorList005->SetLine("No Select",0,CATDlgDataModify);
+int tabRow = 0;
+_SelectorList004->SetSelect(&tabRow,1);

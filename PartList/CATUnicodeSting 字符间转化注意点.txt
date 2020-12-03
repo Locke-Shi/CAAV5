@@ -1,0 +1,8 @@
+_variant_t vRoadLocationValue = _ExlRge.GetItem(_variant_t(2),_variant_t(8));
+		//z这样转化，会导致全英文环境下，中文乱码，切忌直接赋值给CATUnicodeString
+		//char cRoadLocationValue[1024] ={0}; 
+		//strcpy(cRoadLocationValue,(LPCSTR)_bstr_t(vRoadLocationValue));
+		CATUnicodeString roadLocation = NULL;//cRoadLocationValue;
+		roadLocation.BuildFromBSTR(_bstr_t(vRoadLocationValue));//应该这样转化
+
+//以后切忌直接赋值给CATUnicodestring

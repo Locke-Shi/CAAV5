@@ -1,0 +1,14 @@
+CATLISTP(CATCell) listOfCells;
+pXXXBody->GetAllCells(listOfCells,0);
+
+cout<<listOfCells.Size()<<endl;
+
+CATVertex* pVertex = (CATVertex*)listOfCells[1];
+cout<<"3"<<endl;
+CATPoint* pPoint = pVertex->GetPoint();
+if (pPoint)
+{
+		cout<<"point x = "<<pPoint->GetX()<<endl;
+		cout<<"point y = "<<pPoint->GetY()<<endl;
+		cout<<"point z = "<<pPoint->GetZ()<<endl;
+}

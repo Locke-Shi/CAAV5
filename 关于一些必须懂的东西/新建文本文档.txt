@@ -1,0 +1,9 @@
+//remove  C++删除文件函数
+if(remove(savePath)==0)
+     {
+         cout<<"删除成功"<<endl;        
+    }
+    else
+    {
+       cout<<"删除失败"<<endl;        
+    }

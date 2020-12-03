@@ -1,0 +1,92 @@
+HRESULT hr;
+	CATDocument *pDocument = NULL;
+	CATFrmEditor* pEdit = CATFrmEditor::GetCurrentEditor();
+	CATILinkableObject* pILinkableOnActive = NULL;
+	hr = pEdit->GetUIActiveObject().Search(
+		IID_CATILinkableObject,
+		(void**)&pILinkableOnActive);
+	pDocument = pILinkableOnActive->GetDocument();//获取到文档
+	if(pEdit == NULL)
+	{
+		cout<<"1111 GeomMain"<<endl;
+		return (CATStatusChangeRCAborted);
+	}
+
+
+	if (pDocument == NULL)
+	{
+		cout<<"2222 GeomMain"<<endl;
+		return (CATStatusChangeRCAborted);
+	}
+
+	CATIPrtPart_var spPart = NULL_var;
+	if (pDocument)
+	{
+		CATInit_var spInitOnDoc(pDocument);//初始化本文档的数据。  将参数和对象相关联
+		//用于定义文档数据初始化的接口。
+		//功能：在File / New或File / Open中调用Init方法。 在这种方法中，每个应用程序通常创建其根元素。 要获取它，请使用GetRootContainer方法。
+		if(NULL_var == spInitOnDoc) return (CATStatusChangeRCAborted);;
+
+		// Retrieves the root container
+		CATIPrtContainer * piPrtCont =  (CATIPrtContainer*) spInitOnDoc->GetRootContainer("CATIPrtContainer");//返回给定文档的根元素。	
+		//检索机械零件功能的界面。
+		if (!piPrtCont)
+		{
+			// Ends session
+
+			cout<<"Sy GeomMain"<<endl;
+			return (CATStatusChangeRCAborted);
+		}
+		// Get the part feature of the container.
+		spPart = piPrtCont->GetPart();
+		//检索“机械零件”功能信息的接口。
+		//返回“机械零件”功能。
+		piPrtCont->Release();
+		piPrtCont=NULL;
+	}
+	CATISpecObject_var spiObj = spPart;
+
+//设置隐藏
+	CATIVisProperties* piPropOnElem = NULL;//用于管理图形属性的界面。
+	HRESULT rc = spiObj->QueryInterface(IID_CATIVisProperties,
+		(void**)&piPropOnElem);
+	if(piPropOnElem != NULL)
+	{
+		cout<<"1"<<endl;
+		CATVisPropertiesValues PropValue;
+		CATVisPropertyType ProType = CATVPShow;//信息是可见性
+		CATVisGeomType geomtype = CATVPGlobalType;//此类型定义了一组属性类型：
+		PropValue.SetShowAttr(CATNoShowAttr);//设置显示标志。
+		cout<<"2"<<endl;
+		rc = piPropOnElem->SetPropertiesAtt(PropValue,ProType,geomtype);//设置图形属性集。
+		cout<<"3"<<endl;
+		if (FAILED(rc))
+		{
+			cout<<"164"<<endl;
+		}
+		piPropOnElem->Release();
+		piPropOnElem = NULL;
+	}
+
+	CATModify pModifyOnRoot(spiObj);
+	CATIModelEvents_var pMEOnRoot= spiObj;
+	pMEOnRoot->Dispatch(pModifyOnRoot);//刷新图形
+
+//获取零件状态
+	CATIVisPropertiesAbstract* spiPro = NULL;
+	spiObj->QueryInterface(IID_CATIVisProperties,(void**)&spiPro);
+	if (spiPro == NULL)
+	{
+		cout<<"213 GeomMain"<<endl;
+		return (CATStatusChangeRCAborted);
+	}
+	CATVisPropertiesValues ProVis;
+	CATVisPropertyType ProType = CATVPShow;
+	spiPro->GetPropertiesAtt(ProVis,ProType);//获取图形状态
+	CATShowAttribut ShowAttr;
+	
+	ProVis.GetShowAttr(ShowAttr);
+	if (ShowAttr == CATNoShowAttr)//是否为隐藏状态
+	{
+		cout<<"6666"<<endl;
+	}

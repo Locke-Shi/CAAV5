@@ -1,0 +1,3 @@
+1.在\CNext\resources\msgcatalog\新建Simplified_Chinese文件夹
+2.新建需要切换中英文界面的CATNls文件，名字和英文相同，除双引号里面的中英文不同以外，其余都相同。
+3.@@@@@  编码转为ANSI！！！！！ 不是使用，是转为

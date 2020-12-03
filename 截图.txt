@@ -1,0 +1,86 @@
+void SYTestCmd::CreatePhoto()
+{
+	CATViewer* pCurrentView = NULL;
+	CATFrmLayout * pCurrentLayout= CATFrmLayout::GetCurrentLayout();
+	if (  pCurrentLayout )
+	{
+		CATFrmWindow * pCurrentWindow = pCurrentLayout->GetCurrentWindow();
+
+		if (  pCurrentWindow )
+		{
+			pCurrentView = pCurrentWindow->GetViewer();
+			if ( pCurrentView )
+			{
+				float supportWidth = 0.,supportHeight = 0.,_r = 1,_g = 1,_b = 1;
+				//
+				pCurrentView->GetGraphicSize(&supportWidth,&supportHeight);
+				cout<<"GW = "<<supportWidth<<",GH = "<<supportHeight<<endl;
+
+				//
+				//CATSupport currentSupport((int)supportWidth,(int)supportHeight);
+				//currentSupport.GetWidthAndHeight(supportWidth,supportHeight);
+				//cout<<"supportWidth = "<<supportWidth<<",supportHeight = "<<supportHeight<<endl;
+
+				////
+				//CAT3DViewpoint* p3DOriginPoint = new CAT3DViewpoint;
+				//CAT3DViewpoint	EndPoint3D = pCurrentView->GetMain3DViewpoint();
+				//CATRender currentRender(currentSupport);
+				//
+				//CATViewpoint* pOriPoint = (CATViewpoint*)p3DOriginPoint;
+				//CATViewpoint* pEndPoint = (CATViewpoint*)&EndPoint3D;
+
+				//currentRender.BeginDraw(*pOriPoint);
+				//currentRender.EndDraw(*pEndPoint);
+
+	
+				//打印
+				CATPrintViewerImage* pPrintViewer = new CATPrintViewerImage(pCurrentView,CATPRINTRENDER_CAPTURE,1);
+				if (!pPrintViewer)
+				{
+					cout<<"new fail"<<endl;
+					return;
+				}
+
+				//设置路径
+				pCurrentView->GetBackgroundColor(&_r,&_g,&_b);
+				pCurrentView->SetBackgroundColor(255,255,255);
+
+				CATIAViewer* piAViewerVB = NULL;
+				if (FAILED(pCurrentView->QueryInterface(IID_CATIAViewer,(void**)&piAViewerVB)))
+				{
+					cout<<"QI error"<<endl;
+					return;
+				}
+
+				CATUnicodeString tempFile = "E:\\2.bmp";
+				//const CATBSTR bstrText = ::SysAllocString();
+				CATBSTR bstrText = NULL;
+				tempFile.ConvertToBSTR(&bstrText);
+				piAViewerVB->CaptureToFile(catCaptureFormatBMP,bstrText);
+				piAViewerVB->Release();piAViewerVB = NULL;
+
+				pCurrentView->SetBackgroundColor(_r,_g,_b);
+				pCurrentView->SetFeedbackMode(TRUE);
+				pCurrentView->Draw();
+				pCurrentView = NULL;
+
+				//
+				CATPrintFileDevice* pDevice = new CATPrintFileDevice(tempFile.ConvertToChar(),"RASTER");
+
+				CATPrintParameters printParameters;
+				printParameters.SetWhitePixel(1);
+				printParameters.SetMapToPaper(1);
+				printParameters.SetBanner("SY");//水印
+				printParameters.SetBannerPosition(CATPRINT_TOP);//水印位置
+				printParameters.SetLineWidthSpecificationMode(CATPRINT_SCALED);
+				printParameters.SetLineTypeSpecificationMode(CATPRINT_SCALED);
+
+				pPrintViewer->Print(pDevice,printParameters);				
+
+
+			}
+			//pCurrentWindow->Release();pCurrentWindow=NULL;//窗口消失
+
+		}
+		//pCurrentLayout->Release();pCurrentLayout=NULL;
+	}

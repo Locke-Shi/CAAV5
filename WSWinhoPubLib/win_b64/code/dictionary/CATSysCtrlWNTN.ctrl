@@ -1,0 +1,15 @@
+/WinhoCAAPubLib
+WinhoENOVIAServices.dll
+WinhoUniversalServices.dll
+WinhoVisualServices.dll
+WinhoCGMServices.dll
+WinhoAgentServices.dll
+WinhoPPRServices.dll
+WinhoDocServices.dll
+/WinhoDBPubLib
+WinhoDBServices.dll
+/WinhoDebugTool
+WINDebugCmds.dll
+WINDebugAddin.dll
+/WinhoMD5PubLib
+WinhoMD5Services.dll

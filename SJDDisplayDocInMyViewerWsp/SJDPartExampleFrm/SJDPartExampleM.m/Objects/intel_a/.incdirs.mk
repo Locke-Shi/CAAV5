@@ -1,0 +1,5 @@
+/I"E:\Program\CAA\CATIA\tmpTest\SJDDisplayDocInMyViewerWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\src"
+/I"E:\Program\CAA\CATIA\tmpTest\SJDDisplayDocInMyViewerWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\LocalInterfaces"
+/I"E:\Program\CAA\CATIA\tmpTest\SJDDisplayDocInMyViewerWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\LocalGenerated\intel_a"
+/I"E:\Program\CAA\CATIA\tmpTest\SJDDisplayDocInMyViewerWsp\.\SJDPartExampleFrm\PublicInterfaces"
+/I"E:\Program\CAA\CATIA\tmpTest\SJDDisplayDocInMyViewerWsp\.\SJDPartExampleFrm\ImportedInterfaces\intel_a"

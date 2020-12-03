@@ -1,0 +1,9 @@
+	spiMovable = pInstance;
+	CATMathTransformation ProductPos;
+	spiMovable-> GetAbsPosition(ProductPos);
+	CATMathAxis p1(0,0,0);
+	CATMathAxis p2;
+	ProductPos.ApplyToAxis(p1,p2);
+	CATMathPoint p3;
+	p2.GetOrigin(p3);
+	cout<<"----:"<<p3<<endl;

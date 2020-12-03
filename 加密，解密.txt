@@ -1,0 +1,71 @@
+//加密
+void SZLBBCPAdminLoginCmd::EncFile(CATUnicodeString iManagerPwd)
+{
+	cout<<"=====>EncFile()"<<endl;
+	//get path
+	char* variableName = "SZLBBCPPATH";
+	char* variableValue = NULL;
+	CATLibStatus envState = CATGetEnvValue(variableName,&variableValue);
+	CATUnicodeString strDocPath = variableValue;
+	CATUnicodeString managerPwdTxtPath = strDocPath + "SZLBBCPTemp\\ManagerPwd\\ManagerPwd.txt";
+	//clear file
+	FILE* fp1;	
+	fp1 = fopen(managerPwdTxtPath.ConvertToChar(),"w");
+	if(fp1) fclose(fp1);
+	//open file
+	fp1 = fopen(managerPwdTxtPath.ConvertToChar(),"w");
+	if(!fp1){
+		cout<<"can't open pwd txt"<<endl;
+		return ;
+	}
+	//encipher
+	char pwd[9] = "ILoveYou";
+	const char* managerPwd = iManagerPwd.ConvertToChar();
+	char managerPwd2[1024];
+	strcpy(managerPwd2,managerPwd);
+	int enc_j = 0;
+	//while(pwd[++enc_j]);
+	for(int i = 0;i<strlen(managerPwd2);i++)
+	{
+		if(enc_j>8) enc_j = 0;
+		managerPwd2[i] += pwd[enc_j++];
+		fputc(managerPwd2[i],fp1);
+	}
+	fclose(fp1);
+}
+//解密
+CATUnicodeString SZLBBCPAdminLoginCmd::DecryptFile()
+{
+	cout<<"=====>DecryptFile()"<<endl;
+	//get path
+	char* variableName = "SZLBBCPPATH";
+	char* variableValue = NULL;
+	CATLibStatus envState = CATGetEnvValue(variableName,&variableValue);
+	CATUnicodeString strDocPath = variableValue;
+	CATUnicodeString managerPwdTxtPath = strDocPath + "SZLBBCPTemp\\ManagerPwd\\ManagerPwd.txt";
+	//decrypt
+	char pwd[9] = "ILoveYou";
+	int dec_j = 0;
+	FILE* fp1;
+	register char ch;
+	CATUnicodeString str1 = NULL;
+	CATUnicodeString str2 = NULL;
+	fp1 = fopen(managerPwdTxtPath.ConvertToChar(),"r");
+	if(!fp1){
+		cout<<"can't open pwd txt"<<endl;
+		return NULL;
+	}
+	//while(pwd[++dec_j]);
+	ch = fgetc(fp1);
+	while(!feof(fp1))
+	{
+		if(dec_j>8) dec_j = 0;
+		ch -= pwd[dec_j++];
+		str1 = CATUnicodeString(ch);
+		str2.Append(str1);
+		ch = fgetc(fp1);
+	}
+	cout<<"manager pwd = "<<str2<<endl;
+	fclose(fp1);
+	return str2;
+}

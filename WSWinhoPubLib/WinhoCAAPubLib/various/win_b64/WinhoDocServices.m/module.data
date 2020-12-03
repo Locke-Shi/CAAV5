@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+RTV/001/CUS .\win_b64\code\bin\WinhoDocServices.dll|.\WinhoCAAPubLib\WinhoDocServices.m
+BTV/000/CUS .\win_b64\code\lib\WinhoDocServices.lib|.\WinhoCAAPubLib\WinhoDocServices.m
+CSC/000/DSI .\WinhoCAAPubLib\WinhoDocServices.m\Objects\win_b64\mkcsc\WinhoDocServices.cscdb|.\WinhoCAAPubLib\WinhoDocServices.m
+INT/000/CUS .\win_b64\code\lib\WinhoDocServices.exp|.\WinhoCAAPubLib\WinhoDocServices.m
+INT/000/CUS .\win_b64\code\bin\WinhoDocServices.pdb|.\WinhoCAAPubLib\WinhoDocServices.m

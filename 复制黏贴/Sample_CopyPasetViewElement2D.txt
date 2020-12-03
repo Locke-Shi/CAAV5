@@ -1,0 +1,93 @@
+CATBoolean SJDBSEQTGeneralFunction::CopyElementToView(CATIView_var ispiView1,CATIView_var ispiView2)
+{
+	HRESULT rc = E_FAIL;
+	if ((ispiView1 == NULL_var) || (ispiView2 == NULL_var))
+	{
+		return FALSE;
+	}
+
+	CATISpecObject_var spiSpecObj1 = ispiView1;		//视图1
+	if (spiSpecObj1 == NULL_var)
+	{
+		cout<<" -- QI接口CATISpecObject失败 --"<<endl;
+		return FALSE;
+	}
+
+	CATIContainer_var spiDrwCont1 = spiSpecObj1 ->GetFeatContainer();
+	if (spiDrwCont1 == NULL_var)
+	{
+		cout<<" -- 获取 Container 失败 --"<<endl;
+		return FALSE;
+	}
+	
+	CATICutAndPastable *piCutAndPastableOnCont1 = NULL;
+	rc = spiDrwCont1 -> QueryInterface(IID_CATICutAndPastable,(void**) &piCutAndPastableOnCont1);
+	if (FAILED(rc) || piCutAndPastableOnCont1 == NULL)
+	{
+		cout<<"QI 接口CATICutAndPastable 失败 --"<<endl;
+		return  FALSE;
+	}
+
+	CATISpecObject_var spiSpecObj2 = ispiView2;		//视图2
+	if (spiSpecObj2 == NULL_var)
+	{
+		cout<<" -- QI接口CATISpecObject失败 --"<<endl;
+		return FALSE;
+	}
+
+	CATIContainer_var spiDrwCont2 = spiSpecObj2 ->GetFeatContainer();
+	if (spiDrwCont2 == NULL_var)
+	{
+		cout<<" -- 获取 Container 失败 --"<<endl;
+		return FALSE;
+	}
+
+	CATICutAndPastable *piCutAndPastableOnCont2 = NULL;
+	rc = spiDrwCont2 -> QueryInterface(IID_CATICutAndPastable,(void**) &piCutAndPastableOnCont2);
+	if (FAILED(rc) || piCutAndPastableOnCont2 == NULL)
+	{
+		cout<<"QI 接口CATICutAndPastable 失败 --"<<endl;
+		return  FALSE;
+	}
+
+	//------------------------------------------------
+	//修改，复制时直接不取轴线（CATIDescendants中的GetAllChildren会取到视图中的轴线）
+	CATIDftView_var spiDftView = NULL_var;
+	spiDftView = ispiView1;
+	if (spiDftView != NULL_var)
+	{
+		CATIUnknownList *piUnknowList = NULL;
+		spiDftView ->GetComponents(IID_IDMCurve2D,&piUnknowList);
+		unsigned int num =0;
+		piUnknowList ->Count(&num);
+		if (num <=0)
+		{
+			return FALSE;
+		}
+
+		IdFormat iIdFmy = "CATDrwCont";
+		const CATFormat* pFmt = CATFormat::GetRegisteredFormat(iIdFmy);
+
+		ListOfVarBaseUnknown listFromCopy;
+		for(int k =1; k <=num; k++)
+		{
+			IUnknown *piUnknow = NULL;
+			piUnknowList ->Item(k-1,&piUnknow);
+			if (piUnknow != NULL)
+			{
+				CATBaseUnknown_var spiBaseUnknow = NULL_var;
+				piUnknow ->QueryInterface(IID_CATBaseUnknown,(void**)&spiBaseUnknow);
+				listFromCopy.Append(spiBaseUnknow);
+			}
+		}
+
+		ListOfVarBaseUnknown lisTarget;
+		lisTarget.Append(spiSpecObj2);
+
+		ListOfVarBaseUnknown listPastedObjects = piCutAndPastableOnCont2 -> Paste (listFromCopy,&lisTarget,pFmt);
+	}
+
+	ispiView2 ->Update(NULL_var);
+	spiSpecObj2 ->Update();
+	return TRUE;
+}

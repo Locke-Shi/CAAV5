@@ -1,0 +1,11 @@
+int ScanTpsCmd::SpecSymbolTranstoAscii(CATUnicodeString iStrText)
+{
+	int asciiNum = -1;
+	if (iStrText.GetLengthInChar() == 1)
+	{
+		const char* ch = iStrText.ConvertToChar();
+		asciiNum = *ch;
+	}
+
+	return asciiNum;
+}

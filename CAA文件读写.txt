@@ -1,0 +1,47 @@
+void main(int argc,char** argv)
+{
+	//打开
+	unsigned int batFileDesc = 0;
+	CATUnicodeString tempBatFileName = "E:\\CAA\\WSProjectStudy\\Infomation.txt";
+	HRESULT rc = ::CATFOpen(&tempBatFileName, "rt+", &batFileDesc);
+	
+	if ( SUCCEEDED(rc) )
+	{
+		cout<<"SUCCEEDED"<<endl;
+
+		while(1)
+		{
+			
+			//移动指针
+			rc = ::CATFSeek(batFileDesc,0,SEEK_CUR);
+			//读取一行
+			char buff1[1024] = "";
+			rc = ::CATFGets(buff1,1024,batFileDesc);
+			CATUnicodeString str1 = buff1;
+			if(str1 == NULL) break;
+			else cout<<str1<<endl;
+
+			//rc = ::CATFFlush(batFileDesc);
+		}
+		
+
+		//读取
+		/*unsigned int readFlag = 0;
+		char buff2[1024] = "";
+		rc = ::CATFRead(batFileDesc,buff2,1024,&readFlag);
+		CATUnicodeString str2 = buff2;
+		cout<<str2<<endl;*/
+
+
+
+
+		//CATUnicodeString sSlash("\\");
+		//CATUnicodeString sBlanc(" ");
+		//CATUnicodeString slineString = "Copy /b ";
+		//int nCharWritten = 0;
+		//rc = CATFPuts(slineString.ConvertToChar(), batFileDesc, &nCharWritten);
+
+		//关闭
+		rc = CATFClose(batFileDesc);
+	}
+}

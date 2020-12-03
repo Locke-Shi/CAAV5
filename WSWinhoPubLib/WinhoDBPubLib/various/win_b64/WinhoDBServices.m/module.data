@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\win_b64\code\lib\WinhoDBServices.exp|.\WinhoDBPubLib\WinhoDBServices.m
+CSC/000/DSI .\WinhoDBPubLib\WinhoDBServices.m\Objects\win_b64\mkcsc\WinhoDBServices.cscdb|.\WinhoDBPubLib\WinhoDBServices.m
+BTV/000/CUS .\win_b64\code\lib\WinhoDBServices.lib|.\WinhoDBPubLib\WinhoDBServices.m
+INT/000/CUS .\win_b64\code\bin\WinhoDBServices.pdb|.\WinhoDBPubLib\WinhoDBServices.m
+RTV/001/CUS .\win_b64\code\bin\WinhoDBServices.dll|.\WinhoDBPubLib\WinhoDBServices.m

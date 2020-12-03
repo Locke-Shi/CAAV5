@@ -1,0 +1,467 @@
+//由几何面创建拓扑面
+void SYTest2Cmd::CreateTopFaceFromSurface(CATISpecObject_var ispiSelectLine)
+{
+	cout<<"CreateTopFaceFromSurface"<<endl;
+	HRESULT hr = S_OK;
+	//-------------------------
+	//获取所有所需工厂类
+	//-------------------------
+		//获取几何工厂(Factory of all geometrical elements of Generative Shape Design workshop.)
+	CATIGSMFactory_var spiGSMFactory = _spiSpecOnCurve1->GetFeatContainer();
+	if (!spiGSMFactory)
+	{
+		cout<<"no CATIGSMFactory_var"<<endl;
+		return ;
+	}
+		//获取参数工厂
+	CATICkeParmFactory_var spiCkeParmFactory = _spiSpecOnCurve1->GetFeatContainer();
+	if (!spiCkeParmFactory)
+	{
+		cout<<"no CkeFactory"<<endl;
+		return ;
+	}
+		//获取几何元素工厂类
+	CATGeoFactory* pGeoFactory = ::CATCreateCGMContainer();
+	if(!pGeoFactory)
+	{
+		cout<<"NO CATGeoFactory"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return;
+	}
+
+	//-------------------------
+	//创建拓扑所需的几何元素
+	//-------------------------
+		//1 -GSM创建垂直面（曲线的法线）
+	CATISpecObject_var spiSpecOnGSMPlane = NULL_var;
+	CATIGSMPlaneNormal_var spiGSMPlaneNormal = spiGSMFactory->CreatePlaneNormal(_spiSpecOnCurve1);
+	if (!!spiGSMPlaneNormal)
+	{
+		spiSpecOnGSMPlane = spiGSMPlaneNormal;
+		if (!!spiSpecOnGSMPlane) spiSpecOnGSMPlane->Update();	
+		else{
+
+			cout<<"CATIGSMPlaneNormal_var fail"<<endl;
+			::CATCloseCGMContainer(pGeoFactory);
+			return;
+		}
+	}
+	
+		//2 -找出在面上的参考点,即为所选线与创建面的交点，为之后创建线做准备
+	CATMathPoint mathPoint;
+	CATISpecObject_var spiSpecOnGSMIntersectPoint = NULL_var;
+	CATIGSMIntersect_var spiPointIntersect = spiGSMFactory->CreateIntersect(_spiSpecOnCurve1,spiSpecOnGSMPlane);
+	if (!!spiPointIntersect)
+	{
+		spiSpecOnGSMIntersectPoint = spiPointIntersect;
+		if (!!spiSpecOnGSMIntersectPoint) spiSpecOnGSMIntersectPoint->Update();
+		else{
+
+			cout<<"spiSpecOnGSMIntersectPoint fail"<<endl;
+			::CATCloseCGMContainer(pGeoFactory);
+			return ;
+		}
+		//获取点坐标
+		CATIMeasurablePoint_var spiMeasurePoint = spiPointIntersect;
+		if (!!spiMeasurePoint)
+		{
+			hr = spiMeasurePoint->GetPoint(mathPoint);//获取的是相对于绝对坐标系的坐标				
+			cout<<mathPoint.GetX()<<mathPoint.GetY()<<mathPoint.GetZ()<<endl;
+		}
+	}
+
+		//3 -创建在此面上距离参考点左右各25的点，为后面构建50的边做准备
+	CATICkeParm_var spiCke1 = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"H",0.025);
+	CATICkeParm_var spiCke2 = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"V",0.025);
+	CATICkeParm_var spiCke3 = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"H",-0.025);
+	CATICkeParm_var spiCke4 = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"V",-0.025);
+	if (!spiCke1 || !spiCke2 || !spiCke3 || !spiCke4)
+	{
+		cout<<"create cke fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATIGSMPointOnPlane_var spiGSMPointOnPlane1 = spiGSMFactory->CreatePoint(spiSpecOnGSMPlane,spiSpecOnGSMIntersectPoint,spiCke1,spiCke2);
+
+	CATIGSMPointOnPlane_var spiGSMPointOnPlane2 = spiGSMFactory->CreatePoint(spiSpecOnGSMPlane,spiSpecOnGSMIntersectPoint,spiCke1,spiCke4);
+
+	CATIGSMPointOnPlane_var spiGSMPointOnPlane3 = spiGSMFactory->CreatePoint(spiSpecOnGSMPlane,spiSpecOnGSMIntersectPoint,spiCke3,spiCke4);
+
+	CATIGSMPointOnPlane_var spiGSMPointOnPlane4 = spiGSMFactory->CreatePoint(spiSpecOnGSMPlane,spiSpecOnGSMIntersectPoint,spiCke3,spiCke2);
+
+	if (!spiGSMPointOnPlane1 || !spiGSMPointOnPlane2 || !spiGSMPointOnPlane3 || !spiGSMPointOnPlane4)
+	{
+		cout<<"Create GSM Point On Plane fail "<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+		//更新
+	CATISpecObject_var spiSpecPointOnPlane = NULL_var;
+	spiSpecPointOnPlane = spiGSMPointOnPlane1; 
+	spiSpecPointOnPlane->Update();
+	//ShowOnTree(spiSpecPointOnPlane);
+
+	spiSpecPointOnPlane = spiGSMPointOnPlane2; 
+	spiSpecPointOnPlane->Update();
+	//ShowOnTree(spiSpecPointOnPlane);
+
+	spiSpecPointOnPlane = spiGSMPointOnPlane3; 
+	spiSpecPointOnPlane->Update();
+	//ShowOnTree(spiSpecPointOnPlane);
+
+	spiSpecPointOnPlane = spiGSMPointOnPlane4; 
+	spiSpecPointOnPlane->Update();
+	//ShowOnTree(spiSpecPointOnPlane);
+
+	CATPoint_var spPoint1 = spiGSMPointOnPlane1;
+	if (!!spPoint1)//1
+	{
+		cout<<spPoint1->GetX()<<","<<spPoint1->GetY()<<","<<spPoint1->GetZ()<<endl;
+	}
+	CATPoint_var spPoint2 = spiGSMPointOnPlane2;
+	if (!!spPoint2)//2
+	{
+		cout<<spPoint2->GetX()<<","<<spPoint2->GetY()<<","<<spPoint2->GetZ()<<endl;
+	}
+	CATPoint_var spPoint3 = spiGSMPointOnPlane3;
+	if (!!spPoint3)//3
+	{
+		cout<<spPoint3->GetX()<<","<<spPoint3->GetY()<<","<<spPoint3->GetZ()<<endl;
+	}
+	CATPoint_var spPoint4 = spiGSMPointOnPlane4;
+	if (!!spPoint4)//4
+	{
+		cout<<spPoint4->GetX()<<","<<spPoint4->GetY()<<","<<spPoint4->GetZ()<<endl;
+	}
+	//	//4 -创建Pline
+	//CATPlane_var spPlane = spiGSMPlaneNormal;
+	//if (!spPlane)
+	//{
+	//	cout<<"get plane fail"<<endl;
+	//	return;
+	//}
+
+	//	//获取CATSurParam
+	//CATSurParam sp1,sp2,sp3,sp4;
+	//spPlane->GetParam(CATMathPoint(spPoint1->GetX(),spPoint1->GetY(),spPoint1->GetZ()),sp1);
+	//spPlane->GetParam(CATMathPoint(spPoint2->GetX(),spPoint2->GetY(),spPoint2->GetZ()),sp2);
+	//spPlane->GetParam(CATMathPoint(spPoint3->GetX(),spPoint3->GetY(),spPoint3->GetZ()),sp3);
+	//spPlane->GetParam(CATMathPoint(spPoint4->GetX(),spPoint4->GetY(),spPoint4->GetZ()),sp4);
+	//	//创建Pline
+	//CATPLine* pLine12 = pGeoFactory->CreatePLine(sp1,sp2,spiGSMPlaneNormal);
+	//CATPLine* pLine23 = pGeoFactory->CreatePLine(sp2,sp3,spiGSMPlaneNormal);
+	//CATPLine* pLine34 = pGeoFactory->CreatePLine(sp3,sp4,spiGSMPlaneNormal);
+	//CATPLine* pLine41 = pGeoFactory->CreatePLine(sp4,sp1,spiGSMPlaneNormal);
+	//if (!pLine12 || !pLine23 || !pLine34 || !pLine41)
+	//{
+	//	cout<<"Create PLine Fail"<<endl;
+	//	::CATCloseCGMContainer(pGeoFactory);
+	//	return ;
+	//}
+
+	//CATBody_var spCurveBody1 = NULL_var,spCurveBody2 = NULL_var,spCurveBody3 = NULL_var,spCurveBody4 = NULL_var;
+	//hr = GetBodyFromSpecObject(spiGSMPointOnPlane1,spCurveBody1);
+	//hr = GetBodyFromSpecObject(spiGSMPointOnPlane2,spCurveBody2);
+	//hr = GetBodyFromSpecObject(spiGSMPointOnPlane3,spCurveBody3);
+	//hr = GetBodyFromSpecObject(spiGSMPointOnPlane4,spCurveBody4);
+	//
+	//if (!spCurveBody1 || !spCurveBody2 || !spCurveBody3 || !spCurveBody4)
+	//{
+	//	::CATCloseCGMContainer(pGeoFactory);
+	//	cout<<"Get Body Fail"<<endl;
+	//	return ;
+	//}
+
+	//CATLISTP(CATCell) listOfCell1,listOfCell2,listOfCell3,listOfCell4;
+	//spCurveBody1->GetAllCells(listOfCell1,1);
+	//spCurveBody2->GetAllCells(listOfCell2,1);
+	//spCurveBody3->GetAllCells(listOfCell3,1);
+	//spCurveBody4->GetAllCells(listOfCell4,1);
+
+	//if (listOfCell1.Size()<=0 || listOfCell2.Size()<=0 || listOfCell3.Size()<=0 || listOfCell4.Size()<=0)
+	//{
+	//	::CATCloseCGMContainer(pGeoFactory);
+	//	cout<<"Get listOfCell Fail"<<endl;
+	//	return ;
+	//}
+
+
+//-----------------------------> Add
+
+	//交点Body
+	CATBody_var spIntersectPointBody = NULL_var;
+	hr = GetBodyFromSpecObject(spiSpecOnGSMIntersectPoint,spIntersectPointBody);
+	if (!spIntersectPointBody)
+	{
+		cout<<"Get spIntersectPointBody Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+	//支持面Body
+	CATBody_var spSupportSurBody = NULL_var;
+	hr = GetBodyFromSpecObject(spiSpecOnGSMPlane,spSupportSurBody);
+	if (!spIntersectPointBody)
+	{
+		cout<<"Get spSupportSurBody Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATSoftwareConfiguration* pConfig = new CATSoftwareConfiguration;
+	CATTopData topdata(pConfig);
+
+	CATBody* pPoint_1Body = ::CATCreateTopPointXYZ(pGeoFactory,&topdata,spPoint1->GetX(),spPoint1->GetY(),spPoint1->GetZ());
+	CATBody* pPoint_2Body = ::CATCreateTopPointXYZ(pGeoFactory,&topdata,spPoint2->GetX(),spPoint2->GetY(),spPoint2->GetZ());
+	CATBody* pPoint_3Body = ::CATCreateTopPointXYZ(pGeoFactory,&topdata,spPoint3->GetX(),spPoint3->GetY(),spPoint3->GetZ());
+	CATBody* pPoint_4Body = ::CATCreateTopPointXYZ(pGeoFactory,&topdata,spPoint4->GetX(),spPoint4->GetY(),spPoint4->GetZ());
+	if (!pPoint_1Body /*|| !pPoint_2Body || !pPoint_3Body || !pPoint_4Body*/)
+	{
+		cout<<"Create Point Body Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	if (!pPoint_2Body)
+	{
+		cout<<"2 Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	if (!pPoint_3Body)
+	{
+		cout<<"3"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	if (!pPoint_4Body)
+	{
+		cout<<"4 Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATBody* pLine12Body = ::CATCreateTopLineFromPoints(pGeoFactory,&topdata,pPoint_1Body,pPoint_2Body);
+	CATBody* pLine23Body = ::CATCreateTopLineFromPoints(pGeoFactory,&topdata,pPoint_2Body,pPoint_3Body);
+	CATBody* pLine34Body = ::CATCreateTopLineFromPoints(pGeoFactory,&topdata,pPoint_3Body,pPoint_4Body);
+	CATBody* pLine41Body = ::CATCreateTopLineFromPoints(pGeoFactory,&topdata,pPoint_4Body,pPoint_1Body);
+
+	if (!pLine12Body || !pLine23Body || !pLine34Body || !pLine41Body)
+	{
+		cout<<"Create Line Body Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATLISTP(CATCell) listOfCell1,listOfCell2,listOfCell3,listOfCell4;
+	pLine12Body->GetAllCells(listOfCell1,1);
+	pLine23Body->GetAllCells(listOfCell2,1);
+	pLine34Body->GetAllCells(listOfCell3,1);
+	pLine41Body->GetAllCells(listOfCell4,1);
+
+	if (listOfCell1.Size()<=0 || listOfCell2.Size()<=0 || listOfCell3.Size()<=0 || listOfCell4.Size()<=0)
+	{
+		::CATCloseCGMContainer(pGeoFactory);
+		cout<<"Get listOfCell Fail"<<endl;
+		return ;
+	}
+
+//-----------------------------> End
+		
+	//-------------------------
+	//构建拓扑面
+	//-------------------------
+	cout<<"构建拓扑面"<<endl;
+		//获取Body
+	CATBody* pBody = pGeoFactory->CreateBody();
+	if (!pBody)
+	{
+		cout<<"no body"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+		//创建支持面
+	CATPlane* pSupportPlane = pGeoFactory->CreatePlane(CATMathPoint(spPoint1->GetX(),spPoint1->GetY(),spPoint1->GetZ())
+														,CATMathPoint(spPoint2->GetX(),spPoint2->GetY(),spPoint2->GetZ())
+													,CATMathPoint(spPoint3->GetX(),spPoint3->GetY(),spPoint3->GetZ()));
+		//创建面
+	CATFace* pFace = pBody->CreateFace();
+	
+		//创建外圈
+	CATLoop* pLoop = pBody->CreateLoop(CATLocationOuter);
+
+	if (!pFace || !pLoop)
+	{
+		cout<<"face or loop is null"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+cout<<"1"<<endl;
+	//添加Domain
+	pFace->AddDomain(pLoop);
+	//设置面
+	pFace->SetSurface(pSupportPlane,CATOrientationNegative);//pFace->SetSurface(spPlane,CATOrientationNegative); 会报错，2个面属于不同的容器
+	pFace->AddBoundingCell(listOfCell1[1],CATSideRight,pLoop);//pLoop 必须加，没有会导致内部计算错误
+	pFace->AddBoundingCell(listOfCell2[1],CATSideRight,pLoop);
+	pFace->AddBoundingCell(listOfCell3[1],CATSideRight,pLoop);
+	pFace->AddBoundingCell(listOfCell4[1],CATSideRight,pLoop);
+	
+	//pLoop->Done();
+
+	
+
+	//-------------------------
+	//验证拓扑面
+	//-------------------------
+	CATSurParam surParam1,surParam2,surParam3,surParam4;
+	CATSurface* pSurface = pFace->GetSurface();
+	pSurface->GetParam(CATMathPoint(spPoint1->GetX(),spPoint1->GetY(),spPoint1->GetZ()),surParam1);
+	cout<<"surParam1 --->"<<endl;
+	cout<<"GetLocalParamU:"<<surParam1.GetLocalParamU()<<"GetLocalParamV:"<<surParam1.GetLocalParamV()<<"GetParamU:"<<surParam1.GetParamU()<<"GetParamV:"<<surParam1.GetParamV()<<"GetPatchNumberU:"<<surParam1.GetPatchNumberU()<<"GetPatchNumberV:"<<surParam1.GetPatchNumberV()<<endl;
+
+	pSurface->GetParam(CATMathPoint(spPoint2->GetX(),spPoint2->GetY(),spPoint2->GetZ()),surParam2);
+	cout<<"surParam2 --->"<<endl;
+	cout<<"GetLocalParamU:"<<surParam2.GetLocalParamU()<<"GetLocalParamV:"<<surParam2.GetLocalParamV()<<"GetParamU:"<<surParam2.GetParamU()<<"GetParamV:"<<surParam2.GetParamV()<<"GetPatchNumberU:"<<surParam2.GetPatchNumberU()<<"GetPatchNumberV:"<<surParam2.GetPatchNumberV()<<endl;
+
+	pSurface->GetParam(CATMathPoint(spPoint3->GetX(),spPoint3->GetY(),spPoint3->GetZ()),surParam3);
+	cout<<"surParam3 --->"<<endl;
+	cout<<"GetLocalParamU:"<<surParam3.GetLocalParamU()<<"GetLocalParamV:"<<surParam3.GetLocalParamV()<<"GetParamU:"<<surParam3.GetParamU()<<"GetParamV:"<<surParam3.GetParamV()<<"GetPatchNumberU:"<<surParam3.GetPatchNumberU()<<"GetPatchNumberV:"<<surParam3.GetPatchNumberV()<<endl;
+
+	pSurface->GetParam(CATMathPoint(spPoint4->GetX(),spPoint4->GetY(),spPoint4->GetZ()),surParam4);
+	cout<<"surParam4 --->"<<endl;
+	cout<<"GetLocalParamU:"<<surParam4.GetLocalParamU()<<"GetLocalParamV:"<<surParam4.GetLocalParamV()<<"GetParamU:"<<surParam4.GetParamU()<<"GetParamV:"<<surParam4.GetParamV()<<"GetPatchNumberU:"<<surParam4.GetPatchNumberU()<<"GetPatchNumberV:"<<surParam4.GetPatchNumberV()<<endl;
+	
+
+	CATLISTP(CATCell) listOfFace;
+	pFace->GetAllCells(listOfFace,0);
+	cout<<listOfFace.Size()<<endl;
+	if (listOfFace.Size() <= 0)
+	{
+		cout<<"NO face"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return;
+	}
+
+	for (int i = 1;i<=listOfFace.Size();i++)
+	{
+		cout<<endl;
+		CATVertex* pVertex = (CATVertex*)listOfFace[i];
+		if (!pVertex)
+		{
+			cout<<"Get vertex fail"<<endl;
+			return ;
+		}
+
+		CATPoint* pOriginPoint = pVertex->GetPoint();
+		cout<<"Origin Point X= "<<pOriginPoint->GetX()<<endl;
+		cout<<"Origin Point Y= "<<pOriginPoint->GetY()<<endl;
+		cout<<"Origin Point Z= "<<pOriginPoint->GetZ()<<endl;
+	}
+
+	//-------------------------
+	//验证相交
+	//-------------------------
+
+	CATIntersectionCrvSur* pIntersection = ::CATCreateIntersection(pGeoFactory,pConfig,_spCurve2,pSurface,ADVANCED);
+	pIntersection->SetLimits(pSurface->GetLimits());
+	pIntersection->Run();
+	cout<<"1"<<endl;
+	CATLONG32 nbPoints = pIntersection->GetNumberOfPoints();
+	cout << "Advanced mode: Number of intersection points: "<< nbPoints << endl;
+	if (0 != nbPoints) 
+	{cout<<"11"<<endl;
+		pIntersection->BeginningPoint();                                 // iterator one the points
+		while(TRUE== (pIntersection->NextPoint()) )                      // loop on the resulting points
+		{cout<<"111"<<endl;
+			CATCartesianPoint* piPoint=pIntersection->GetCartesianPoint(); // create the geometric point
+			if (NULL!=piPoint)
+			{
+				double x,y,z;
+				piPoint->GetCoord(x,y,z);
+				cout << " X= "<< x << " Y= "<< y << " Z= "<< z <<endl;
+			}
+		}
+	}
+
+	
+		//构建MathLine
+	//CATCrvParam startParam = _spCurve2->GetStartLimit();
+	//CATCrvParam endParam = _spCurve2->GetEndLimit();
+
+	//CATMathPoint startPoint = _spCurve2->EvalPoint(startParam);
+	//CATMathPoint endPoint = _spCurve2->EvalPoint(endParam);
+	//cout<<"StartPoint = "<<startPoint<<"endPoint = "<<endPoint<<endl;
+	//CATMathLine mathLine(startPoint,endPoint);
+	//	
+	//	//相交
+	//double dblLineParm = 0.,firstP = 0.,secondP = 0.;
+	//CATMathPlane mathPlane = pSupportPlane->GetAxis();
+	//mathPlane.Intersect(mathLine,dblLineParm,firstP,secondP);
+	//cout<<"line = "<<dblLineParm<<","<<firstP<<","<<secondP<<endl;
+
+
+	/*CATBody_var spBody2 = NULL_var;
+	hr = GetBodyFromSpecObject(_spiSpecOnCurve2,spBody2);
+	if (!spBody2)
+	{
+		cout<<"Get Body2 Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATBody_var spBody1 = NULL_var;
+	CATISpecObject_var spiSpecOnFace = pFace;
+	if (!spiSpecOnFace)
+	{
+		cout<<"QI fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	hr = GetBodyFromSpecObject(spiSpecOnFace,spBody1);
+	if (!spBody1)
+	{
+		cout<<"Get spBody1 Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	
+	cout<<"0"<<endl;
+	CATHybIntersect* pIntersect = ::CATCreateTopIntersect(pGeoFactory,&topdata,spBody1,spBody2);
+	if (!pIntersect)
+	{
+		cout<<"相交失败"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+	cout<<"1"<<endl;
+	pIntersect->Run();
+	cout<<"2"<<endl;
+
+	CATBody* pNodeBody1 = pIntersect->GetResult();
+	if (!pNodeBody1)
+	{
+		cout<<"Get Node Body Fail"<<endl;
+		::CATCloseCGMContainer(pGeoFactory);
+		return ;
+	}
+
+	CATLISTP(CATCell) listOfCellsIntersect;
+	pNodeBody1->GetAllCells(listOfCellsIntersect,0);
+	cout<<listOfCellsIntersect.Size()<<endl;
+	CATVertex* pVertex1 = (CATVertex*)listOfCellsIntersect[1];
+	CATPoint* pPoint1 = pVertex1->GetPoint();
+	if (pPoint1)
+	{
+		cout<<"point x = "<<pPoint1->GetX()<<endl;
+		cout<<"point y = "<<pPoint1->GetY()<<endl;
+		cout<<"point z = "<<pPoint1->GetZ()<<endl;
+	}*/
+
+
+	::CATCloseCGMContainer(pGeoFactory);
+	return ;
+}

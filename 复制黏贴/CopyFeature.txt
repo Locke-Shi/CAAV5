@@ -1,0 +1,96 @@
+HRESULT SJDSpecObjectClass::CutAndPasteSpecObject(CATISpecObject_var ispiSpecOnChild,CATISpecObject_var ispiSpecOnNewFather,CATISpecObject_var &ospiSpecOnResult)
+{
+	HRESULT rc=E_FAIL;
+	ospiSpecOnResult = NULL_var;
+	if( !ispiSpecOnChild || !ispiSpecOnNewFather ) return rc;
+
+	//Get current work object
+	CATIMechanicalFeature_var spiMechanicalFeat=ispiSpecOnNewFather;
+
+	CATISpecObject_var spiSpecOnOldCurrentObject=NULL_var;
+	CATISpecObject_var spiSpecOnPrtPart=NULL_var;
+	if( !!spiMechanicalFeat ) {
+		spiSpecOnPrtPart = spiMechanicalFeat->GetPart();
+	}
+	CATIPrtPart_var spiPrtPart=spiSpecOnPrtPart;
+	if( !!spiPrtPart ) {
+		spiSpecOnOldCurrentObject = spiPrtPart->GetCurrentFeature();
+	}
+
+	//Get the feature container
+	CATIContainer_var spiTargetContainer=ispiSpecOnNewFather->GetFeatContainer();
+	CATIContainer_var spiSourceContainer=ispiSpecOnChild->GetFeatContainer();
+	if( !spiTargetContainer || !spiSourceContainer )  return rc;
+
+	//Get the CATICutAndPastable of source and target
+	CATICutAndPastable *piTargetCutPastable=NULL;
+	rc = spiTargetContainer->QueryInterface(IID_CATICutAndPastable,(void **)&piTargetCutPastable);
+	CATICutAndPastable_var spiTargetCutPastable=piTargetCutPastable;
+	if( !!piTargetCutPastable ) { piTargetCutPastable->Release();  piTargetCutPastable = NULL; }
+	if( !spiTargetCutPastable )	return rc;
+
+	CATICutAndPastable *piSourceCutPastable=NULL;
+	rc = spiSourceContainer->QueryInterface(IID_CATICutAndPastable,(void **)&piSourceCutPastable);
+	CATICutAndPastable_var spiSourceCutPastable=piSourceCutPastable;
+	if( !!piSourceCutPastable ) { piSourceCutPastable->Release();  piSourceCutPastable = NULL; }
+	if( !spiSourceCutPastable )	return rc;
+//==============================================================
+	//The object to be copied and pasted
+	ListOfVarBaseUnknown newListToCopy;
+	ListOfVarBaseUnknown listFromCopy;
+	listFromCopy.Append((CATBaseUnknown *)ispiSpecOnChild);
+
+	//Copye the list object to the clipboard
+	int RC;
+	RC = spiSourceCutPastable->BoundaryExtract(newListToCopy,&listFromCopy,NULL);
+	if( !RC )	return E_FAIL;
+
+	//Get the object of clipboard
+	VarBaseUnknown pExtractedList;
+	pExtractedList = spiSourceCutPastable->Extract(newListToCopy,NULL);
+
+	CATICutAndPastable_var spiExtractCutPastable=pExtractedList;
+	if( !spiExtractCutPastable ) return E_FAIL;
+
+	//Get the object in the clipboard
+	ListOfVarBaseUnknown extractedListToCopy;
+	RC = spiExtractCutPastable->BoundaryExtract(extractedListToCopy,NULL,NULL);
+	if( !RC ) return E_FAIL;
+//================================================================================
+	//We are in the CATPart document,so we should set current feature
+	if( !!spiPrtPart ) {
+		spiPrtPart->SetCurrentFeature(ispiSpecOnNewFather);
+	}
+
+	//Do the past operation
+	IdFormat iIdFmy = "CATDrwCont";//定义格式识别符
+	const CATFormat* pFmt = SpecBindNativeFormat(iIdFmy);//设置拷贝黏贴的格式类型
+	ListOfVarBaseUnknown lisTarget;//定义目标视图列表
+	lisTarget.Append(ispiSpecOnNewFather);//把目标视图加入列表
+	ListOfVarBaseUnknown listPastedObjects;
+	listPastedObjects = spiTargetCutPastable->Paste(extractedListToCopy,&lisTarget,pFmt);
+
+	//Get the result Feature and set the name
+	CATBaseUnknown *pBaseUnknown=NULL;
+	CATPathElement *pPathOfResultElement=NULL;
+	if( listPastedObjects.Size() > 0 ) {
+		pBaseUnknown = listPastedObjects[1];
+		pPathOfResultElement = (CATPathElement *)pBaseUnknown;
+		if( !!pPathOfResultElement ) {
+			ospiSpecOnResult = (CATISpecObject *)pPathOfResultElement->FindElement(IID_CATISpecObject);
+		}
+	}
+
+	//Restore the old current feature
+	if( !!spiSpecOnOldCurrentObject && !!spiPrtPart ) {
+		spiPrtPart->SetCurrentFeature(spiSpecOnOldCurrentObject);
+	}
+
+	//Remove objects from source
+	spiSourceCutPastable->Remove(listFromCopy,NULL);
+
+	//Update all object
+	if( !!spiSpecOnPrtPart ) { spiSpecOnPrtPart->Update(); }
+
+	return rc;
+}

@@ -1,0 +1,20 @@
+bool SZLSelectCmd::GetCurrentBinPath(CATUnicodeString& oBinPath)
+{
+	//获得dll句柄
+	HINSTANCE hinstance = ::GetModuleHandle(_T("SZLAddinM.dll"));
+
+	//获得dll路径
+	TCHAR szFilePath[MAX_PATH + 1]; 
+	GetModuleFileName(hinstance, szFilePath, MAX_PATH); 
+	CString sCurDir = szFilePath;
+
+	//分离路径和文件名
+	int nPos = sCurDir.ReverseFind('\\');
+	CString sBinPath = sCurDir.Left(nPos);
+
+	//返回bin文件夹路径
+	BSTR path = sBinPath.AllocSysString();
+	oBinPath.BuildFromBSTR(path);
+
+	return true;
+}

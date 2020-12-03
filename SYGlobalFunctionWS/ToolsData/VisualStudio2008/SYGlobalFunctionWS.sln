@@ -1,0 +1,38 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYAddinFrm", "SYAddinFrm.vcproj", "{673E1622-46D9-4BF4-B8B1-A5011CB24FAB}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYGlobalFunctionFrm", "SYGlobalFunctionFrm.vcproj", "{F4BAA68D-6A75-43FA-B38E-2FBB4F45D5E1}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYAddinMod.m", "SYAddinFrm\SYAddinMod.m.vcproj", "{A0AC9697-5E5F-44A4-AE22-D2CB49514E97}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYGlobalFunctionMod.m", "SYGlobalFunctionFrm\SYGlobalFunctionMod.m.vcproj", "{C0210AE6-8F12-4294-9614-B1EF3B7C19DC}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYTestMod.m", "SYGlobalFunctionFrm\SYTestMod.m.vcproj", "{A7C8474F-C63F-4764-97CB-E9F5C699F17B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "SYExcelRefMod.m", "SYGlobalFunctionFrm\SYExcelRefMod.m.vcproj", "{2CDF9C50-8AA9-4A09-8C7E-A8BB2F1A4138}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{673E1622-46D9-4BF4-B8B1-A5011CB24FAB}.Debug|Win32.ActiveCfg = Debug|Win32
+		{673E1622-46D9-4BF4-B8B1-A5011CB24FAB}.Release|Win32.ActiveCfg = Release|Win32
+		{F4BAA68D-6A75-43FA-B38E-2FBB4F45D5E1}.Debug|Win32.ActiveCfg = Debug|Win32
+		{F4BAA68D-6A75-43FA-B38E-2FBB4F45D5E1}.Release|Win32.ActiveCfg = Release|Win32
+		{A0AC9697-5E5F-44A4-AE22-D2CB49514E97}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A0AC9697-5E5F-44A4-AE22-D2CB49514E97}.Release|Win32.ActiveCfg = Release|Win32
+		{C0210AE6-8F12-4294-9614-B1EF3B7C19DC}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C0210AE6-8F12-4294-9614-B1EF3B7C19DC}.Release|Win32.ActiveCfg = Release|Win32
+		{A7C8474F-C63F-4764-97CB-E9F5C699F17B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{A7C8474F-C63F-4764-97CB-E9F5C699F17B}.Release|Win32.ActiveCfg = Release|Win32
+		{2CDF9C50-8AA9-4A09-8C7E-A8BB2F1A4138}.Debug|Win32.ActiveCfg = Debug|Win32
+		{2CDF9C50-8AA9-4A09-8C7E-A8BB2F1A4138}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

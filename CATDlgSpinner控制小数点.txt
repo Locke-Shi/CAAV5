@@ -1,0 +1,3 @@
+CATDlgSpinner* pSpinner = XXXX;
+pSpinner->SetFormat("&%.2f");2位浮点数
+pSpinner->SetFormat((char*)((const char*)("%gmm")));//单位

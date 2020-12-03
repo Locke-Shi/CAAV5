@@ -1,0 +1,74 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoCAAPubLib", "WinhoCAAPubLib.vcproj", "{B5A6660E-52B3-493D-93EF-43508660E18B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoPPRServices.m", "WinhoCAAPubLib\WinhoPPRServices.m.vcproj", "{90296473-7A50-40EE-B315-111EB60B173C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoUniversalServices.m", "WinhoCAAPubLib\WinhoUniversalServices.m.vcproj", "{C4A344F8-5B56-431B-A792-6082F3978927}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoDBPubLib", "WinhoDBPubLib.vcproj", "{C5076D83-737E-4F0E-933A-ADD75D90DFDD}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoDebugTool", "WinhoDebugTool.vcproj", "{975F4E86-6603-4C1E-977A-FA2185826CEE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoMD5PubLib", "WinhoMD5PubLib.vcproj", "{3F3C1454-DAFB-4CDB-8599-855BCBB06F0F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoAgentServices.m", "WinhoCAAPubLib\WinhoAgentServices.m.vcproj", "{41DA3B1D-8133-4760-A11E-AAFE8E0F8BDF}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoCGMServices.m", "WinhoCAAPubLib\WinhoCGMServices.m.vcproj", "{0273CE2D-EE0B-464F-A13B-AA51C46FBE28}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoDocServices.m", "WinhoCAAPubLib\WinhoDocServices.m.vcproj", "{4DBBECE4-DF18-4326-9864-47FB2D3F9EB8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoENOVIAServices.m", "WinhoCAAPubLib\WinhoENOVIAServices.m.vcproj", "{D18EB53F-664C-4CF0-88E8-AFDBC2AFE2EE}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoVisualServices.m", "WinhoCAAPubLib\WinhoVisualServices.m.vcproj", "{8DDFAAE6-F2DC-4DB3-A6CF-9171151B92F5}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoDBServices.m", "WinhoDBPubLib\WinhoDBServices.m.vcproj", "{B70F0672-CDA0-4F38-AE3A-25EDD9901658}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WINDebugAddin.m", "WinhoDebugTool\WINDebugAddin.m.vcproj", "{688AE16B-AF18-42B6-A83D-AB5738376D3C}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WINDebugCmds.m", "WinhoDebugTool\WINDebugCmds.m.vcproj", "{BF588D0A-91BC-4180-AE5C-83BB7261BDF7}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "WinhoMD5Services.m", "WinhoMD5PubLib\WinhoMD5Services.m.vcproj", "{785A7537-35FE-43F3-8029-DE7C51E1316E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B5A6660E-52B3-493D-93EF-43508660E18B}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B5A6660E-52B3-493D-93EF-43508660E18B}.Release|Win32.ActiveCfg = Release|Win32
+		{90296473-7A50-40EE-B315-111EB60B173C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{90296473-7A50-40EE-B315-111EB60B173C}.Release|Win32.ActiveCfg = Release|Win32
+		{C4A344F8-5B56-431B-A792-6082F3978927}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C4A344F8-5B56-431B-A792-6082F3978927}.Release|Win32.ActiveCfg = Release|Win32
+		{C5076D83-737E-4F0E-933A-ADD75D90DFDD}.Debug|Win32.ActiveCfg = Debug|Win32
+		{C5076D83-737E-4F0E-933A-ADD75D90DFDD}.Release|Win32.ActiveCfg = Release|Win32
+		{975F4E86-6603-4C1E-977A-FA2185826CEE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{975F4E86-6603-4C1E-977A-FA2185826CEE}.Release|Win32.ActiveCfg = Release|Win32
+		{3F3C1454-DAFB-4CDB-8599-855BCBB06F0F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{3F3C1454-DAFB-4CDB-8599-855BCBB06F0F}.Release|Win32.ActiveCfg = Release|Win32
+		{41DA3B1D-8133-4760-A11E-AAFE8E0F8BDF}.Debug|Win32.ActiveCfg = Debug|Win32
+		{41DA3B1D-8133-4760-A11E-AAFE8E0F8BDF}.Release|Win32.ActiveCfg = Release|Win32
+		{0273CE2D-EE0B-464F-A13B-AA51C46FBE28}.Debug|Win32.ActiveCfg = Debug|Win32
+		{0273CE2D-EE0B-464F-A13B-AA51C46FBE28}.Release|Win32.ActiveCfg = Release|Win32
+		{4DBBECE4-DF18-4326-9864-47FB2D3F9EB8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{4DBBECE4-DF18-4326-9864-47FB2D3F9EB8}.Release|Win32.ActiveCfg = Release|Win32
+		{D18EB53F-664C-4CF0-88E8-AFDBC2AFE2EE}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D18EB53F-664C-4CF0-88E8-AFDBC2AFE2EE}.Release|Win32.ActiveCfg = Release|Win32
+		{8DDFAAE6-F2DC-4DB3-A6CF-9171151B92F5}.Debug|Win32.ActiveCfg = Debug|Win32
+		{8DDFAAE6-F2DC-4DB3-A6CF-9171151B92F5}.Release|Win32.ActiveCfg = Release|Win32
+		{B70F0672-CDA0-4F38-AE3A-25EDD9901658}.Debug|Win32.ActiveCfg = Debug|Win32
+		{B70F0672-CDA0-4F38-AE3A-25EDD9901658}.Release|Win32.ActiveCfg = Release|Win32
+		{688AE16B-AF18-42B6-A83D-AB5738376D3C}.Debug|Win32.ActiveCfg = Debug|Win32
+		{688AE16B-AF18-42B6-A83D-AB5738376D3C}.Release|Win32.ActiveCfg = Release|Win32
+		{BF588D0A-91BC-4180-AE5C-83BB7261BDF7}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BF588D0A-91BC-4180-AE5C-83BB7261BDF7}.Release|Win32.ActiveCfg = Release|Win32
+		{785A7537-35FE-43F3-8029-DE7C51E1316E}.Debug|Win32.ActiveCfg = Debug|Win32
+		{785A7537-35FE-43F3-8029-DE7C51E1316E}.Release|Win32.ActiveCfg = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

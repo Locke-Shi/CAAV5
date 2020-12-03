@@ -1,0 +1,18 @@
+CATIProduct_var spiRefProduct = ispiProduct->GetReferenceProduct();
+		CATILinkableObject_var spiLinkObject = spiRefProduct;
+		CATDocument *pPartDoc = spiLinkObject->GetDocument();
+		if (pPartDoc)
+		{
+			CATIDocId*oDocID=NULL;
+			CATUnicodeString oType;
+			pPartDoc->GetDocId(&oDocID);
+			oDocID->GetType(oType);
+			CATUnicodeString pathName;
+			pathName = pPartDoc->StorageName();
+
+			//cout<<"oType = "<<oType<<endl;
+			//cout<<"pathName = "<<pathName<<endl;
+
+			if ( oType == "CATPart") oFlag = 1;
+			else oFlag = 0;
+		}

@@ -1,0 +1,29 @@
+﻿//
+void get2DBox(CATIXXXX* piXXXX)
+{
+	CATI2DGeoVisu* pi2DGeoVisu = NULL;
+	if (SUCCEEDED(piXXXX->QueryInterface(IID_CATI2DGeoVisu,(void**)&pi2DGeoVisu)))//获取管理二维可视化界面的接口指针
+	{
+			CATRep* pRep = pi2DGeoVisu->GiveRep();//获取图形表示的指针 BuildRep
+			if (pRep)
+			{
+				CAT2DRep* p2DRep = (CAT2DRep*)pRep;//类型转化
+				if (p2DRep)
+				{
+						CAT2DBoundingBox boundingBox = p2DRep->GetBoundingElement();//获取包维盒的二维表示信息
+
+						float minX = 0.;//定义包维盒最小X坐标
+						float maxX = 0.;//定义包维盒最大X坐标
+						float minY = 0.;//定义包维盒最小Y坐标
+						float maxY = 0.;//定义包维盒最大Y坐标
+								
+						boundingBox.GetParameter(&minX,&maxX,&minY,&maxY);//获取包维盒边界坐标
+							
+						cout<<"minX = "<<minX<<",maxX = "<<maxX<<endl;
+						cout<<"minY = "<<minY<<",maxY = "<<maxY<<endl;
+								
+				}
+			}
+			pi2DGeoVisu->Release();pi2DGeoVisu=NULL;
+	}
+}

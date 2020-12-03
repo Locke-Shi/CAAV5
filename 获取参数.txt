@@ -1,0 +1,28 @@
+//使用此方法，有个错误现象：从Product 切换至某个Part，再切换至Product 后，读取失效
+void WeldingCmd::GetWeldingProcessFromSetFunc()
+{
+	cout<<"GetWeldingProcessFromSetFunc"<<endl;
+	CATICkeFunctionFactory_var spiCkeFuncFact = CATCkeGlobalFunctions::GetFunctionFactory();
+	CATICkeParameterSet_var spiCkeParamSet = spiCkeFuncFact->GetCurrentSet(CATICkeFunctionFactory::Parameter,NULL_var);
+	
+	if (!!spiCkeParamSet)
+	{
+		CATCkeListOfParm listOfParm = spiCkeParamSet->Parameters();
+		if (listOfParm)
+		{
+			for (int  i = 1;i<=listOfParm->Size();i++)
+			{
+				CATICkeParm_var spiCkeParm = (*listOfParm)[i];
+				cout<<spiCkeParm->Role()<<":"<<spiCkeParm->Value()->AsString()<<endl;
+				cout<<spiCkeParm->Show()<<endl;
+			}
+		}
+	}
+
+
+}
+
+
+//2
+
+CATIDescendants()->GetAllChildren("CATICkeParameterSet");

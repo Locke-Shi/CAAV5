@@ -1,0 +1,115 @@
+//包含头文件  Tlhelp32.h
+//关闭后台excel进程
+void CmdGeneratePartList::RemoveExcelProcess(vector<int> iOldPid,vector<int> iNewPid)
+{
+	//定义需要关闭的excel的新容器
+	vector<int> excelNeedClose;
+
+	//遍历不同pid，单独放入一个这个新容器
+	//case 1:2个容器都不为空
+	if (iOldPid.size() != 0 && iNewPid.size() != 0)
+	{
+		for (int i = 0;i<iNewPid.size();i++)
+		{
+			int flag = 0;
+			for (int j = 0;j<iOldPid.size();j++)
+			{
+				if (iNewPid[i] == iOldPid[j])
+				{
+					flag = 1;
+					break;
+				}
+			}
+
+			if (flag == 0)
+			{
+				excelNeedClose.push_back(iNewPid[i]);
+			}
+		}
+	}
+	//case 2:程序运行excel前，并没有excel运行
+	if (iOldPid.size() == 0 && iNewPid.size() != 0) excelNeedClose.assign(iNewPid.begin(),iNewPid.end());
+
+	//case 3:并没有运行excel
+	if (iOldPid.size() == 0 && iNewPid.size() == 0) return ;
+
+	//关闭excel
+	if (excelNeedClose.size()!=0)
+	{
+		for (int i = 0;i<excelNeedClose.size();i++)
+		{
+			//cout<<excelNeedClose[i]<<endl;
+			HANDLE hprocess=::OpenProcess(PROCESS_ALL_ACCESS,FALSE,excelNeedClose[i]);
+			if(hprocess!=NULL)
+			{
+				::TerminateProcess(hprocess,0);
+				::CloseHandle(hprocess);
+			}
+		}
+	}
+
+	return ;
+}
+
+//获取进程ID
+vector<int> CmdGeneratePartList::GetId()
+{
+	vector<int> pIDVec;
+	setlocale(LC_ALL, "");
+	HANDLE hProcess = CreateToolhelp32Snapshot(TH32CS_SNAPPROCESS, 0);    //建立进程快照
+
+	if (INVALID_HANDLE_VALUE == hProcess)
+	{
+		printf("获取进程信息失败！！！\n");
+		//return FALSE;
+	}
+
+	//成功获取进程信息
+	PROCESSENTRY32 pe32;
+	pe32.dwSize = sizeof(PROCESSENTRY32);
+
+	BOOL moreProc = Process32First(hProcess, &pe32);
+
+	while (moreProc)   //枚举所有进程
+	{
+		WCHAR* pName = pe32.szExeFile;
+		char pID[20] = "";
+
+		_ultoa(pe32.th32ProcessID, pID, 10);  
+
+		int nLen = WideCharToMultiByte( CP_ACP, 0,pName, -1, NULL, 0, NULL, NULL );   
+		char* pResult = new char[nLen];  
+		WideCharToMultiByte( CP_ACP, 0, pName, -1, pResult, nLen, NULL, NULL );  
+
+		CATUnicodeString pIdNum(pID);
+		CATUnicodeString pExeName(pResult);
+		int IdNum = 0;
+		pIdNum.ConvertToNum(&IdNum);
+		if (pExeName == "EXCEL.EXE")
+		{
+			_tprintf(_T("进程名称：%s\n"), pe32.szExeFile);
+			_tprintf(_T("进程ID号：%u\n"), pe32.th32ProcessID);
+			pIDVec.push_back(IdNum);
+		}
+
+		moreProc = Process32Next(hProcess, &pe32);
+	}
+
+	CloseHandle(hProcess);        //释放进程快照
+	return pIDVec;
+}
+
+// Close
+ COleVariant covFalse1((short)FALSE);
+ COleVariant covOptional1((long)DISP_E_PARAMNOTFOUND, VT_ERROR);
+ ExlRge.ReleaseDispatch();
+ oWorkSheet.ReleaseDispatch();
+ oWorkSheets.ReleaseDispatch();
+ oWorkBook.Save();
+ oWorkBook.Close(covFalse1, _variant_t(sExcelPath.ConvertToChar()), covOptional1);
+ oWorkBook.ReleaseDispatch();
+ oWorkBooks.Close();
+ oWorkBooks.ReleaseDispatch();
+ oExcelApp.Quit();
+ oExcelApp.ReleaseDispatch();
+ OleUninitialize();

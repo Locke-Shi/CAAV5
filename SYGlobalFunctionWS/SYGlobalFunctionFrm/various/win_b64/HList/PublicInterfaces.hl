@@ -1,0 +1,10 @@
+!<mkhl> v2.0.1
+@SYGlobalFunctionFrm\PublicInterfaces
+CAxis.h
+CAxisTitle.h
+SYExcelCls.h
+SYExcelRefMod.h
+SYGlobalFunctionCls1.h
+SYGlobalFunctionMod.h
+SYTestMod.h
+excel.h

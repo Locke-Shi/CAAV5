@@ -1,0 +1,5 @@
+无法解决的外部命令：_forceCRTManifestCUR
+
+可能是用了CATIUnknownListImpl，应该listxx = (CATIUnknownList*)listImplxxx
+
+和VS版本内置动态链接库有关系，打了sp更新包

@@ -1,0 +1,6 @@
+CATTransfoManager * pTransfoManager = new CATTransfoManager(pMathTransformation,spGeomFactory); 
+pTransfoManager->Add(spBodyOnSection);
+pTransfoManager->Run();
+CATBody_var spBodyOnHybBoundaryT = pTransfoManager->ReadImage(spBodyOnSection);
+delete pTransfoManager;pTransfoManager = NULL;
+spGeomFactory->Remove(spBodyOnSection);

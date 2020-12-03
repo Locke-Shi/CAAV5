@@ -1,0 +1,94 @@
+mkmk   WinhoCAAPubLib WinhoDBPubLib WinhoMD5PubLib
+2019/8/27 13:43:26
+
+## start step: CIbuild   at 08/27/2019-13:43:28
+# make: WinhoCAAPubLib WinhoCAAPubLib\IdentityCard\IdentityCard.h
+# make: WinhoDBPubLib WinhoDBPubLib\IdentityCard\IdentityCard.h
+# make: WinhoMD5PubLib WinhoMD5PubLib\IdentityCard\IdentityCard.h
+## end   step: CIbuild   at 08/27/2019-13:43:29
+
+## start step: DataUpdate   at 08/27/2019-13:43:29
+## end   step: DataUpdate   at 08/27/2019-13:43:29
+
+## start step: DataUpdate   at 08/27/2019-13:43:29
+## end   step: DataUpdate   at 08/27/2019-13:43:31
+
+## start step: CIcompilation   at 08/27/2019-13:43:31
+## end   step: CIcompilation   at 08/27/2019-13:43:31
+
+## start step: headerlist   at 08/27/2019-13:43:31
+## end   step: headerlist   at 08/27/2019-13:43:31
+
+## start step: headermap   at 08/27/2019-13:43:31
+## end   step: headermap   at 08/27/2019-13:43:31
+
+## start step: buildtimedata   at 08/27/2019-13:43:31
+## end   step: buildtimedata   at 08/27/2019-13:43:31
+
+## start step: fwgrammar   at 08/27/2019-13:43:31
+## end   step: fwgrammar   at 08/27/2019-13:43:31
+
+## start step: cppgrammar   at 08/27/2019-13:43:31
+## end   step: cppgrammar   at 08/27/2019-13:43:32
+
+## start step: headerlist   at 08/27/2019-13:43:32
+## end   step: headerlist   at 08/27/2019-13:43:32
+
+## start step: headermap   at 08/27/2019-13:43:32
+## end   step: headermap   at 08/27/2019-13:43:32
+
+## start step: grammar1st   at 08/27/2019-13:43:32
+## end   step: grammar1st   at 08/27/2019-13:43:32
+
+## start step: typelibgrammar   at 08/27/2019-13:43:32
+## end   step: typelibgrammar   at 08/27/2019-13:43:32
+
+## start step: headerruler   at 08/27/2019-13:43:32
+## end   step: headerruler   at 08/27/2019-13:43:32
+
+## start step: compilation   at 08/27/2019-13:43:32
+## end   step: compilation   at 08/27/2019-13:43:33
+
+## start step: sourceruler   at 08/27/2019-13:43:33
+## end   step: sourceruler   at 08/27/2019-13:43:33
+
+## start step: link1st   at 08/27/2019-13:43:33
+# make: WinhoCAAPubLib\WinhoAgentServices.m win_b64\code\lib\WinhoAgentServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoAgentServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoAgentServices.exp
+# make: WinhoCAAPubLib\WinhoCGMServices.m win_b64\code\lib\WinhoCGMServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoCGMServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoCGMServices.exp
+# make: WinhoCAAPubLib\WinhoDocServices.m win_b64\code\lib\WinhoDocServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoDocServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoDocServices.exp
+# make: WinhoCAAPubLib\WinhoENOVIAServices.m win_b64\code\lib\WinhoENOVIAServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoENOVIAServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoENOVIAServices.exp
+# make: WinhoCAAPubLib\WinhoPPRServices.m win_b64\code\lib\WinhoPPRServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoPPRServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoPPRServices.exp
+# make: WinhoCAAPubLib\WinhoUniversalServices.m win_b64\code\lib\WinhoUniversalServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoUniversalServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoUniversalServices.exp
+# make: WinhoCAAPubLib\WinhoVisualServices.m win_b64\code\lib\WinhoVisualServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoVisualServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoVisualServices.exp
+# make: WinhoDBPubLib\WinhoDBServices.m win_b64\code\lib\WinhoDBServices.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoDBServices.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoDBServices.exp
+# make: WinhoMD5PubLib\WinhoMD5Services.m win_b64\code\lib\WinhoMD5Services.lib
+   Creating library E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoMD5Services.lib and object E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\win_b64\code\lib\WinhoMD5Services.exp
+## end   step: link1st   at 08/27/2019-13:43:33
+
+## start step: link2nd   at 08/27/2019-13:43:33
+# make: WinhoCAAPubLib\WinhoAgentServices.m win_b64\code\bin\WinhoAgentServices.dll
+# make: WinhoCAAPubLib\WinhoCGMServices.m win_b64\code\bin\WinhoCGMServices.dll
+# make: WinhoCAAPubLib\WinhoDocServices.m win_b64\code\bin\WinhoDocServices.dll
+# make: WinhoCAAPubLib\WinhoENOVIAServices.m win_b64\code\bin\WinhoENOVIAServices.dll
+# make: WinhoCAAPubLib\WinhoPPRServices.m win_b64\code\bin\WinhoPPRServices.dll
+# make: WinhoCAAPubLib\WinhoUniversalServices.m win_b64\code\bin\WinhoUniversalServices.dll
+# make: WinhoCAAPubLib\WinhoVisualServices.m win_b64\code\bin\WinhoVisualServices.dll
+# CAAV5-WARNING: deprecated API for CAA V5: win_b64\code\bin\WinhoVisualServices.dll
+# CAAV5-WARNING: CATMathBox::GetExtremities(double&,double&,double&,double&,double&,double&)  
+# make: WinhoDBPubLib\WinhoDBServices.m win_b64\code\bin\WinhoDBServices.dll
+# make: WinhoMD5PubLib\WinhoMD5Services.m win_b64\code\bin\WinhoMD5Services.dll
+## end   step: link2nd   at 08/27/2019-13:43:36
+
+## start step: runtimedata   at 08/27/2019-13:43:36
+## end   step: runtimedata   at 08/27/2019-13:43:36
+
+## start step: dummynls   at 08/27/2019-13:43:36
+## end   step: dummynls   at 08/27/2019-13:43:36

@@ -1,0 +1,70 @@
+//描述：获取矩阵
+//输入：CATISpecObject对象1，CATISpecObject对象2
+//输出：CATMathTransformation
+//返回：CATMathTransformation
+CATMathTransformation YF3DGeneralClass::GetMatrixTransformation(CATISpecObject_var spSpecOne, 
+																  CATISpecObject_var spSpecTwo)
+{
+	CATIMovable_var spiMovableOne(spSpecOne);
+	if(spiMovableOne == NULL_var) 
+	{
+		cout<<"Failed to Get Movable."<<endl;
+		return NULL;
+	}
+
+	CATIMovable_var spiMovableTwo(spSpecTwo);
+	if(spiMovableTwo == NULL_var) {
+		cout<<"Failed to Get Movable."<<endl;
+		return NULL;
+	}
+
+	CATMathTransformation pMathTrans = spiMovableOne->GetPosition(spiMovableTwo, CATPrd3D, TRUE);
+
+	return pMathTrans;
+
+}
+
+//描述：获取矩阵
+//输入：CATISpecObject对象1，CATISpecObject对象2，CATMathBox包围盒
+//输出：CATMathBox
+//返回：HRESULT
+HRESULT YF3DGeneralClass::GetAbsMathBox(CATISpecObject_var ispiSpecObj,
+										  CATISpecObject_var ispRootObj,
+										  CATMathBox iBox,
+										  CATMathBox &oAbsBox)
+{
+	HRESULT rc=S_OK;
+
+	double iMinPoint[3]={DBL_MAX, DBL_MAX, DBL_MAX};
+	double iMaxPoint[3]={-DBL_MAX, -DBL_MAX, -DBL_MAX};
+	iBox.GetLimits(iMinPoint[0],iMaxPoint[0],iMinPoint[1],iMaxPoint[1],iMinPoint[2],iMaxPoint[2]); 
+
+	CATMathTransformation pMathTrans = GetMatrixTransformation(ispiSpecObj,ispRootObj);  
+	CATMathPoint iTempPt1=CATMathPoint(iMinPoint[0],iMinPoint[1],iMinPoint[2]);
+	CATMathPoint iTempPt2=CATMathPoint(iMaxPoint[0],iMinPoint[1],iMinPoint[2]);
+	CATMathPoint iTempPt3=CATMathPoint(iMaxPoint[0],iMaxPoint[1],iMinPoint[2]);
+	CATMathPoint iTempPt4=CATMathPoint(iMinPoint[0],iMaxPoint[1],iMinPoint[2]);
+	CATMathPoint iTempPt5=CATMathPoint(iMaxPoint[0],iMinPoint[1],iMaxPoint[2]);
+	CATMathPoint iTempPt6=CATMathPoint(iMaxPoint[0],iMaxPoint[1],iMaxPoint[2]);
+	CATMathPoint iTempPt7=CATMathPoint(iMinPoint[0],iMaxPoint[1],iMaxPoint[2]);
+	CATMathPoint iTempPt8=CATMathPoint(iMinPoint[0],iMinPoint[1],iMaxPoint[2]);
+	iTempPt1=pMathTrans*iTempPt1;
+	iTempPt2=pMathTrans*iTempPt2;
+	iTempPt3=pMathTrans*iTempPt3;
+	iTempPt4=pMathTrans*iTempPt4;
+	iTempPt5=pMathTrans*iTempPt5;
+	iTempPt6=pMathTrans*iTempPt6;
+	iTempPt7=pMathTrans*iTempPt7;
+	iTempPt8=pMathTrans*iTempPt8;
+
+	oAbsBox.AddInside(iTempPt1);
+	oAbsBox.AddInside(iTempPt2);
+	oAbsBox.AddInside(iTempPt3);
+	oAbsBox.AddInside(iTempPt4);
+	oAbsBox.AddInside(iTempPt5);
+	oAbsBox.AddInside(iTempPt6);
+	oAbsBox.AddInside(iTempPt7);
+	oAbsBox.AddInside(iTempPt8);
+
+	return rc;
+}

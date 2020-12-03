@@ -1,0 +1,12 @@
+!<mkRTViewData> v1.0.0
+BTV/002/DSI .\win_b64\code\productIC\SJDPartExampleFrmIC.xml|.\SJDPartExampleFrm
+DAT/002/CUS .\win_b64\resources\msgcatalog\SJDPartExampleCmd.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleCmd.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\DbcsTest\SJDPartExampleCmd.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleCmd.CATNls
+RTV/002/DSI .\win_b64\code\productIC\SJDPartExampleFrmIC.required|.\SJDPartExampleFrm
+RTV/000/DSI .\win_b64\resources\msgcatalog\NlsTest\SJDPartExampleDlg.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleDlg.CATNls
+BTV/002/CUS .\win_b64\code\productIC\SJDPartExampleFrmIC.script|.\SJDPartExampleFrm
+RTV/000/DSI .\win_b64\resources\msgcatalog\NlsTest\SJDPartExampleCmd.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleCmd.CATNls
+DAT/002/CUS .\win_b64\resources\msgcatalog\SJDPartExampleDlg.CATRsc|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleDlg.CATRsc
+DAT/002/CUS .\win_b64\resources\msgcatalog\SJDPartExampleDlg.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleDlg.CATNls
+RTV/000/DSI .\win_b64\resources\msgcatalog\DbcsTest\SJDPartExampleDlg.CATNls|.\SJDPartExampleFrm\CNext\resources\msgcatalog\SJDPartExampleDlg.CATNls
+DAT/002/CUS .\win_b64\code\dictionary\SJDPartExampleFrm.dico|.\SJDPartExampleFrm\CNext\code\dictionary\SJDPartExampleFrm.dico

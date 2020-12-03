@@ -1,0 +1,50 @@
+//CATSpecObject 写入多值的写法,类型应该以tk_list开头附加（类型）
+CATBoolean WeldingCmd::WriteAttributesToRootFunc(CATISpecObject_var ispiSpecObject,CATUnicodeString iAttrName,CATListValCATUnicodeString* iListOfStringValue,CATRawCollint* iListOfIntValue,CATRawColldouble* iListOfDoubleValue)
+{
+	cout<<"WriteAttributesToRootFunc"<<endl;
+	HRESULT hr = S_OK;
+	if(!ispiSpecObject)
+	{
+		cout<<"Internal error :WriteAttributesToRootFunc()->_spiSpecOnRootProduct is NULL "<<endl;
+		return FALSE;
+	}
+
+	if (iListOfStringValue != NULL) ispiSpecObject->AddAttribute(iAttrName,tk_list(tk_string));
+	if (iListOfIntValue != NULL) ispiSpecObject->AddAttribute(iAttrName,tk_list(tk_integer));
+	if (iListOfDoubleValue != NULL) ispiSpecObject->AddAttribute(iAttrName,tk_list(tk_double));
+
+	CATISpecAttrAccess_var spiSpecAttrAccess = ispiSpecObject;
+	if (!!spiSpecAttrAccess)
+	{
+		CATISpecAttrKey_var spiUserAttrKey = spiSpecAttrAccess->GetAttrKey(iAttrName);
+		
+		if (iListOfStringValue != NULL && !!spiUserAttrKey)
+		{
+			hr = spiSpecAttrAccess->SetListString(spiUserAttrKey,*iListOfStringValue);
+			if (hr != S_OK)
+			{
+				cout<<"no"<<endl;
+			}
+		}
+
+		if (iListOfIntValue != NULL && !!spiUserAttrKey)
+		{
+			hr = spiSpecAttrAccess->SetListInteger(spiUserAttrKey,*iListOfIntValue);
+			if (hr != S_OK)
+			{
+				cout<<"no"<<endl;
+			}
+		}
+
+		if (iListOfDoubleValue != NULL && !!spiUserAttrKey)
+		{
+			hr = spiSpecAttrAccess->SetListDouble(spiUserAttrKey,*iListOfDoubleValue);
+			if (hr != S_OK)
+			{
+				cout<<"no"<<endl;
+			}
+		}
+	}
+
+	return TRUE;
+}

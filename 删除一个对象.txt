@@ -1,0 +1,26 @@
+void YFGeneratePartListCmd::DeleteTabelBomFunc()
+{
+	CATLISTV(CATISpecObject_var)  _listOfObjNeedToDeleteLst;
+
+	if (_listOfObjNeedToDeleteLst.Size())
+	{
+		for (int i=1;i<=_listOfObjNeedToDeleteLst.Size();i++)
+		{
+			CATIModelEvents_var IME(_listOfObjNeedToDeleteLst[i]);
+			if(NULL_var != IME) {
+				CATDelete info(_listOfObjNeedToDeleteLst[i]->GetImpl());
+				IME->Dispatch(info);//传递一个可视化事件
+			}
+			CATISpecObject_var ispFather = _listOfObjNeedToDeleteLst[i]->GetFather();
+			if (NULL_var != ispFather) {
+				ispFather->Remove(_listOfObjNeedToDeleteLst[i]);
+			}
+			else {
+				LifeCycleObject_var LCO = _listOfObjNeedToDeleteLst[i];
+				LCO -> remove();
+			} 
+		}
+		_listOfObjNeedToDeleteLst.RemoveAll();
+	}
+	return ;
+}

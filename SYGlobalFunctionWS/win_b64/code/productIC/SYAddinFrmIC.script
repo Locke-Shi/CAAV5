@@ -1,0 +1,5 @@
+<I.C SCRIPT>  WINNT 1
+M8 1 "" ""
+M1 2 System,2
+M1 2 ApplicationFrame,2
+EOF

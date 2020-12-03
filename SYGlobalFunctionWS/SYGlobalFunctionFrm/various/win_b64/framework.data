@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+BTV/002/CUS .\win_b64\code\productIC\SYGlobalFunctionFrmIC.xml|.\SYGlobalFunctionFrm
+CSC/002/DSI .\SYGlobalFunctionFrm\IdentityCard\Objects\win_b64\mkcsc\SYGlobalFunctionFrm.cscdb|.\SYGlobalFunctionFrm
+RTV/002/DSI .\win_b64\code\productIC\SYGlobalFunctionFrmIC.required|.\SYGlobalFunctionFrm
+DAT/002/CUS .\win_b64\code\dictionary\SYGlobalFunctionFrm.dico|.\SYGlobalFunctionFrm\CNext\code\dictionary\SYGlobalFunctionFrm.dico
+BTV/002/CUS .\win_b64\code\productIC\SYGlobalFunctionFrmIC.script|.\SYGlobalFunctionFrm

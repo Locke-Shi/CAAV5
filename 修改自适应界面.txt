@@ -1,0 +1,3 @@
+this->SetGridColumnResizable(0);
+this->SetGridRowResizable(0);
+this->SetGridRowResizable(1);

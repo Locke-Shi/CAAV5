@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+CSC/000/DSI .\SYGlobalFunctionFrm\SYGlobalFunctionMod.m\Objects\win_b64\mkcsc\SYGlobalFunctionMod.cscdb|.\SYGlobalFunctionFrm\SYGlobalFunctionMod.m
+INT/000/CUS .\win_b64\code\lib\SYGlobalFunctionMod.exp|.\SYGlobalFunctionFrm\SYGlobalFunctionMod.m
+RTV/001/CUS .\win_b64\code\bin\SYGlobalFunctionMod.dll|.\SYGlobalFunctionFrm\SYGlobalFunctionMod.m
+INT/000/CUS .\win_b64\code\bin\SYGlobalFunctionMod.pdb|.\SYGlobalFunctionFrm\SYGlobalFunctionMod.m
+BTV/000/CUS .\win_b64\code\lib\SYGlobalFunctionMod.lib|.\SYGlobalFunctionFrm\SYGlobalFunctionMod.m

@@ -1,0 +1,78 @@
+void LoadPlateCmd::CreateInfoXML(CATUnicodeString istrFullPathXMLFile)
+{
+	//输入数据部分___开始---基本信息
+	CATLISTV(CATUnicodeString) iListData;
+	iListData.Append("source/D324342_D1-3M01-F-LS46-1.xml");
+	iListData.Append("source/D324342_D1-3M01-F-LS52-1.xml");
+
+	CATUnicodeString strUserID="15";
+	CATUnicodeString strpackageNumber="D324342";
+	CATUnicodeString strNodeversion="";
+	CATUnicodeString strNodeID="D3_2434___PIP";
+	//输入数据部分___结束
+
+	CATIXMLDOMDocumentBuilder_var builder;
+	HRESULT hr = ::CreateCATIXMLDOMDocumentBuilder(builder);
+	if (SUCCEEDED(hr) && (builder != NULL_var))
+	{
+		do {
+			CATIDOMDocument_var document;
+			hr = builder->CreateDocument(document);
+			if (FAILED(hr) || (document == NULL_var)) { break ; }
+
+			CATIDOMElement_var spDataPackageDom=NULL_var;
+			HRESULT hr = document->CreateElement("DataPackage", spDataPackageDom);
+			if (FAILED(hr) || (spDataPackageDom == NULL_var)) { break ; }
+
+			hr = spDataPackageDom->SetAttribute("UserID", strUserID);
+			if (FAILED(hr)) { break; }
+
+			hr = spDataPackageDom->SetAttribute("packageNumber", strpackageNumber);
+			if (FAILED(hr)) { break; }
+
+			hr = spDataPackageDom->SetAttribute("Nodeversion", strNodeversion);
+			if (FAILED(hr)) { break; }
+
+			hr = spDataPackageDom->SetAttribute("NodeID", strNodeID);
+			if (FAILED(hr)) { break; }
+
+
+			CATIDOMElement_var spRelXMLDom=NULL_var;
+			hr = document->CreateElement("RelXML", spRelXMLDom);
+			if (FAILED(hr) || (spRelXMLDom == NULL_var)) { break ; }
+
+			CATIDOMElement_var spXMLInfoDom=NULL_var;
+			for(int i=1;i<=iListData.Size();i++)
+			{
+				spXMLInfoDom=NULL_var;
+				document->CreateElement("xmlInfo", spXMLInfoDom);
+				if (FAILED(hr) || (spXMLInfoDom == NULL_var)) { continue ; }
+
+				hr = spXMLInfoDom->SetAttribute("xmlPath", iListData[i]);
+				if (FAILED(hr)) { continue; }
+
+				hr = spRelXMLDom->AppendChild(spXMLInfoDom);
+				if (FAILED(hr)) { continue; }
+			}
+
+
+
+			hr = spDataPackageDom->AppendChild(spRelXMLDom);
+			if (FAILED(hr)) { break; }
+
+
+			hr = document->AppendChild(spDataPackageDom);
+			if (FAILED(hr)) { break; }
+
+			CATListOfCATUnicodeString option,optionValue;
+			option.Append("CATEncoding");
+			optionValue.Append("UTF-8");
+			option.Append("CATSortAttributes");
+			optionValue.Append("true");	
+			if(FAILED(builder->WriteToFile(spDataPackageDom,istrFullPathXMLFile ,option,optionValue)))
+				return;
+			option.RemoveAll();optionValue.RemoveAll();
+
+		} while(0);
+	}
+}

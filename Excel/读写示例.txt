@@ -1,0 +1,142 @@
+//读取EXCEL数据
+HRESULT InstCmd::ReadExcelInfoFunc(CATUnicodeString& oError)
+{
+	cout<<"!# ReadExcelInfoFunc()"<<endl;
+	//获取程序打开excel前存在的excel进程
+	_oldPid = GetIdFunc();
+	//读取EBOM内容
+	HRESULT hr = S_OK;
+	
+	_Application			ExcelApp;
+	_Worksheet				WorkSheet;
+	_Workbook				WorkBook;
+	Workbooks				WorkBooks;
+	Worksheets				WorkSheets;
+	Range					ExlRag;
+	CATTry
+	{
+		CATUnicodeString pExcelPath= _pDlg->DlgEditorFunc(3)->GetText();
+		//cout<<"pBomPath="<<pBomPath.ConvertToChar() <<endl;
+		//判断是否是选取的excel 格式
+		if (pExcelPath.SubString(pExcelPath.GetLengthInChar()-5,5 )==CATUnicodeString(".xlsx")||pExcelPath.SubString(pExcelPath.GetLengthInChar()-4,4 )==CATUnicodeString(".xls"))
+		{
+			hr = CoInitialize(NULL);//没加之前创建EXCEL服务失败
+			//打开excel进程
+			//if(!AfxOleInit()) //初始化工厂，载入COM动态链接库
+			//{
+			//	//AfxMessageBox( _T("无法初始化COM的动态连接库!"));
+			//	/*_strErrorTime = GetTimeFunc();
+			//	ofstream errorFile(_strErrorPath.ConvertToChar(),ios::app);
+			//	errorFile<<_strErrorTime<<":无法初始化COM的动态连接库!\n";
+			//	errorFile.close(); */
+			//	return FALSE;
+			//}
+			
+			if (!ExcelApp.CreateDispatch( _T( "Excel.Application" ), NULL ))
+			{
+				::MessageBox( NULL, _T( "创建Excel服务失败！" ), _T( "错误提示！" ), MB_OK | MB_ICONERROR);	
+				return E_FAIL;
+				//exit(-1);
+			}
+		
+			COleVariant	covOptional((long)DISP_E_PARAMNOTFOUND, VT_ERROR);
+			ExcelApp.SetDisplayAlerts(FALSE);
+			
+			if((_access(pExcelPath.ConvertToChar(), 0))== -1)
+			{
+				return E_FAIL;
+				/*oWorkBooks.AttachDispatch(oExcelApp.GetWorkbooks(), TRUE);
+				oWorkBook.AttachDispatch(oWorkBooks.Add(covOptional));*/
+			}else{
+
+				WorkBooks.AttachDispatch(ExcelApp.GetWorkbooks(), TRUE);
+				CString strFileName=pExcelPath.ConvertToChar();
+				LPDISPATCH lpDisp = WorkBooks.Open(strFileName,
+					_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),
+					_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),
+					_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing),_variant_t(vtMissing));
+
+				WorkBook.AttachDispatch(lpDisp,TRUE);
+			}
+
+			CATUnicodeString usSheetName;
+			if(usSheetName!="")
+			{
+				WorkSheets.AttachDispatch(WorkBook.GetSheets(),true);
+				WorkSheet.AttachDispatch(WorkSheets.GetItem(_variant_t(usSheetName.ConvertToChar())),TRUE);
+			}
+			else
+			{
+				WorkSheet.AttachDispatch( WorkBook.GetActiveSheet(), TRUE);
+				WorkSheet.Activate();
+			}
+			
+			ExlRag.AttachDispatch(WorkSheet.GetRange(_variant_t("A1"),_variant_t(vtMissing)));
+
+			//读取数据
+			int intRowNum = 2;
+			//int intColumnNum = 2;
+			while (1)
+			{
+				PartInfos partInfo;
+
+				//名称
+				_variant_t vNameValue = ExlRag.GetItem(_variant_t(intRowNum),_variant_t(2));
+				char cNameValue[1024] ={0};
+				strcpy(cNameValue,(LPCSTR)_bstr_t(vNameValue));
+				CATUnicodeString strName = cNameValue;
+				if (strName == NULL) break;
+				partInfo.strName = strName;
+			
+				//长度
+				_variant_t vLengthValue = ExlRag.GetItem(_variant_t(intRowNum),_variant_t(3));
+				char cLengthValue[1024] ={0};
+				strcpy(cLengthValue,(LPCSTR)_bstr_t(vLengthValue));
+				CATUnicodeString strLength = cLengthValue;
+				partInfo.strLength = strLength;
+				
+				//宽度
+				_variant_t vWidthValue = ExlRag.GetItem(_variant_t(intRowNum),_variant_t(4));
+				char cWidthValue[1024] ={0};
+				strcpy(cWidthValue,(LPCSTR)_bstr_t(vWidthValue));
+				CATUnicodeString strWidth = cWidthValue;
+				partInfo.strWidth = strWidth;
+
+				//厚度
+				_variant_t vThicknessValue = ExlRag.GetItem(_variant_t(intRowNum),_variant_t(5));
+				char cThicknessValue[1024] ={0};
+				strcpy(cThicknessValue,(LPCSTR)_bstr_t(vThicknessValue));
+				CATUnicodeString strThickness = cThicknessValue;
+				partInfo.strThickness = strThickness;
+
+
+				//材质
+				_variant_t vMaterialValue = ExlRag.GetItem(_variant_t(intRowNum),_variant_t(6));
+				char cMaterialValue[1024] ={0};
+				strcpy(cMaterialValue,(LPCSTR)_bstr_t(vMaterialValue));
+				CATUnicodeString strMaterial = cMaterialValue;
+				partInfo.strMaterial = strMaterial;
+
+				intRowNum++;
+
+				_vecOfPartInfos.push_back(partInfo);
+			
+			}
+			
+			_newPid = GetIdFunc();
+			RemoveExcelProcessFunc(_oldPid,_newPid);
+				
+		}else{
+
+			cout<<"Open Excel Fail"<<endl;
+			oError = "Please choose the correct Excel format!";
+			return E_FAIL;
+		}
+	}CATCatch(CATError,er)
+	{
+	
+		return E_FAIL;
+	}CATEndTry
+
+		return S_OK;
+}

@@ -1,0 +1,121 @@
+HRESULT GDTSerialNumberListInViewCmd::GetGDTInformation(CATISpecObject_var spSpecTPSGDT,
+														wchar_t *&pwcharType,
+														CString &CstrType,
+														CString &CstrValue,
+														CString &CstrDatumRef1,
+														CString &CstrDatumRef2,
+														CString &CstrDatumRef3,
+														CString &CstrUp,
+														CString &CstrLower)
+{
+	HRESULT rc = E_FAIL;
+	if (spSpecTPSGDT == NULL)
+	{
+		return E_FAIL;
+	}
+	wchar_t * pwcharValue = new wchar_t();
+	CATIDftGDT *pDftGDT = NULL;
+	spSpecTPSGDT->QueryInterface(IID_CATIDftGDT,(void**)&pDftGDT);
+	if (pDftGDT != NULL)
+	{
+		//形位公差符号
+		DftGDTSymbol oSymbol = DFT_GDT_NOSYMBOL;
+		rc = pDftGDT->GetToleranceType(1,&oSymbol);
+		GetGDTTypeWchar(oSymbol,pwcharType);
+		//wchar_r 转 CString
+		BSTR bstrType = (_bstr_t)pwcharType;
+		CstrType = bstrType;
+		SysFreeString(bstrType);
+
+		//形位公差值
+		
+		CATIDftTextRange *pDftTextRangeTOL = NULL;
+		rc = pDftGDT->GetTextRange(1,0,&pDftTextRangeTOL);		
+		if (pDftTextRangeTOL != NULL)
+		{
+			pDftTextRangeTOL->GetString(&pwcharValue);
+			rc = S_OK;	
+		}
+		//形位公差上文本
+		CATIDftTextRange *pDftTextRangeUP = NULL;
+		rc = pDftGDT->GetTextRange(0,0,&pDftTextRangeUP);
+		if (pDftTextRangeUP != NULL)
+		{		
+			wchar_t * pwcharUp = new wchar_t();
+			pDftTextRangeUP->GetString(&pwcharUp);
+			BSTR bstrValue = (_bstr_t)pwcharUp;
+			CstrUp = bstrValue;
+			SysFreeString(bstrValue);
+			
+			rc = S_OK;		
+		}
+		//形位公差下文本
+		CATIDftTextRange *pDftTextRangeLOWER = NULL;
+		rc = pDftGDT->GetTextRange(0,1,&pDftTextRangeLOWER);
+		if (pDftTextRangeLOWER != NULL)
+		{		
+			wchar_t * pwcharLower = new wchar_t();
+			pDftTextRangeLOWER->GetString(&pwcharLower);
+			BSTR bstrValue = (_bstr_t)pwcharLower;
+			CstrLower = bstrValue;
+			SysFreeString(bstrValue);
+			
+			rc = S_OK;		
+		}
+	}
+	//
+	CATIDrwGDT *pDrwGDT = NULL;
+	spSpecTPSGDT->QueryInterface(IID_CATIDrwGDT,(void**)&pDrwGDT);
+	if (pDrwGDT != NULL)
+	{
+		//形位公差值
+		CATDrwGDTValueType pTOLType = DRW_GDT_NOVALUETYPE;
+		CATUnicodeString strValue = "";
+		CATDrwGDTModifier oModifierValue = DRW_GDT_NOMODIFIER;
+		pDrwGDT->GetGDTTolerance(1,pTOLType,strValue,oModifierValue);
+		rc = TransferTOLValue(pwcharValue,pTOLType,CstrValue);
+		
+
+		//形位公差Box1
+		wchar_t * wcharSymbol1 = new wchar_t();
+		CATUnicodeString str1 = "";
+		CATDrwGDTModifier oModifier1 = DRW_GDT_NOMODIFIER;
+		pDrwGDT->GetGDTReference(1,1,str1,oModifier1);
+		TransforMaterialCondition(oModifier1,wcharSymbol1);		
+		CString CStrSymbol1;
+		BSTR bstrSymbol1 = (_bstr_t)wcharSymbol1;
+		CStrSymbol1 = bstrSymbol1;
+		SysFreeString(bstrSymbol1);
+		std::string stdDatum1 = str1;
+		CstrDatumRef1 = stdDatum1.c_str() + CStrSymbol1;
+		
+
+		//形位公差Box2
+		wchar_t * wcharSymbol2 = new wchar_t();
+		CATUnicodeString str2 = "";
+		CATDrwGDTModifier oModifier2 = DRW_GDT_NOMODIFIER;
+		pDrwGDT->GetGDTReference(1,2,str2,oModifier2);
+		TransforMaterialCondition(oModifier2,wcharSymbol2);
+		CString CStrSymbol2;
+		BSTR bstrSymbol2 = (_bstr_t)wcharSymbol2;
+		CStrSymbol2 = bstrSymbol2;
+		SysFreeString(bstrSymbol2);
+		std::string stdDatum2 = str2;
+		CstrDatumRef2 = stdDatum2.c_str() + CStrSymbol2;
+		
+
+		//形位公差Box3
+		wchar_t * wcharSymbol3 = new wchar_t();
+		CATUnicodeString str3 = "";
+		CATDrwGDTModifier oModifier3 = DRW_GDT_NOMODIFIER;
+		pDrwGDT->GetGDTReference(1,3,str3,oModifier3);
+		TransforMaterialCondition(oModifier3,wcharSymbol3);
+		CString CStrSymbol3;
+		BSTR bstrSymbol3 = (_bstr_t)wcharSymbol3;
+		CStrSymbol3 = bstrSymbol3;
+		SysFreeString(bstrSymbol3);
+		std::string stdDatum3 = str3;
+		CstrDatumRef3 = stdDatum3.c_str() + CStrSymbol3;		
+	}
+	return rc;
+}

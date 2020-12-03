@@ -1,0 +1,15 @@
+	
+	//C++文本输入输出（默认是ANSI编码流输入）
+	fstream wtxt;
+	wtxt.open("D:\\2.txt", ios::out);
+	CATUnicodeString str = "{\n	\"Type\",";
+	wtxt<<str;
+	wtxt.close();
+
+////wofstream jsontxt;(修改为UTF-8，问题是中文不显示)
+//jsontxt.imbue(locale( "", locale::all ^ locale::numeric));
+	
+	//C文本输入输出
+	FILE * pStream = fopen("D:\\1.txt", "w");
+	fprintf(pStream, "%-32s%s\n", "  SuperType:", SuperType.ConvertToChar());
+	fclose(pStream);

@@ -1,0 +1,29 @@
+<?xml version='1.0' ?>
+<codeFramework xmlns = "http://www.3ds.ic" xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation = "http://www.3ds.ic ICModel.xsd">
+  <prerequisite name = "System" access = "Protected"/>
+  <prerequisite name = "Dialog" access = "Public"/>
+  <prerequisite name = "ApplicationFrame" access = "Public"/>
+  <prerequisite name = "ObjectSpecsModeler" access = "Public"/>
+  <prerequisite name = "MecModInterfaces" access = "Public"/>
+  <prerequisite name = "ProductStructure" access = "Public"/>
+  <prerequisite name = "NewTopologicalObjects" access = "Public"/>
+  <prerequisite name = "Mathematics" access = "Public"/>
+  <prerequisite name = "DMAPSInterfaces" access = "Public"/>
+  <prerequisite name = "ObjectModelerBase" access = "Public"/>
+  <prerequisite name = "KnowledgeInterfaces" access = "Public"/>
+  <prerequisite name = "VisualizationBase" access = "Public"/>
+  <prerequisite name = "Visualization" access = "Public"/>
+  <prerequisite name = "ProductStructureInterfaces" access = "Public"/>
+  <prerequisite name = "InfInterfaces" access = "Public"/>
+  <prerequisite name = "InteractiveInterfaces" access = "Public"/>
+  <prerequisite name = "CATIAApplicationFrame" access = "Public"/>
+  <prerequisite name = "GeometricObjects" access = "Public"/>
+  <prerequisite name = "Tessellation" access = "Public"/>
+  <prerequisite name = "GSMInterfaces" access = "Public"/>
+  <prerequisite name = "PartInterfaces" access = "Public"/>
+  <prerequisite name = "MechanicalModelerUI" access = "Public"/>
+  <prerequisite name = "MechanicalModeler" access = "Public"/>
+  <prerequisite name = "ENOVaultClientCPP" access = "Public"/>
+  <prerequisite name = "TopologicalOperators" access = "Public"/>
+  <prerequisite name = "BasicTopologicalOpe" access = "Public"/>
+</codeFramework>

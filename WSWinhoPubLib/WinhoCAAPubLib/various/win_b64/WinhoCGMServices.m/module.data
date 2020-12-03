@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\win_b64\code\lib\WinhoCGMServices.exp|.\WinhoCAAPubLib\WinhoCGMServices.m
+CSC/000/DSI .\WinhoCAAPubLib\WinhoCGMServices.m\Objects\win_b64\mkcsc\WinhoCGMServices.cscdb|.\WinhoCAAPubLib\WinhoCGMServices.m
+RTV/001/CUS .\win_b64\code\bin\WinhoCGMServices.dll|.\WinhoCAAPubLib\WinhoCGMServices.m
+INT/000/CUS .\win_b64\code\bin\WinhoCGMServices.pdb|.\WinhoCAAPubLib\WinhoCGMServices.m
+BTV/000/CUS .\win_b64\code\lib\WinhoCGMServices.lib|.\WinhoCAAPubLib\WinhoCGMServices.m

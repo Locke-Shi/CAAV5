@@ -1,0 +1,8 @@
+MFC创建树形结构时，先拖动控件到界面，然后设置变量必须要右击控件，点击->添加变量(CTreeCtrl), 
+如果要手动在.h里面添加变量，必须要在.cpp里面的DoDataExchange()函数添加一句DDX_Control(pDX, IDC_TREE1, **变量);
+
+
+OnInitDialog() 函数中开始编写树结构代码:
+HTREEITEM hItem;
+hItem = m_TreeT.InsertItem(_T("Parent1"),TVI_ROOT);//在根结点上添加Parent1
+......

@@ -1,0 +1,33 @@
+CATBoolean UpdateObject(const CATISpecObject_var &spUpdatedObj)
+{
+
+	CATBoolean IsUpdatedSuccess = TRUE;
+
+	CATTry
+	{
+		spUpdatedObj->Update();
+
+	}
+
+	CATCatch(CATMfErrUpdate, error)	
+	{
+		IsUpdatedSuccess = FALSE;
+		if(NULL != error)
+		{
+			::Flush(error);
+		}
+	}
+
+	CATCatch(CATError,error)
+	{
+		IsUpdatedSuccess = FALSE;
+		if(NULL != error)
+		{
+			::Flush(error);
+		}
+
+	}
+	CATEndTry;
+
+	return IsUpdatedSuccess;
+}

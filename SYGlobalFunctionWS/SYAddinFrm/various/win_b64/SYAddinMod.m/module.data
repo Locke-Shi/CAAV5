@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+RTV/001/CUS .\win_b64\code\bin\SYAddinMod.dll|.\SYAddinFrm\SYAddinMod.m
+CSC/000/DSI .\SYAddinFrm\SYAddinMod.m\Objects\win_b64\mkcsc\SYAddinMod.cscdb|.\SYAddinFrm\SYAddinMod.m
+INT/000/CUS .\win_b64\code\lib\SYAddinMod.exp|.\SYAddinFrm\SYAddinMod.m
+INT/000/CUS .\win_b64\code\bin\SYAddinMod.pdb|.\SYAddinFrm\SYAddinMod.m
+BTV/000/CUS .\win_b64\code\lib\SYAddinMod.lib|.\SYAddinFrm\SYAddinMod.m

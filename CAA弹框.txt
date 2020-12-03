@@ -1,0 +1,41 @@
+//描述：设置选择excel弹框属性
+//输入：cmd-按钮指针，evt-事件指针，data-数据
+//输出：void
+//返回：void
+void YFGeneratePartListCmd::SelEBOMExcelFunc(CATCommand* cmd, CATNotification* evt, CATCommandClientData data)
+{
+	
+		_FileSelectEBOM = new CATDlgFile(_pDlg, "Choose Open Path");
+		CATUnicodeString nameExtension[3]={"Excel File (*.xlsx)","Excel File (*.xl)","Excel File (*.xls)"};
+		CATString filterExtension[3]={"*.xlsx","*.xl","*.xls"};
+		_FileSelectEBOM->SetFilterStrings(nameExtension, filterExtension, 3);
+		AddAnalyseNotificationCB (_FileSelectEBOM,_FileSelectEBOM->GetDiaOKNotification(),(CATCommandMethod)& YFGeneratePartListCmd::ChooseFileOKFunc,NULL);
+		AddAnalyseNotificationCB (_FileSelectEBOM,_FileSelectEBOM->GetDiaCANCELNotification(),(CATCommandMethod)& YFGeneratePartListCmd::ChooseFileCancelFunc,NULL);
+	
+	_FileSelectEBOM->SetVisibility(CATDlgShow);
+}
+
+void SaveToPDMCmd::ChooseFileOKFunc(CATCommand *, CATNotification* , CATCommandClientData data)
+{
+
+	CATUnicodeString strCurrentFilePath = NULL;
+	CATString strTypeExtensionsList[10] = {""};
+	CATUnicodeString strTypeDescriptionList[10] = {""};
+	_pSaveFile->GetSelection(strCurrentFilePath);
+	_pSaveFile->GetFilterStrings(strTypeDescriptionList,strTypeExtensionsList,10);
+
+	CATUnicodeString strType = strTypeExtensionsList[_pSaveFile->GetActiveFilterIndex()];
+	strType.Remove(0,1);
+	
+	RequestDelayedDestruction();
+}
+
+void SaveToPDMCmd::ChooseFileCancelFunc(CATCommand *, CATNotification* , CATCommandClientData data)
+{
+	/*if(_pSaveFile != NULL)
+	{
+		_pSaveFile->SetVisibility(CATDlgHide);
+	}*/
+
+	RequestDelayedDestruction();
+}

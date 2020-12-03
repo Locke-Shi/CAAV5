@@ -1,0 +1,16 @@
+!<mkhl> v2.0.1
+@WinhoCAAPubLib\PublicInterfaces
+CATAgentServices.h
+CATCGMServices.h
+CATDocServices.h
+CATPPRServices.h
+CATUniversalServices.h
+CATVisualServices.h
+ENOVIAServices.h
+WinhoAgentServices.h
+WinhoCGMServices.h
+WinhoDocServices.h
+WinhoENOVIAServices.h
+WinhoPPRServices.h
+WinhoUniversalServices.h
+WinhoVisualServices.h

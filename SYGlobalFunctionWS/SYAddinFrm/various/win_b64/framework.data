@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+BTV/002/CUS .\win_b64\code\productIC\SYAddinFrmIC.xml|.\SYAddinFrm
+BTV/002/CUS .\win_b64\code\productIC\SYAddinFrmIC.script|.\SYAddinFrm
+CSC/002/DSI .\SYAddinFrm\IdentityCard\Objects\win_b64\mkcsc\SYAddinFrm.cscdb|.\SYAddinFrm
+DAT/002/CUS .\win_b64\code\dictionary\SYAddinFrm.dico|.\SYAddinFrm\CNext\code\dictionary\SYAddinFrm.dico
+RTV/002/DSI .\win_b64\code\productIC\SYAddinFrmIC.required|.\SYAddinFrm

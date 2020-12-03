@@ -1,0 +1,5 @@
+/I"D:\CurrentWork\CAAExampleProgram\SJDNavigationViewerExampleWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\src"
+/I"D:\CurrentWork\CAAExampleProgram\SJDNavigationViewerExampleWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\LocalInterfaces"
+/I"D:\CurrentWork\CAAExampleProgram\SJDNavigationViewerExampleWsp\.\SJDPartExampleFrm\SJDPartExampleM.m\LocalGenerated\win_b64"
+/I"D:\CurrentWork\CAAExampleProgram\SJDNavigationViewerExampleWsp\.\SJDPartExampleFrm\PublicInterfaces"
+/I"D:\CurrentWork\CAAExampleProgram\SJDNavigationViewerExampleWsp\.\SJDPartExampleFrm\ImportedInterfaces\win_b64"

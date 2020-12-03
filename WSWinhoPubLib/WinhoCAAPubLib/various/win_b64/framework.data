@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+DAT/002/CUS .\win_b64\code\dictionary\WinhoCAAPubLib.dico|.\WinhoCAAPubLib\CNext\code\dictionary\WinhoCAAPubLib.dico
+RTV/002/DSI .\win_b64\code\productIC\WinhoCAAPubLibIC.required|.\WinhoCAAPubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoCAAPubLibIC.xml|.\WinhoCAAPubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoCAAPubLibIC.script|.\WinhoCAAPubLib
+CSC/002/DSI .\WinhoCAAPubLib\IdentityCard\Objects\win_b64\mkcsc\WinhoCAAPubLib.cscdb|.\WinhoCAAPubLib

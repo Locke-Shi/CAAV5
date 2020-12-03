@@ -1,0 +1,9 @@
+mkCI -a
+2019/8/27 13:43:56
+
+## start step: CIbuild   at 08/27/2019-13:43:58
+# make: WinhoDebugTool WinhoDebugTool\IdentityCard\IdentityCard.h
+## end   step: CIbuild   at 08/27/2019-13:43:58
+
+## start step: DataUpdate   at 08/27/2019-13:43:58
+## end   step: DataUpdate   at 08/27/2019-13:43:59

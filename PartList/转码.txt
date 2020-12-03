@@ -1,0 +1,37 @@
+void CAAMessageBox(CATUnicodeString message,CATUnicodeString title)
+{
+	CATDlgNotify* pNotifyDlg = new CATDlgNotify((CATApplicationFrame::GetApplicationFrame())->GetMainWindow(), title.ConvertToChar(),CATDlgNfyWarning);
+	if (NULL != pNotifyDlg)
+	{
+		pNotifyDlg->DisplayBlocked(message ,title);
+		pNotifyDlg->RequestDelayedDestruction(); 
+		pNotifyDlg = NULL;
+	}
+}
+
+CATUnicodeString CAAUStringBuildFromChar(char * strchar)
+{
+	int len = MultiByteToWideChar(CP_ACP, 0, strchar, -1, NULL, 0); 
+	wchar_t* strwcANSI = new wchar_t[len + 1]; 
+	memset(strwcANSI, 0, len * 2 + 2); 
+	MultiByteToWideChar(CP_ACP, 0, strchar, -1, strwcANSI, len); 
+	CATUnicodeString strwcUnicode;
+	strwcUnicode.BuildFromWChar(strwcANSI); 
+	if(strwcANSI) delete [] strwcANSI;
+	return strwcUnicode;
+}
+
+void CAAUStringConvertToChar(CATUnicodeString strUnicode,char* strchar )
+{
+	int len = WideCharToMultiByte(CP_ACP, 0, strUnicode, -1, NULL, 0, NULL, NULL); 
+	memset(strchar, 0, len + 1); 
+	WideCharToMultiByte(CP_ACP, 0, strUnicode, -1, strchar, len, NULL, NULL); 
+}
+
+void CAAUStringConvertToWChar(CATUnicodeString strUnicode, wchar_t* strwcANSI)
+{
+	const char *strchar =  strUnicode.ConvertToChar();
+	int len = MultiByteToWideChar(CP_ACP, 0, strchar, -1, NULL, 0); 
+	memset(strwcANSI, 0, len * 2 + 2); 
+	MultiByteToWideChar(CP_ACP, 0, strchar, -1, strwcANSI, len); 
+}

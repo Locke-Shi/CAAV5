@@ -1,0 +1,101 @@
+void SelectObjectAAA::GetOldObj()
+{
+	if (pDocument != NULL)
+	{
+
+		//-------------------获取到几何图形集---------------------//
+		CATInit_var spInitOnDoc(pDocument);//初始化本文档的数据。  将参数和对象相关联
+		//用于定义文档数据初始化的接口。
+		//功能：在File / New或File / Open中调用Init方法。 在这种方法中，每个应用程序通常创建其根元素。 要获取它，请使用GetRootContainer方法。
+		if(NULL_var == spInitOnDoc) return;
+
+		CATIPrtContainer * piPrtCont =  (CATIPrtContainer*) spInitOnDoc->GetRootContainer("CATIPrtContainer");//返回给定文档的根元素。	
+		//检索机械零件功能的界面。
+		if (!piPrtCont)
+		{
+			return;
+		}
+		// Get the part feature of the container.
+		spiPart = piPrtCont->GetPart();
+		//检索“机械零件”功能信息的接口。
+		//返回“机械零件”功能。
+		piPrtCont->Release();
+		piPrtCont=NULL;
+
+		CATIPartRequest* piPartRequest = NULL;
+		//检索零件文档的几何特征集的接口。
+		if (spiPart != NULL_var)
+		{
+			spiPart->QueryInterface(IID_CATIPartRequest,(void**)&piPartRequest);
+		}
+
+		const CATUnicodeString stdText(" ");
+		CATUnicodeString stdName;//图形集名称
+		CATUnicodeString stdChildName;//图形集子对象的名称
+		CATLISTV(CATBaseUnknown_var) SurfacicSetList;//保存获取到的几何图形集的List
+		piPartRequest->GetSurfBodies(stdText,SurfacicSetList);//检索所有GS和所有根OGS。
+
+		int size = SurfacicSetList.Size();//获取到的几何图形集的个数
+
+		//-------------------判断几何图形集是不是需要的那个---------------------//
+		for (int i = 1;i <= size;i++)//从第一个开始
+		{
+			CATBaseUnknown_var spCurrentSet = SurfacicSetList[i];
+			if (spCurrentSet == NULL_var)
+			{
+				break;
+			}
+
+			CATIAlias_var spiAlias = spCurrentSet;
+			stdName = spiAlias->GetAlias();//获取到图形集的名称
+			if(stdName != "输入")//如果找到的几何图形集不是给定的，就跳过本次循环
+			{
+				continue;
+			}
+			
+			CATLISTV(CATBaseUnknown_var) pListResult;//几何特征列表。
+
+			CATIBodyRequest *piBodyRequestOnCurrentSet = NULL;//检索几何特征集的结果的接口。
+			HRESULT rc = spCurrentSet->QueryInterface(IID_CATIBodyRequest, (void**)&piBodyRequestOnCurrentSet);
+			if ( SUCCEEDED(rc) )
+			{   
+				rc = piBodyRequestOnCurrentSet->GetResults(stdText, pListResult);//检索几何特征集的结果。
+				if ( SUCCEEDED(rc) )
+				{
+					int SizeListResult = pListResult.Size() ;//材质集里材质的个数
+
+					for(int curFeatIdx=1; curFeatIdx<=SizeListResult; curFeatIdx++)
+					{
+						CATBaseUnknown_var CurrentFeat = pListResult[curFeatIdx] ;//获取材质集里的材质，从第一个开始
+						if ( NULL_var == CurrentFeat ) break ;
+
+						CATIAlias_var aliasOnCurFeat =  CurrentFeat ;//获取对象的名字
+						if ( NULL_var != aliasOnCurFeat)
+						{
+							stdChildName = aliasOnCurFeat->GetAlias().ConvertToChar();//这个对象的名字
+							cout<<"302-->"<<stdChildName<<endl;
+						}
+						if (stdChildName == "点.1")
+						{
+							spiOldPoint = CurrentFeat;
+							cout<<"OldPint:"<<spiOldPoint->GetType()<<endl;
+							CATISpecObject_var spiObj = CopyStart(spiNewPoint);
+							if (spiObj != NULL_var)
+							{
+								ReplaceStart(spiOldPoint,spiObj);
+							}
+						}else{
+							spiOldLine = CurrentFeat;
+							cout<<"OldLine:"<<spiOldLine->GetType()<<endl;
+							CATISpecObject_var spiObj = CopyStart(spiNewLine);
+							if (spiObj != NULL_var)
+							{
+								ReplaceStart(spiOldLine,spiObj);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

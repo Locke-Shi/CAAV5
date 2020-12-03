@@ -1,0 +1,36 @@
+//CATCurve_var spCurve = ispiSpecOnCurve;
+	//if (!!spCurve)
+	//{
+	//	CATCrvParam startParam = spCurve->GetStartLimit();
+	//	CATCrvParam endParam = spCurve->GetEndLimit();
+
+	//	CATMathPoint startPoint = spCurve->EvalPoint(startParam);
+	//	CATMathPoint endPoint = spCurve->EvalPoint(endParam);
+	//	cout<<"-----------> Point"<<endl;
+	//	cout<<"StartPoint = "<<startPoint<<"endPoint = "<<endPoint<<endl;
+
+
+	//	CATMathVector mathVector1 = spCurve->EvalFirstDeriv(startParam);
+	//	CATMathVector mathVector2 = spCurve->EvalSecondDeriv(startParam);
+	//	CATMathVector mathVector3 = spCurve->EvalThirdDeriv(startParam);
+	//	cout<<"-----------> Start"<<endl;
+	//	cout<<"first "<<mathVector1.GetX()<<","<<mathVector1.GetY()<<","<<mathVector1.GetZ()<<endl;//直线的方向
+	//	cout<<"Second "<<mathVector2.GetX()<<","<<mathVector2.GetY()<<","<<mathVector2.GetZ()<<endl;
+	//	cout<<"third "<<mathVector3.GetX()<<","<<mathVector3.GetY()<<","<<mathVector3.GetZ()<<endl;
+
+
+	//	CATMathVector mathVector4 = spCurve->EvalFirstDeriv(endParam);
+	//	CATMathVector mathVector5 = spCurve->EvalSecondDeriv(endParam);
+	//	CATMathVector mathVector6 = spCurve->EvalThirdDeriv(endParam);
+	//	cout<<"------------>end"<<endl;
+	//	cout<<"first "<<mathVector4.GetX()<<","<<mathVector4.GetY()<<","<<mathVector4.GetZ()<<endl;
+	//	cout<<"Second "<<mathVector5.GetX()<<","<<mathVector5.GetY()<<","<<mathVector5.GetZ()<<endl;
+	//	cout<<"third "<<mathVector6.GetX()<<","<<mathVector6.GetY()<<","<<mathVector6.GetZ()<<endl;
+
+	//	CATMathVector mathVectorPoint1(startPoint.GetX(),startPoint.GetY(),startPoint.GetZ());
+	//	CATMathVector mathVectorPoint2(endPoint.GetX(),endPoint.GetY(),endPoint.GetZ());
+
+	//	CATMathVector mathVectorCurve = mathVectorPoint2 - mathVectorPoint1;
+	//	mathVectorCurve.Normalize();
+	//	cout<<"---------->Curve"<<endl;
+	//	cout<<"Curve "<<mathVectorCurve.GetX()<<","<<mathVectorCurve.GetY()<<","<<mathVectorCurve.GetZ()<<endl;

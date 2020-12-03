@@ -1,0 +1,14 @@
+if (0 != nbPoints) 
+	{
+		pIntersection->BeginningPoint();                                 // iterator one the points
+		while(TRUE== (pIntersection->NextPoint()) )                      // loop on the resulting points
+		{cout<<"111"<<endl;
+			CATCartesianPoint* piPoint=pIntersection->GetCartesianPoint(); // create the geometric point
+			if (NULL!=piPoint)
+			{
+				double x,y,z;
+				piPoint->GetCoord(x,y,z);
+				cout << " X= "<< x << " Y= "<< y << " Z= "<< z <<endl;
+			}
+		}
+	}

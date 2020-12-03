@@ -1,0 +1,37 @@
+HRESULT GetBodyFromSpecObject(CATISpecObject_var ispiSpecObject,CATBody_var &ospBody)
+{
+	HRESULT rc=E_FAIL;
+	ospBody = NULL_var;
+	if( !ispiSpecObject ) return rc;
+
+	CATIMfBRep_var spiBRepOnFeature = ispiSpecObject;
+	if( !!spiBRepOnFeature ) {					  //BRep feature
+		ospBody = spiBRepOnFeature->GetBody();
+	}
+	else {
+		CATIGeometricalElement_var spiGeometricalElementOnFeature = ispiSpecObject;
+		if( !!spiGeometricalElementOnFeature ) {  			//Geometrical feature
+			ospBody = spiGeometricalElementOnFeature->GetBodyResult();
+		}
+		else {									 //Solid feature
+			CATListValCATBaseUnknown_var listResult;
+			CATIBodyRequest_var spiBodyRequestOnModel = ispiSpecObject;
+			if( !!spiBodyRequestOnModel ) {
+				rc = spiBodyRequestOnModel->GetResults("MfDefault3DView",listResult);
+			}
+
+			CATIGeometricalElement_var spiGeometricalElementOnBody=NULL_var;
+			if( listResult.Size() > 0 ) {
+				spiGeometricalElementOnBody = listResult[1];
+			}
+			if( !!spiGeometricalElementOnBody ) {
+				ospBody = spiGeometricalElementOnBody->GetBodyResult();
+			}
+			listResult.RemoveAll();
+		}
+	}
+
+	if( !!ospBody ) { rc = S_OK; }
+
+	return rc;
+}

@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\win_b64\code\bin\SYExcelRefMod.pdb|.\SYGlobalFunctionFrm\SYExcelRefMod.m
+INT/000/CUS .\win_b64\code\lib\SYExcelRefMod.exp|.\SYGlobalFunctionFrm\SYExcelRefMod.m
+RTV/001/CUS .\win_b64\code\bin\SYExcelRefMod.dll|.\SYGlobalFunctionFrm\SYExcelRefMod.m
+CSC/000/DSI .\SYGlobalFunctionFrm\SYExcelRefMod.m\Objects\win_b64\mkcsc\SYExcelRefMod.cscdb|.\SYGlobalFunctionFrm\SYExcelRefMod.m
+BTV/000/CUS .\win_b64\code\lib\SYExcelRefMod.lib|.\SYGlobalFunctionFrm\SYExcelRefMod.m

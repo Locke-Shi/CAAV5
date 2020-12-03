@@ -1,0 +1,31 @@
+ _pErrorDialogBox = new CATDlgNotify(pFrame->GetMainWindow(),
+                                                            "Error",
+                                              CATDlgNfyError|CATDlgNfyOK| CATDlgWndModal) ;
+              //Build the keyword message
+              CATUnicodeString ErrorMessage ;
+              CATString KeyOfTheErrorMessage = "Error." + _ErrorKey ;
+
+              //Retrieve the NLS text in the NLS file
+              ErrorMessage = CATMsgCatalog::BuildMessage("CAAMcaUdfLoftEditCreateCmd",
+                                        KeyOfTheErrorMessage,NULL,0,
+                                        "Error in the CAAMcaUdfLoftEditCreateCmd command");
+              // Set the NLS text
+              _pErrorDialogBox->SetText(ErrorMessage);
+
+              _pErrorDialogBox->SetVisibility(CATDlgShow);
+
+              // When the end user clicks on the Ok button, the 
+              // command finishes
+              CATDialogState *pErrorState = GetInitialState("ErrorStateId");
+
+              _pAgentErrorDialogBox = new CATDialogAgent("PanelError");
+              pErrorState->AddDialogAgent(_pAgentErrorDialogBox); 
+              
+              _pAgentErrorDialogBox->AcceptOnNotify(_pErrorDialogBox,
+                                                _pErrorDialogBox->GetNfyOKNotification());
+              _pAgentErrorDialogBox->AcceptOnNotify(_pErrorDialogBox,
+                                                _pErrorDialogBox->GetWindCloseNotification());
+
+              AddTransition(pErrorState,GetCancelState(),
+                            IsOutputSetCondition(_pAgentErrorDialogBox),
+                            Action((ActionMethod) &CAAMcaUdfLoftEditCreateCmd::CloseErrorDialogBox));

@@ -1,0 +1,40 @@
+CATIProduct_var GetRootProduct(CATDocument* ipFileDoc)
+{
+	cout<<"=====>GetRootProduct ..."<<endl;
+	if (!ipFileDoc)
+	{
+		cout<<"参数有误!"<<endl;
+		return NULL_var;
+	}
+	HRESULT hr = S_OK;
+	CATIProduct_var spiRootProduct = NULL_var;
+
+	CATIDocRoots* piDocRoots = NULL;
+	hr = ipFileDoc->QueryInterface(IID_CATIDocRoots,(void**)&piDocRoots);
+	if (FAILED(hr))
+	{
+		cout<<"failed get piDocRoots"<<endl;
+		return NULL_var;
+	}
+
+	CATListValCATBaseUnknown_var *plistOfRoots = piDocRoots->GiveDocRoots();
+	if(!!plistOfRoots&&plistOfRoots->Size()>0)
+	{
+		spiRootProduct=(*plistOfRoots)[1];
+		delete plistOfRoots;
+		plistOfRoots=NULL;
+	}
+	piDocRoots->Release();
+	piDocRoots=NULL;
+	return spiRootProduct;
+}
+
+//获取文档
+CATFrmEditor *pEditor = CATFrmEditor::GetCurrentEditor();
+if (!pEditor) return E_FAIL;
+	
+CATILinkableObject *piLinkableOnActive = NULL;
+if (FAILED(pEditor->GetUIActiveObject().Search(IID_CATILinkableObject,(void**)&piLinkableOnActive)) || !piLinkableOnActive) return E_FAIL;
+	
+CATDocument *pDoc = piLinkableOnActive->GetDocument();
+if(!pDoc)	return E_FAIL;

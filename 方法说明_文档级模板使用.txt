@@ -1,0 +1,22 @@
+一、文档级模板调用方式
+1、用CATDocumentServices::NewFrom方法，打开模板文档；
+2、将模板文档插入到当前RootProduct下；
+3、替换或更改模板文档中的数据
+   a）若需修改数据是参数，则直接根据对话框中的数据，修改这些参数即可；
+   b）若需修改数据是特征对象，如曲线等，则需要将所选择的对象（其它文档中），
+      拷贝到模板文档中，然后用CATIReplace方法，替换需要修改的对象；
+
+
+其它说明：
+1、将特征对象，从一个Part文档中，拷贝到另外一个Part文档中，步骤如下：
+   获取特征的CATBody对象
+   获取特征对象的CATIProdct实例，通过CATIMovable接口，获取在RootProduct下的位置（变换矩阵）
+   用CATCloneManager类，将CATBody对象拷贝到模板文档中；
+   用CATTransfoManager对CATBody进行变换；
+   用CATIDatumFactory将CATBody对象转成CATISpecObject对象；
+   将上一步生成的特征对象，挂接到特征树上；
+   
+2、替换特征对象
+    将样例，其中GetAttName方法是自己编写的，属性的名字，要根据模板定义的情况来确定；
+    该方法获取的是特征属性的名称，不是参数名称；
+    一般特征替换操作完成后，将原来的特征（已不用）删除掉；

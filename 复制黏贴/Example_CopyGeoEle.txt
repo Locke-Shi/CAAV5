@@ -1,0 +1,40 @@
+HRESULT SJDTopologicalClass::CopyGeoObjectFromOneContainerToAnotherContainer(CATLISTP(CATCell) &ioListCell,CATGeoFactory *ipTargetGeoFactory)
+{
+	HRESULT rc=E_FAIL;
+	if( !ipTargetGeoFactory || ioListCell.Size() < 1 ) return rc;
+
+	CATSoftwareConfiguration *pConfig=new CATSoftwareConfiguration();
+	CATCloneManager *pCloneManager=new CATCloneManager(ipTargetGeoFactory,CatCGMSingleDuplicate,pConfig);
+	if( !pCloneManager ) { if( !!pConfig ) { pConfig->Release(); pConfig = NULL; } return rc;}
+
+	CATCell *pCell=NULL;
+	CATCell *pCellCloned=NULL;
+	CATLISTP(CATCell) listResult;
+	for(int i=1;i<=ioListCell.Size();i++) {
+		pCell = ioListCell[i];
+		if( !pCell ) continue;
+
+		pCloneManager->Add(pCell);
+		pCloneManager->Run();
+		pCellCloned = (CATCell *)pCloneManager->ReadImage(pCell);
+		if( !pCellCloned ) continue;
+
+		listResult.Append(pCellCloned);
+	}
+
+	//Free memory
+	if( !!pConfig ) { pConfig->Release(); pConfig = NULL; }
+	if( !!pCloneManager ) { delete pCloneManager; pCloneManager = NULL; }
+
+	//Reset the result
+	ioListCell.RemoveAll();
+	for(int i=1;i<=listResult.Size();i++) {
+		pCellCloned = listResult[i];
+		if( !pCellCloned ) continue;
+
+		ioListCell.Append(pCellCloned);
+	}
+	listResult.RemoveAll();
+
+	return S_OK;
+}

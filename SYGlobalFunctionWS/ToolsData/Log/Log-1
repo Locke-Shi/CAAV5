@@ -1,0 +1,73 @@
+mkmk  -u  SYTestMod.m
+2020/8/5 16:15:36
+
+## start step: CIbuild   at 08/05/2020-16:15:39
+## end   step: CIbuild   at 08/05/2020-16:15:39
+
+## start step: DataUpdate   at 08/05/2020-16:15:39
+# make:  SYGlobalFunctionFrm\IdentityCard\Objects\win_b64\.mkdata.mkb
+## end   step: DataUpdate   at 08/05/2020-16:15:39
+
+## start step: DataUpdate   at 08/05/2020-16:15:39
+# make:  SYGlobalFunctionFrm\SYTestMod.m\Objects\win_b64\.mkdata.mkb
+## end   step: DataUpdate   at 08/05/2020-16:15:39
+
+## start step: CIcompilation   at 08/05/2020-16:15:39
+## end   step: CIcompilation   at 08/05/2020-16:15:39
+
+## start step: headerlist   at 08/05/2020-16:15:39
+## end   step: headerlist   at 08/05/2020-16:15:39
+
+## start step: headermap   at 08/05/2020-16:15:39
+## end   step: headermap   at 08/05/2020-16:15:39
+
+## start step: buildtimedata   at 08/05/2020-16:15:39
+## end   step: buildtimedata   at 08/05/2020-16:15:39
+
+## start step: fwgrammar   at 08/05/2020-16:15:39
+## end   step: fwgrammar   at 08/05/2020-16:15:39
+
+## start step: cppgrammar   at 08/05/2020-16:15:39
+## end   step: cppgrammar   at 08/05/2020-16:15:39
+
+## start step: headerlist   at 08/05/2020-16:15:39
+## end   step: headerlist   at 08/05/2020-16:15:39
+
+## start step: headermap   at 08/05/2020-16:15:39
+## end   step: headermap   at 08/05/2020-16:15:39
+
+## start step: grammar1st   at 08/05/2020-16:15:39
+## end   step: grammar1st   at 08/05/2020-16:15:39
+
+## start step: typelibgrammar   at 08/05/2020-16:15:39
+## end   step: typelibgrammar   at 08/05/2020-16:15:39
+
+## start step: headerruler   at 08/05/2020-16:15:39
+## end   step: headerruler   at 08/05/2020-16:15:39
+
+## start step: compilation   at 08/05/2020-16:15:39
+# make:  SYGlobalFunctionFrm\SYTestMod.m: creates the precompiled header
+mkmksourceforpch.cpp
+# make:  SYGlobalFunctionFrm\SYTestMod.m\src\TestMain.cpp
+TestMain.cpp
+D:\R21\B21\.\System\PublicInterfaces\CATTimeSpan.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxwin1.inl(105) : warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+# make:  tools\data\mkmksourceforpch.cpp
+## end   step: compilation   at 08/05/2020-16:15:41
+
+## start step: sourceruler   at 08/05/2020-16:15:41
+## end   step: sourceruler   at 08/05/2020-16:15:41
+
+## start step: link   at 08/05/2020-16:15:41
+# make: SYGlobalFunctionFrm\SYTestMod.m win_b64\code\bin\SYTestMod.exe
+   正在创建库 D:\V5CAA\V5Functions\SYGlobalFunctionWS\.\win_b64\code\bin\SYTestMod.lib 和对象 D:\V5CAA\V5Functions\SYGlobalFunctionWS\.\win_b64\code\bin\SYTestMod.exp
+## end   step: link   at 08/05/2020-16:15:41
+
+## start step: rmsmanifest   at 08/05/2020-16:15:41
+## end   step: rmsmanifest   at 08/05/2020-16:15:41
+
+## start step: runtimedata   at 08/05/2020-16:15:41
+## end   step: runtimedata   at 08/05/2020-16:15:41
+
+## start step: dummynls   at 08/05/2020-16:15:41
+## end   step: dummynls   at 08/05/2020-16:15:41

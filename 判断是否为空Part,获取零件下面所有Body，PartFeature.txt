@@ -1,0 +1,46 @@
+﻿void SYTestCmd::CheckPartIsNull(CATIPrtPart_var ispiPrtPart)
+{
+	HRESULT hr = S_OK;
+	CATIPartRequest_var spiPartRequest = ispiPrtPart;
+	if (!!spiPartRequest)
+	{
+		CATListValCATBaseUnknown_var listOfBUPartObjs;
+		hr = spiPartRequest->GetAllBodies("MfDefault3DView",listOfBUPartObjs);//获取几何体，和图形集节点
+		cout<<"listOfBUPartObjs 数量 = "<<listOfBUPartObjs.Size()<<endl;
+		if (listOfBUPartObjs.Size())
+		{
+			int flag = 0;
+			for (int i = 1;i<=listOfBUPartObjs.Size();i++)
+			{
+				CATIAlias_var spiAlias = listOfBUPartObjs[i];
+				cout<<spiAlias->GetAlias()<<endl;
+				//==获取几何体和图形集下面的特征
+				CATIBodyRequest_var spiBodyRequest = listOfBUPartObjs[i];
+				if (!!spiBodyRequest)
+				{
+					CATListValCATBaseUnknown_var listOfBUBodyObjs;
+					hr = spiBodyRequest->GetResults("MfDefault3DView",listOfBUBodyObjs);
+					cout<<"listOfBUBodyObjs 数量 = "<<listOfBUBodyObjs.Size()<<endl;
+					if (listOfBUBodyObjs.Size())
+					{
+						for (int j = 1;j<=listOfBUBodyObjs.Size();j++)
+						{
+							CATIAlias_var spiAlias = listOfBUBodyObjs[j];
+							cout<<"		"<<spiAlias->GetAlias()<<endl;
+							flag = 1;
+
+						}
+					}
+				}else cout<<"Body QI error"<<endl;
+				//==
+			}
+
+
+			if (flag == 1)
+			{
+				cout<<"不是空Part"<<endl;
+			}else
+				cout<<"是空Part"<<endl;
+		}
+	}else cout<<"Part QI error"<<endl;
+}

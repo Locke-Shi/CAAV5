@@ -1,0 +1,91 @@
+
+CATPathElement* ExtractPathElement(CATBaseUnknown* pObject)
+{
+	HRESULT rc = S_OK; 
+	CATPathElement* pPathElement = NULL; 
+
+	do {
+
+		if (!pObject) break;
+
+		CATIBuildPath* pBuildPath = NULL;
+
+		rc = pObject->QueryInterface(IID_CATIBuildPath,(void**)&pBuildPath);
+		if (FAILED(rc))
+		{
+			break;
+		}
+
+		CATPathElement activePath = CATFrmEditor::GetCurrentEditor()->GetUIActiveObject();
+		rc = pBuildPath->ExtractPathElement(&activePath,&pPathElement);
+		if (pBuildPath)
+		{
+			pBuildPath->Release();
+			pBuildPath = NULL;
+		}
+
+		if(FAILED(rc) || !pPathElement) break;
+
+	}while(0);
+
+	if(FAILED(rc)) pPathElement = NULL;
+
+	return pPathElement;
+
+}
+
+
+
+void AddHightlightRelatedObj(CATISpecObject_var &spSpecObj)
+{
+	if (spSpecObj == NULL_var) return;
+
+	CATFrmEditor* pEditor = CATFrmEditor::GetCurrentEditor();
+	if (NULL == pEditor)
+	{
+		return;
+	}
+
+	CATHSO* pHSO = pEditor->GetHSO();
+	if (NULL == pHSO)
+	{
+		return;
+	}
+
+	CATPathElement* pPathElement = ExtractPathElement(spSpecObj);
+	if (pPathElement != NULL)
+	{
+		pHSO->AddElements(pPathElement);
+		pHSO->EndAddElements();
+	}
+}
+
+
+CATBoolean APServices::AddHSO(CATISpecObject_var spSpecAdded)
+{
+	HRESULT rc=S_OK;
+	CATIBuildPath *piBuildPath=NULL;
+	rc=spSpecAdded->QueryInterface(IID_CATIBuildPath,(void**) &piBuildPath );
+	if(SUCCEEDED(rc)&&piBuildPath!=NULL)
+	{
+		CATFrmEditor * pEditor;
+		pEditor = CATFrmEditor::GetCurrentEditor();
+		if (NULL != pEditor)
+		{
+			CATPathElement Context = pEditor->GetUIActiveObject();
+			CATPathElement *pPathElement = NULL ;
+			rc=piBuildPath->ExtractPathElement(&Context,&pPathElement);
+			if(pPathElement != NULL)
+			{
+				CATHSO * pHSO = pEditor->GetHSO();
+				pHSO->AddElement(pPathElement);
+				pPathElement->Release();
+				pPathElement = NULL ;
+			}
+		}
+
+		piBuildPath->Release(); 
+		piBuildPath = NULL ;
+	}
+	return TRUE;
+}

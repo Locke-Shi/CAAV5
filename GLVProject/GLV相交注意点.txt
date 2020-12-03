@@ -1,0 +1,4 @@
+1.使用CATIGSMFactory创建的线，面，是属于特征，不能使用拓扑相交方法CATCreateTopIntersect去做。
+2.应当还是使用CATIGSMFactory里面的CreateIntersect 去做，但是得到的结果不能直接转到CATPoint,使用测量接口去得到坐标（CATIMeasurablePoint）
+	PS:CATIMeasurablePoint 中 GetPoint（） 参数CATMathPoint 不能定义为CATMathPoint* mathPoint = NULL, 只能定义为CATMathPoint mathPoint;
+3.还有2个几何全局相交方法

@@ -1,0 +1,17 @@
+!<mkhl> v2.0.1
+@WinhoDebugTool\PublicInterfaces
+WINDebugAddin.h
+WINDebugCmds.h
+allocator.h
+assertions.h
+autolink.h
+config.h
+features.h
+forwards.h
+json.h
+json_tool.h
+reader.h
+stdint.h
+value.h
+version.h
+writer.h

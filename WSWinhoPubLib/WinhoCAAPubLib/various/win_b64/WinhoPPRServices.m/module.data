@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+INT/000/CUS .\win_b64\code\bin\WinhoPPRServices.pdb|.\WinhoCAAPubLib\WinhoPPRServices.m
+BTV/000/CUS .\win_b64\code\lib\WinhoPPRServices.lib|.\WinhoCAAPubLib\WinhoPPRServices.m
+RTV/001/CUS .\win_b64\code\bin\WinhoPPRServices.dll|.\WinhoCAAPubLib\WinhoPPRServices.m
+CSC/000/DSI .\WinhoCAAPubLib\WinhoPPRServices.m\Objects\win_b64\mkcsc\WinhoPPRServices.cscdb|.\WinhoCAAPubLib\WinhoPPRServices.m
+INT/000/CUS .\win_b64\code\lib\WinhoPPRServices.exp|.\WinhoCAAPubLib\WinhoPPRServices.m

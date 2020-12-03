@@ -1,0 +1,24 @@
+if ( (piSpecOnGeomElem != NULL) && (NULL != _HSO) && (NULL !=_editor) )
+    {
+        // uses this pointer to build a path element
+        CATIBuildPath *piBuildPath = NULL;
+        HRESULT rc = piSpecOnGeomElem->QueryInterface( IID_CATIBuildPath, 
+                                                       (void**) &piBuildPath );
+        if ( SUCCEEDED(rc) )
+        {
+            CATPathElement Context = _editor->GetUIActiveObject();
+            CATPathElement *pPathElement = NULL ;
+            rc = piBuildPath->ExtractPathElement(&Context,&pPathElement);
+
+            if (pPathElement != NULL)
+            {   // the geometrical element corresponding to the active field is now highlighted
+               _HSO->AddElement(pPathElement); 
+                
+                pPathElement->Release();
+                pPathElement = NULL ;
+            }
+            
+            piBuildPath->Release(); 
+            piBuildPath = NULL ;
+        }
+    }

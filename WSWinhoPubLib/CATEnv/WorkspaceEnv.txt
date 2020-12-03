@@ -1,0 +1,44 @@
+!----------------------------------------------------------
+!   DASSAULT SYSTEMES  -  V5 ENVIRONMENT FILE
+!----------------------------------------------------------
+! MODE : User
+! TYPE : CATIA
+! TMSTMP : 1563953454
+! ARGS : -cs CATIA -a user -icon no -menu no 
+!----------------------------------------------------------
+
+CATInstallPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64
+CATDLLPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\bin;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\bin
+CATICPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\productIC;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\productIC
+CATCommandPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\command;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\command
+CATDictionaryPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\dictionary;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\dictionary
+CATDocView=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\doc;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\doc
+CATReffilesPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\reffiles;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\reffiles
+CATFontPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\fonts;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\fonts
+CATGalaxyPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\galaxy;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\galaxy
+CATGraphicPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic\icons;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic\icons;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic\figures;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic\figures;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic\splashscreens;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic\splashscreens;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic\symbols;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic\symbols;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\graphic\textures;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\graphic\textures
+CATMsgCatalogPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\msgcatalog;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\msgcatalog
+CATFeatureCatalogPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\featurecatalog;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\featurecatalog
+CATDefaultCollectionStandard=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\standard;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\standard
+CATKnowledgePath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\resources\knowledge;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\resources\knowledge
+CATStartupPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\startup;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\startup
+CATW3ResourcesPath=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\docs;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\docs
+CATReconcilePath=
+CATReferenceSettingPath=
+USER_HOME=CSIDL_COMMON_APPDATA\DassaultSystemes\DSKEY_USERID
+CATUserSettingPath=%USER_HOME%\CATSettings
+CATCollectionStandard=
+CATTemp=%USER_HOME%\CATTemp
+CATMetasearchPath=DSKEY_TMPDIR
+CATW3PublishPath=DSKEY_TMPDIR
+CATSharedWorkbookPath=DSKEY_TMPDIR
+CATErrorLog=%USER_HOME%\CATTemp\error.log
+CATReport=%USER_HOME%\CATReport
+CATDisciplinePath=
+DB2INSTANCE=%DB2INSTANCE%
+TNS_ADMIN=%TNS_ADMIN%
+JAVA_HOME=C:\Program Files\Java\jre6
+CLASSPATH_JDBC=
+CLASSPATH=%CLASSPATH_JDBC%;%CLASSPATH%
+PATH=E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\bin;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\bin;E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\win_b64\code\command;C:\WinhoMBE\DassaultSystemes\V5R21\B21\win_b64\code\command;%PATH%;%JAVA_HOME%\bin
+VPM_PLUGIN_OBJECTS_LIST=PluginList

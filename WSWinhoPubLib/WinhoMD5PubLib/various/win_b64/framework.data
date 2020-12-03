@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+DAT/002/CUS .\win_b64\code\dictionary\WinhoMD5PubLib.dico|.\WinhoMD5PubLib\CNext\code\dictionary\WinhoMD5PubLib.dico
+CSC/002/DSI .\WinhoMD5PubLib\IdentityCard\Objects\win_b64\mkcsc\WinhoMD5PubLib.cscdb|.\WinhoMD5PubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoMD5PubLibIC.script|.\WinhoMD5PubLib
+RTV/002/DSI .\win_b64\code\productIC\WinhoMD5PubLibIC.required|.\WinhoMD5PubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoMD5PubLibIC.xml|.\WinhoMD5PubLib

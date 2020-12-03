@@ -1,0 +1,126 @@
+﻿CATStatusChangeRC SYCreatePointPanel::ActionOk( CATCommand * iFromClient, CATNotification * iEvtDat)
+{
+	cout<<"ActionOk"<<endl;
+	HRESULT hr = S_OK;
+	double x = _Editor005->GetValue();
+	double y = _Editor006->GetValue();
+	double z = _Editor007->GetValue();
+	cout<<x<<endl;
+	cout<<y<<endl;
+	cout<<z<<endl;
+	//获取当前零件容器
+	CATFrmEditor* pEditor = CATFrmEditor::GetCurrentEditor();
+	CATILinkableObject *pILinkableOnActive = NULL;
+	hr = pEditor->GetUIActiveObject().Search(IID_CATILinkableObject,(void**)&pILinkableOnActive);
+	CATDocument* pDoc = pILinkableOnActive->GetDocument();
+	if (!pDoc) 	{cout<<"Get Document Fail"<<endl; return CATStatusChangeRCCompleted;}
+
+	CATIContainerOfDocument_var spiContOfDoc = pDoc;
+	if(!spiContOfDoc) {cout<<"error : CATIContainerOfDocument_var "<<endl;return CATStatusChangeRCCompleted;}
+
+	CATIContainer* piSpecCont = NULL;
+	CATIContainer* piResultCont = NULL;
+
+	hr = spiContOfDoc->GetSpecContainer(piSpecCont);
+	if (!piSpecCont) {cout<<"failed to get spec contain"<<endl; return CATStatusChangeRCCompleted;}
+
+	hr = spiContOfDoc->GetResultContainer(piResultCont);
+	if (!piResultCont) {cout<<"failed to get result contain"<<endl; return CATStatusChangeRCCompleted;}
+
+	//一：创建点(GSM 断参)
+	/*CATIGSMFactory_var spiGSMFactory = piSpecCont;
+	if(!spiGSMFactory) {cout<<"failed to get CATIGSMFactory_var"<<endl; return CATStatusChangeRCCompleted;}
+
+
+	double point[3] = {x,y,z};
+	CATIGSMPoint_var spiGSMPoint = spiGSMFactory->CreatePoint(point);
+	if (!!spiGSMPoint)
+	{
+		cout<<"Create Point Success"<<endl;
+	}
+
+	CATIGSMProceduralView_var spiGSMProceduralView = spiGSMPoint;
+	CATISpecObject_var spiSpecOnPoint = spiGSMPoint;
+	spiGSMProceduralView->InsertInProceduralView(spiSpecOnPoint);
+	spiSpecOnPoint->Update();*/
+
+	//二：创建点(GSM 带参)
+	CATICkeParmFactory_var spiCkeParmFactory = piSpecCont;
+	if(!spiCkeParmFactory) {cout<<"failed to get CATICkeParmFactory_var"<<endl; return CATStatusChangeRCCompleted;}
+
+	CATICkeParm_var spiCkeX = spiCkeParmFactory->CreateLength("X",x/1000);
+	CATICkeParm_var spiCkeY = spiCkeParmFactory->CreateLength("Y",y/1000);
+	CATICkeParm_var spiCkeZ = spiCkeParmFactory->CreateLength("Z",z/1000);
+
+//解法二:
+	//CATICkeParm_var spiCkeX = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"X",x/1000);
+	//CATICkeParm_var spiCkeY = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"Y",y/1000);
+	//CATICkeParm_var spiCkeZ = spiCkeParmFactory->CreateDimension(CATCkeGlobalFunctions::GetParmDictionary()->FindMagnitude("Length"),"Z",z/1000);
+
+	CATIGSMFactory_var spiGSMFactory = piSpecCont;
+	if(!spiGSMFactory) {cout<<"failed to get CATIGSMFactory_var"<<endl; return CATStatusChangeRCCompleted;}
+
+	CATIGSMPointCoord_var spiGSMPointCoord = spiGSMFactory->CreatePoint(spiCkeX,spiCkeY,spiCkeZ);
+	if (!!spiGSMPointCoord)
+	{
+		CATIGSMProceduralView_var spiGSMProceduralView = spiGSMPointCoord;
+		CATISpecObject_var spiSpecOnPoint = spiGSMPointCoord;
+		spiGSMProceduralView->InsertInProceduralView(spiSpecOnPoint);
+		spiSpecOnPoint->Update();
+	}
+	
+	//三：创建点(拓扑 断参)
+	/*CATGeoFactory_var spGeoFactory = piResultCont;
+	if (!spGeoFactory) {cout<<"QI error :CATGeoFactory"<<endl;return CATStatusChangeRCCompleted;}
+
+	CATSoftwareConfiguration * pConfig = new CATSoftwareConfiguration();
+	CATTopData topdata(pConfig);
+
+	CATBody* pPointBody = ::CATCreateTopPointXYZ((CATGeoFactory*)spGeoFactory,&topdata,x,y,z);
+
+	CATIDatumFactory_var spiDatumFactory = piSpecCont;
+	if(!spiDatumFactory) {cout<<"QI error: CATIDatumFactory"<<endl;return CATStatusChangeRCCompleted;}
+
+	CATISpecObject* piSpecOnBody = NULL;
+	hr = spiDatumFactory->InstanciateDatum(pPointBody,piSpecOnBody);
+	if (piSpecOnBody)
+	{
+		CATIGSMProceduralView_var spiGSMProceduralView = piSpecOnBody;
+		CATISpecObject_var spiSpecOnPoint = piSpecOnBody;
+		spiGSMProceduralView->InsertInProceduralView(piSpecOnBody);
+		spiSpecOnPoint->Update();
+	}*/
+	
+
+	//四：创建点(拓扑 断参)
+	/*CATGeoFactory_var spGeoFactory = piResultCont;
+	if (!spGeoFactory) {cout<<"QI error :CATGeoFactory"<<endl;return CATStatusChangeRCCompleted;}
+
+	CATCartesianPoint* piCarPoint = spGeoFactory->CreateCartesianPoint(x,y,z);
+
+	CATSoftwareConfiguration * pConfig = new CATSoftwareConfiguration();
+	CATTopData topdata(pConfig);
+
+	CATTopVertex* pTopVertex = ::CATCreateTopVertex((CATGeoFactory*)spGeoFactory,&topdata,(CATPoint*)piCarPoint);
+	pTopVertex->Run();
+
+	CATBody* pBodyOnPoint = pTopVertex->GetResult();
+
+	CATIDatumFactory_var spiDatumFactory = piSpecCont;
+	if(!spiDatumFactory) {cout<<"QI error: CATIDatumFactory"<<endl;return CATStatusChangeRCCompleted;}
+
+	CATISpecObject* piSpecOnBody = NULL;
+	hr = spiDatumFactory->InstanciateDatum(pBodyOnPoint,piSpecOnBody);
+	if (piSpecOnBody)
+	{
+		CATIGSMProceduralView_var spiGSMProceduralView = piSpecOnBody;
+		CATISpecObject_var spiSpecOnPoint = piSpecOnBody;
+		spiGSMProceduralView->InsertInProceduralView(piSpecOnBody);
+		spiSpecOnPoint->Update();
+	}*/
+
+
+	cout<<"End"<<endl;
+	RequestDelayedDestruction();
+	return CATStatusChangeRCCompleted;
+}

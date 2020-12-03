@@ -1,0 +1,91 @@
+void SJDAppPrincipalSectionInsertPanel::ReplaceObj( CATISpecObject_var iOldObj, CATISpecObject_var iNewObj )
+
+{
+
+HRESULT rc=E_FAIL;
+
+ 
+
+CATIStructureAnalyse_var spiStructureAnalysis=iOldObj;
+
+if( !spiStructureAnalysis ) return;
+
+ 
+
+CATListValCATBaseUnknown_var listChild;
+
+spiStructureAnalysis->AnalyseDirectChildren("CATISpecObject",listChild);
+
+if( listChild.Size() < 1 ) return;
+
+ 
+
+//
+
+CATISpecObject_var spiSpecOnChild=NULL_var;
+
+CATISpecObject_var spiSpecOnResult=NULL_var;
+
+CATUnicodeString strAttName;
+
+CATIReplace_var spiReplace=NULL_var;
+
+ 
+
+for(int i=1;i<=listChild.Size();i++) {
+
+spiSpecOnChild = listChild[i];
+
+if( !spiSpecOnChild ) continue;
+
+ 
+
+//Get the name of attribute
+
+strAttName = GetAttName(spiSpecOnChild,iOldObj,spiSpecOnResult);
+
+if( strAttName.GetLengthInChar() < 1 || !spiSpecOnResult ) continue;
+
+ 
+
+//Replace operation
+
+spiReplace = spiSpecOnResult;
+
+if( !spiReplace ) continue;
+
+rc = spiReplace->Replace(strAttName,iNewObj,iOldObj);
+
+}
+
+listChild.RemoveAll();
+
+ 
+
+CATUnicodeString strNameOnOldObj = "";
+
+CATIAlias_var spAliasOnOldObj = iOldObj;
+
+if (NULL_var != spAliasOnOldObj)
+
+{
+
+strNameOnOldObj = spAliasOnOldObj->GetAlias();
+
+}
+
+ 
+
+CATIAlias_var spAliasOnNewObj = iNewObj;
+
+if (NULL_var != spAliasOnNewObj)
+
+{
+
+spAliasOnNewObj->SetAlias(strNameOnOldObj);
+
+}
+
+
+}
+

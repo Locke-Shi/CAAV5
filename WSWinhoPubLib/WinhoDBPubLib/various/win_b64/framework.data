@@ -1,0 +1,6 @@
+!<mkRTViewData> v1.0.0
+CSC/002/DSI .\WinhoDBPubLib\IdentityCard\Objects\win_b64\mkcsc\WinhoDBPubLib.cscdb|.\WinhoDBPubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoDBPubLibIC.xml|.\WinhoDBPubLib
+DAT/002/CUS .\win_b64\code\dictionary\WinhoDBPubLib.dico|.\WinhoDBPubLib\CNext\code\dictionary\WinhoDBPubLib.dico
+RTV/002/DSI .\win_b64\code\productIC\WinhoDBPubLibIC.required|.\WinhoDBPubLib
+BTV/002/CUS .\win_b64\code\productIC\WinhoDBPubLibIC.script|.\WinhoDBPubLib

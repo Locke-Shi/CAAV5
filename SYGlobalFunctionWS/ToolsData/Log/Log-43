@@ -1,0 +1,248 @@
+mkmk  -u  SYTestMod.m
+2020/8/5 16:14:20
+
+## start step: CIbuild   at 08/05/2020-16:14:22
+## end   step: CIbuild   at 08/05/2020-16:14:22
+
+## start step: DataUpdate   at 08/05/2020-16:14:22
+# make:  SYGlobalFunctionFrm\IdentityCard\Objects\win_b64\.mkdata.mkb
+## end   step: DataUpdate   at 08/05/2020-16:14:22
+
+## start step: DataUpdate   at 08/05/2020-16:14:22
+# make:  SYGlobalFunctionFrm\SYTestMod.m\Objects\win_b64\.mkdata.mkb
+## end   step: DataUpdate   at 08/05/2020-16:14:22
+
+## start step: CIcompilation   at 08/05/2020-16:14:22
+## end   step: CIcompilation   at 08/05/2020-16:14:22
+
+## start step: headerlist   at 08/05/2020-16:14:22
+## end   step: headerlist   at 08/05/2020-16:14:22
+
+## start step: headermap   at 08/05/2020-16:14:22
+## end   step: headermap   at 08/05/2020-16:14:22
+
+## start step: buildtimedata   at 08/05/2020-16:14:22
+## end   step: buildtimedata   at 08/05/2020-16:14:22
+
+## start step: fwgrammar   at 08/05/2020-16:14:22
+## end   step: fwgrammar   at 08/05/2020-16:14:22
+
+## start step: cppgrammar   at 08/05/2020-16:14:22
+## end   step: cppgrammar   at 08/05/2020-16:14:23
+
+## start step: headerlist   at 08/05/2020-16:14:23
+## end   step: headerlist   at 08/05/2020-16:14:23
+
+## start step: headermap   at 08/05/2020-16:14:23
+## end   step: headermap   at 08/05/2020-16:14:23
+
+## start step: grammar1st   at 08/05/2020-16:14:23
+## end   step: grammar1st   at 08/05/2020-16:14:23
+
+## start step: typelibgrammar   at 08/05/2020-16:14:23
+## end   step: typelibgrammar   at 08/05/2020-16:14:23
+
+## start step: headerruler   at 08/05/2020-16:14:23
+## end   step: headerruler   at 08/05/2020-16:14:23
+
+## start step: compilation   at 08/05/2020-16:14:23
+# make:  SYGlobalFunctionFrm\SYTestMod.m: creates the precompiled header
+mkmksourceforpch.cpp
+# make:  SYGlobalFunctionFrm\SYTestMod.m\src\TestMain.cpp
+TestMain.cpp
+D:\R21\B21\.\System\PublicInterfaces\CATTimeSpan.h : warning C4819: 该文件包含不能在当前代码页(936)中表示的字符。请将该文件保存为 Unicode 格式以防止数据丢失
+C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxwin1.inl(105) : warning C4530: 使用了 C++ 异常处理程序，但未启用展开语义。请指定 /EHsc
+D:\V5CAA\V5Functions\SYGlobalFunctionWS\SYGlobalFunctionFrm\SYTestMod.m\src\TestMain.cpp(219) : error C2679: 二进制“<<”: 没有找到接受“std::_Vector_iterator<_Ty,_Alloc>”类型的右操作数的运算符(或没有可接受的转换)
+        with
+        [
+            _Ty=int,
+            _Alloc=std::allocator<int>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(653): 可能是“std::basic_ostream<_Elem,_Traits> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,const char *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(700): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<char,std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,char)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(738): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,const char *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(785): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,char)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(909): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,const signed char *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(916): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,signed char)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(923): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,const unsigned char *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(930): 或       “std::basic_ostream<_Elem,_Traits> &std::operator <<<std::char_traits<char>>(std::basic_ostream<_Elem,_Traits> &,unsigned char)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afx.h(1302): 或       “CArchive &operator <<(CArchive &,ATL::CTimeSpan)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afx.h(1309): 或       “CArchive &operator <<(CArchive &,ATL::CTime)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afx.h(1519): 或       “CArchive &operator <<(CArchive &,const CObject *)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxwin.h(227): 或       “CArchive &operator <<(CArchive &,SIZE)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxwin.h(228): 或       “CArchive &operator <<(CArchive &,POINT)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxwin.h(229): 或       “CArchive &operator <<(CArchive &,const RECT &)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxdisp.h(943): 或       “CArchive &operator <<(CArchive &,COleVariant)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxdisp.h(947): 或       “CArchive &operator <<(CArchive &,ATL::CComBSTR)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxdisp.h(1022): 或       “CArchive &operator <<(CArchive &,COleCurrency)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxdisp.h(1029): 或       “CArchive &operator <<(CArchive &,ATL::COleDateTime)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\atlmfc\include\afxdisp.h(1036): 或       “CArchive &operator <<(CArchive &,ATL::COleDateTimeSpan)”
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(170): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(std::basic_ostream<_Elem,_Traits> &(__cdecl *)(std::basic_ostream<_Elem,_Traits> &))”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(176): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(std::basic_ios<_Elem,_Traits> &(__cdecl *)(std::basic_ios<_Elem,_Traits> &))”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(183): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(std::ios_base &(__cdecl *)(std::ios_base &))”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(190): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(std::_Bool)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(210): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(short)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(243): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(unsigned short)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(263): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(int)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(288): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(unsigned int)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(308): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(long)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(328): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(unsigned long)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(349): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(__int64)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(369): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(unsigned __int64)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(390): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(float)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(410): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(double)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(430): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(long double)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(450): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(const void *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        C:\Program Files (x86)\Microsoft Visual Studio 9.0\VC\include\ostream(470): 或       “std::basic_ostream<_Elem,_Traits> &std::basic_ostream<_Elem,_Traits>::operator <<(std::basic_streambuf<_Elem,_Traits> *)”
+        with
+        [
+            _Elem=char,
+            _Traits=std::char_traits<char>
+        ]
+        试图匹配参数列表“(std::ostream, std::_Vector_iterator<_Ty,_Alloc>)”时
+        with
+        [
+            _Ty=int,
+            _Alloc=std::allocator<int>
+        ]
+# make-ERROR: SYGlobalFunctionFrm\SYTestMod.m\src\TestMain.cpp
+# make:  tools\data\mkmksourceforpch.cpp
+## end   step: compilation   at 08/05/2020-16:14:25
+
+## start step: sourceruler   at 08/05/2020-16:14:25
+## end   step: sourceruler   at 08/05/2020-16:14:25
+
+## start step: link   at 08/05/2020-16:14:25
+# make: SYGlobalFunctionFrm\SYTestMod.m win_b64\code\bin\SYTestMod.exe
+# syst-ERROR: [D:\V5CAA\V5Functions\SYGlobalFunctionWS\.\SYGlobalFunctionFrm\SYTestMod.m\Objects\win_b64\TestMain.obj]: No such file or directory
+# make-ERROR: win_b64\code\bin\SYTestMod.exe
+## end   step: link   at 08/05/2020-16:14:25
+
+## start step: rmsmanifest   at 08/05/2020-16:14:25
+## end   step: rmsmanifest   at 08/05/2020-16:14:25
+
+## start step: runtimedata   at 08/05/2020-16:14:25
+## end   step: runtimedata   at 08/05/2020-16:14:25
+
+## start step: dummynls   at 08/05/2020-16:14:25
+## end   step: dummynls   at 08/05/2020-16:14:25

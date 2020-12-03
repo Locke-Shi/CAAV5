@@ -1,0 +1,119 @@
+HRESULT SZLBBCPAddParametersCmd::AddProperty(Range iExlRag,CATIProduct_var ispiProduct,CATIProduct_var ispiProductInstance)
+{
+	cout<<"Enter Function:AddProperty()"<<endl;
+	HRESULT rc;
+	int RangLine = 1;
+	while (1)
+	{
+		char cParametersName[1024] = {0};
+		char cParametersValue[1024] = {0};
+		_variant_t vParametersName = iExlRag.GetItem(_variant_t(RangLine),_variant_t(1));
+		_variant_t vParametersValue = iExlRag.GetItem(_variant_t(RangLine),_variant_t(3));
+		strcpy(cParametersName,(LPSTR)_bstr_t(vParametersName));
+		strcpy(cParametersValue,(LPSTR)_bstr_t(vParametersValue));
+		CATUnicodeString strParametersName = cParametersName;
+		CATUnicodeString strParametersValue = cParametersValue;
+		if (strParametersName == NULL)
+		{
+			cout << "加载完毕......" << endl;
+			break;
+		}
+		vector<CATUnicodeString>::iterator iter = _oldParametersVector.begin();
+		bool oldNameres = false;
+		while(iter != _oldParametersVector.end())
+		{
+			if (*iter == strParametersName)
+			{
+				oldNameres = true;
+			}
+			iter++;
+		}
+		if (oldNameres)
+		{
+			RangLine++;
+			continue;
+		}
+		CATIAProduct *piProduct=NULL;
+		rc = ispiProduct->QueryInterface(IID_CATIAProduct,(void **)&piProduct);
+		int count = ispiProductInstance->GetChildrenCount();
+		if ((count > 0)&&(strParametersName == "材料"))
+		{
+			strParametersValue = "";
+		}
+		//Get CATIAParameters
+		CATIAParameters *piParameters=NULL;
+		if(piProduct) {
+			rc = piProduct->get_UserRefProperties(piParameters);
+			piProduct->Release();  piProduct = NULL;
+		}
+		CATBSTR strAttName;
+		CATBSTR	strAttValue;
+		strParametersName.ConvertToBSTR(&strAttName);
+		strParametersValue.ConvertToBSTR(&strAttValue);
+		CATIAStrParam *pStrParam=NULL;
+		if( piParameters ) {
+			rc = piParameters->CreateString(strAttName,strAttValue,pStrParam);
+			cout<<"strAttName = "<<strParametersName<<endl;
+			//Add Code
+			if(strParametersName == "文件来源" || strParametersName == "设计阶段")
+			{
+				SetMoreValues(strParametersName,pStrParam);
+			}
+			//End Add
+
+			//Add Test
+			//if(strParametersName == "重量"){
+			//	cout<<"Test"<<endl;
+			//	CATVariant vTemp;
+			//	long lRangline = (long)RangLine;
+			//	rc = BuildVariant(lRangline,vTemp);
+			//	CATIAParameter *piParameter = NULL; 
+			//	rc = piParameters->Item(vTemp,piParameter);
+			//	double oMass = 0.0;
+			//	double ioDensity = 0.0;
+			//	CATIInertia_var spPrdInertia = ispiProduct;
+			//	spPrdInertia->GetMass(&ioDensity,&oMass);//密度，质量
+			//	cout<<"Mass = "<<oMass<<endl;
+			//	CATUnicodeString strMass = NULL;
+			//	strMass.BuildFromNum(oMass);
+			//	CATBSTR bstrMass;
+			//	strMass.ConvertToBSTR(&bstrMass);
+			//	piParameter->ValuateFromString(bstrMass);
+			//	cout<<"End Test"<<endl;
+			//}
+			//End Test
+			piParameters->Release();  piParameters = NULL;
+		}
+		if( !!pStrParam ) {
+			pStrParam->Release();  pStrParam = NULL;
+		}
+		RangLine++;
+	}
+	return rc;
+}
+
+//设置多值
+void SZLBBCPAddParametersCmd::SetMoreValues(CATUnicodeString iStrName,CATIAStrParam* ipStrParam)
+{
+	cout<<"Enter Function:SetMoreValues()"<<endl;
+	//设计阶段： MCSDP
+	//文件来源：内部，外部
+	HRESULT hr = S_OK;
+	CATSafeArrayVariant* safeArray = NULL;
+	if(iStrName == "设计阶段")
+	{
+		const char* pcValue1[5] = {"M","C","S","D","P"};
+		safeArray = BuildSafeArrayVariant(pcValue1,5);
+		hr = ipStrParam->SetEnumerateValues(*safeArray);
+	}
+
+	if(iStrName == "文件来源")
+	{
+		const char* pcValue2[2] = {"内部","外部"};
+		safeArray = BuildSafeArrayVariant(pcValue2,2);
+		hr = ipStrParam->SetEnumerateValues(*safeArray);
+	}
+	return ;
+}
+
+//获取属性值还可以用CATIInstance 

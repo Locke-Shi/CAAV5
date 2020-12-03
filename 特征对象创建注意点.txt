@@ -1,0 +1,34 @@
+﻿//创建法线上的面
+//创建GSM 特征后，必须要更新一下，才可以对生成的对象进行后续操作！！可直接转成几何对象
+CATIGSMPlaneNormal_var spiGSMPlaneNormal = spiGSMFactory->CreatePlaneNormal(ispiSpecOnCurve);
+	if (!!spiGSMPlaneNormal)
+	{	
+		CATISpecObject_var spiSpecGSMPlane = spiGSMPlaneNormal;
+		if (!spiSpecGSMPlane)
+		{
+			cout<<"eror spec"<<endl;
+			return;
+		}
+
+		spiSpecGSMPlane->Update();
+	
+
+		CATPlane_var spPlane = spiGSMPlaneNormal;
+		
+		if (!spPlane)
+		{
+			cout<<"no spPlane"<<endl;
+			return;
+		}
+
+		CATMathPoint mathPoint;
+		CATMathVector mathVector;
+
+		spPlane->GetNormal(mathPoint,mathVector);
+
+		cout<<"point = "<<mathPoint.GetX()<<","<<mathPoint.GetY()<<","<<mathPoint.GetZ()<<endl;
+		cout<<"vector = "<<mathVector.GetX()<<","<<mathVector.GetY()<<","<<mathVector.GetZ()<<endl;
+
+		CATMathPlane mathPlane(mathPoint,mathVector);
+		
+	}else cout<<"Create Fail"<<endl;

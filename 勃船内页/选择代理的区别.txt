@@ -1,0 +1,5 @@
+CATFeatureImportAgent 主要区别在于适用于跨文档选择时，会将当前文档外选择的特征复制到当前文档下，默认隐藏状态，所以无法高亮原特征。
+
+CATFeatureAgent 无法授权选择当前文档之外的特征
+
+CATPathElementAgent 未特征化

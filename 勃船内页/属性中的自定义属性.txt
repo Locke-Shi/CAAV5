@@ -1,0 +1,69 @@
+	CATLong parmNum = 0;
+	piParameters->get_Count(parmNum);
+	for (int i = 1;i<=iListOfAttrNames.Size();i++)
+	{
+		CATUnicodeString strAttName = iListOfAttrNames[i];
+		CATUnicodeString strAttValue = iListOfAttrValues[i];
+		cout<<strAttName<<endl;
+		cout<<strAttValue<<endl;
+		CATBSTR bstrAttName;
+		CATBSTR	bstrAttValue;
+		strAttName.ConvertToBSTR(&bstrAttName);
+		strAttValue.ConvertToBSTR(&bstrAttValue);
+
+		int flag = 0;
+		CATBSTR bsrtempName;
+		CATUnicodeString strTempName = NULL;
+		for (long j = 1;j<=parmNum;j++)
+		{
+			CATVariant vTemp;
+			if (FAILED(BuildVariant(j,vTemp))) continue;
+			CATIAParameter* piVBParam = NULL;
+			piParameters->Item(vTemp,piVBParam);
+			if (piVBParam)
+			{
+				piVBParam->get_Name(bsrtempName);
+				strTempName.BuildFromBSTR(bsrtempName);
+				if (strTempName.SearchSubString(strAttName) != -1)
+				{
+					flag = 1;
+					piVBParam->ValuateFromString(bstrAttValue);
+					break;
+				}
+			}
+		}
+
+		if (!flag)
+		{
+			CATIAStrParam *piStrParam=NULL;
+			if (FAILED(piParameters->CreateString(bstrAttName,bstrAttValue,piStrParam)) || !piStrParam) return E_FAIL;
+			piStrParam->Release();piStrParam = NULL;
+		}
+
+			/*CATUnicodeString strValue = NULL;
+			CATIValue* pValue = piInstance->GetValue(strAttName);
+			if (pValue)
+			{
+				strValue = pValue->Show();
+				cout<<"strValue = "<<strValue<<endl;
+			}
+
+			if (strValue!=NULL)
+			{
+				CATICkeParmFactory_var spiCkeParmFactory = CATCkeGlobalFunctions::GetVolatileFactory();
+				CATICkeParm_var spiCkeParm = spiCkeParmFactory->CreateString(strAttName,strAttValue);
+
+				CATIValue_var spiValue = spiCkeParm;
+				piInstance->SetValue(strAttName,spiValue);
+
+			}else{
+
+				CATIAStrParam *piStrParam=NULL;
+				if (FAILED(piParameters->CreateString(bstrAttName,bstrAttValue,piStrParam)) || !piStrParam) return E_FAIL;
+				piStrParam->Release();piStrParam = NULL;
+			}*/
+		
+
+	}
+
+	piParameters->Release();  piParameters = NULL;

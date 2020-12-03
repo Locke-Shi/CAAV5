@@ -1,0 +1,5 @@
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoDBPubLib\WinhoDBServices.m\src"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoDBPubLib\WinhoDBServices.m\LocalInterfaces"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoDBPubLib\WinhoDBServices.m\LocalGenerated\win_b64"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoDBPubLib\PublicInterfaces"
+/I"E:\01_DevWorkSpace\01_WinWS_CAA\WSWinhoPubLib\.\WinhoDBPubLib\ImportedInterfaces\win_b64"

@@ -1,0 +1,9 @@
+.\win_b64\code\lib\WinhoDBServices.exp
+.\win_b64\code\productIC\WinhoDBPubLibIC.xml
+.\win_b64\code\dictionary\WinhoDBPubLib.dico
+.\win_b64\code\productIC\WinhoDBPubLibIC.required
+.\win_b64\code\lib\WinhoDBServices.lib
+.\win_b64\code\bin\WinhoDBServices.pdb
+.\win_b64\code\bin\WinhoDBServices.dll
+.\win_b64\code\productIC\WinhoDBPubLibIC.script
+.\win_b64\control\WinhoDBPubLib

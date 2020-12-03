@@ -1,0 +1,62 @@
+mkmk   WinhoCAAPubLib WinhoDBPubLib WinhoMD5PubLib
+2019/8/27 13:43:47
+
+## start step: CIbuild   at 08/27/2019-13:43:49
+## end   step: CIbuild   at 08/27/2019-13:43:49
+
+## start step: DataUpdate   at 08/27/2019-13:43:49
+## end   step: DataUpdate   at 08/27/2019-13:43:49
+
+## start step: DataUpdate   at 08/27/2019-13:43:49
+## end   step: DataUpdate   at 08/27/2019-13:43:49
+
+## start step: CIcompilation   at 08/27/2019-13:43:49
+## end   step: CIcompilation   at 08/27/2019-13:43:49
+
+## start step: headerlist   at 08/27/2019-13:43:49
+## end   step: headerlist   at 08/27/2019-13:43:49
+
+## start step: headermap   at 08/27/2019-13:43:49
+## end   step: headermap   at 08/27/2019-13:43:49
+
+## start step: buildtimedata   at 08/27/2019-13:43:49
+## end   step: buildtimedata   at 08/27/2019-13:43:49
+
+## start step: fwgrammar   at 08/27/2019-13:43:49
+## end   step: fwgrammar   at 08/27/2019-13:43:49
+
+## start step: cppgrammar   at 08/27/2019-13:43:49
+## end   step: cppgrammar   at 08/27/2019-13:43:50
+
+## start step: headerlist   at 08/27/2019-13:43:50
+## end   step: headerlist   at 08/27/2019-13:43:50
+
+## start step: headermap   at 08/27/2019-13:43:50
+## end   step: headermap   at 08/27/2019-13:43:50
+
+## start step: grammar1st   at 08/27/2019-13:43:50
+## end   step: grammar1st   at 08/27/2019-13:43:50
+
+## start step: typelibgrammar   at 08/27/2019-13:43:50
+## end   step: typelibgrammar   at 08/27/2019-13:43:50
+
+## start step: headerruler   at 08/27/2019-13:43:50
+## end   step: headerruler   at 08/27/2019-13:43:50
+
+## start step: compilation   at 08/27/2019-13:43:50
+## end   step: compilation   at 08/27/2019-13:43:50
+
+## start step: sourceruler   at 08/27/2019-13:43:50
+## end   step: sourceruler   at 08/27/2019-13:43:50
+
+## start step: link1st   at 08/27/2019-13:43:50
+## end   step: link1st   at 08/27/2019-13:43:51
+
+## start step: link2nd   at 08/27/2019-13:43:51
+## end   step: link2nd   at 08/27/2019-13:43:51
+
+## start step: runtimedata   at 08/27/2019-13:43:51
+## end   step: runtimedata   at 08/27/2019-13:43:51
+
+## start step: dummynls   at 08/27/2019-13:43:51
+## end   step: dummynls   at 08/27/2019-13:43:51

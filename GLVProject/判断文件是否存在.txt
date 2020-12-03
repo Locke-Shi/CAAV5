@@ -1,0 +1,7 @@
+//文件是否存在
+	if((_access(istrPath, 0)) == -1 )
+	{
+		//_pGeneralClassCls->MessegeOutput("图纸文件不存在，请重新选择存储路径！","Notice");
+		_pGeneralClassCls->MessegeOutput("The drawing file does not exist, Please reselect the storage path ！","Notice");
+		return E_FAIL;
+	}

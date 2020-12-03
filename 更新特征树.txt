@@ -1,0 +1,5 @@
+CATIModelEvents_var spiModelEvents = _spiPartCont;
+	CATModify event((CATBaseUnknown*)_spiPartCont);
+	spiModelEvents->Dispatch(event);
+	CATIRedrawEvent_var spiRedrawEvent = _spiPartCont;
+	spiRedrawEvent->Redraw();
