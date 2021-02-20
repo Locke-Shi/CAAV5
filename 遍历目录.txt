@@ -2,7 +2,7 @@ void dir()
 {
 	CATUnicodeString dirPath = "E:\\CAA\\作业\\Model";
 
-	long hFile = 0;
+	long hFile = 0; //win 10 下 应该为 long long hFile = 0;
 	struct _finddata_t fileInfo;
 	string pathName, exdName;
 	// \\* 代表要遍历所有的类型

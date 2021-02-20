@@ -1,0 +1,49 @@
+// DO NOT EDIT :: THE CAA2 WIZARD WILL REPLACE ALL THE CODE HERE
+CATDlgDialog JDAPTCreateEditMemoDlg
+{
+  STYLE = CATDlgWndBtnOKApplyClose|CATDlgGridLayout;
+}
+
+CATDlgLabel LabelX
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  GRID = { 0, 0, 1, 1, CATGRID_4SIDES };
+}
+
+CATDlgEditor EditorX
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  STYLE = CATDlgEdtDouble;
+  PREC = 0;
+  GRID = { 0, 1, 1, 1, CATGRID_4SIDES };
+}
+
+CATDlgLabel LabelY
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  GRID = { 1, 0, 1, 1, CATGRID_4SIDES };
+}
+
+CATDlgLabel LabelZ
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  GRID = { 2, 0, 1, 1, CATGRID_4SIDES };
+}
+
+CATDlgEditor EditorY
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  STYLE = CATDlgEdtDouble;
+  PREC = 0;
+  GRID = { 1, 1, 1, 1, CATGRID_4SIDES };
+}
+
+CATDlgEditor EditorZ
+{
+  FATHER = JDAPTCreateEditMemoDlg;
+  STYLE = CATDlgEdtDouble;
+  PREC = 0;
+  GRID = { 2, 1, 1, 1, CATGRID_4SIDES };
+}
+
+// END WIZARD REPLACEMENT ZONE

@@ -1,0 +1,35 @@
+SJDGACExcel* pExcelClass = new SJDGACExcel();
+	pExcelClass->CreateExcel();
+	pExcelClass->SaveExcelFile(_ustrFilePath.ConvertToChar(), TRUE);
+	pExcelClass->OpenExcel(_ustrFilePath);
+
+	pExcelClass->WriteCellData(1, 1, "序号");
+	pExcelClass->WriteCellData(1, 2, "仪器设备名称");
+	pExcelClass->WriteCellData(1, 3, "单位");
+	pExcelClass->WriteCellData(1, 4, "数量");
+	pExcelClass->WriteCellData(1, 5, "规格");
+	pExcelClass->WriteCellData(1, 6, "备注");
+
+	int iRow = 2;
+	CATUnicodeString ustrData;
+	for (auto ret : EquipmentAndStandardHashMap)
+	{
+		ustrData.BuildFromNum(iRow - 1);
+		pExcelClass->WriteCellData(iRow, 1, ustrData);
+		pExcelClass->WriteCellData(iRow, 2, ret.second);
+		//pExcelClass->WriteCellData(iRow, 3, "单位");
+		ustrData.BuildFromNum(StandardCountHashMap[ret.first]);
+		pExcelClass->WriteCellData(iRow, 4, ustrData);
+		pExcelClass->WriteCellData(iRow, 5, ret.first);
+		pExcelClass->WriteCellData(iRow, 6, RemarkAndStandardHashMap[ret.first]);
+
+		iRow++;
+	}
+
+	pExcelClass->SaveExcelFile(_ustrFilePath.ConvertToChar(), FALSE);
+	//pExcelClass->CloseExcelFile();
+
+
+	//6. 释放excel对象
+	delete pExcelClass;
+	pExcelClass = NULL;

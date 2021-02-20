@@ -1,0 +1,4 @@
+1.unordered_map中，可使用数据类型const char* 代替CATUnicodeString
+unordered_map<const char*, const char*>
+
+2.和map的区别，对输出顺序有一定要求的时候，不要使用unordered_map，因为会使得输出的顺序和输入顺序不一致。主要用于查找。
